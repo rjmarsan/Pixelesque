@@ -5,9 +5,13 @@ import java.io.File;
 import processing.core.PApplet;
 import processing.core.PImage;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.res.Configuration;
+import android.media.MediaScannerConnection;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
@@ -326,6 +330,9 @@ public class PixelArt extends PApplet implements TouchListener {
 	    case com.rj.pixelesque.R.id.menu_save:
 	        save();
 	        return true;
+	    case com.rj.pixelesque.R.id.menu_export:
+	        export();
+	        return true;
 
 	    default:
 	        return super.onOptionsItemSelected(item);
@@ -337,15 +344,16 @@ public class PixelArt extends PApplet implements TouchListener {
 	}
 	
 	public void save(String name) {
-		File f = new File("/sdcard/pixelesque/");
-		if (!f.mkdir()) {
-			Log.d("PixelArt", "Error saving! making /sdcard/pixelesque died");
-		}
-		new SaveTask(name, -1, -1, art, f).execute(null, null);
+		new SaveTask(name, -1, -1, art).execute(null, null);
 	}
 	
+	
+	public void export() {
+		export("testexport", 1000, 800);
+	}
 	public void export(String name, int width, int height) {
-		
+		File exportloc = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+		new SaveTask(name, width, height, art, exportloc, true).execute(null, null);
 	}
 	
 	public class SaveTask extends AsyncTask<Void, Void, Void> {
@@ -354,16 +362,19 @@ public class PixelArt extends PApplet implements TouchListener {
 		PixelData data;
 		ProgressDialog dialog;
 		File location;
+		File file;
+		boolean export;
 		public SaveTask(String name, int width, int height, PixelData data) {
-			this(name, width, height, data, null);			
+			this(name, width, height, data, null, false);			
 		}
-		public SaveTask(String name, int width, int height, PixelData data, File location) {
-			this.name = name; this.width = width; this.height = height; this.data = data;
+		public SaveTask(String name, int width, int height, PixelData data, File location, boolean export) {
+			this.name = name; this.width = width; this.height = height; this.data = data; this.export = export;
 			this.location = location;
 			if (this.location == null) {
 				this.location = new File(getFilesDir(), "saves");
 				this.location.mkdirs();
 			}
+			file = new File(location, name+".png");
 		}
 		
 		@Override
@@ -385,10 +396,26 @@ public class PixelArt extends PApplet implements TouchListener {
 						height = (width * art.height) / art.width;
 					image = art.render(PixelArt.this, width, height);
 				}
-				if (location.exists() || location.mkdirs())
-					image.save(new File(location, name+".png").getAbsolutePath());
+				if (location.exists() || location.mkdirs()) {
+					image.save(file.getAbsolutePath());
+
+					if (export) {
+						// Tell the media scanner about the new file so that it is
+				        // immediately available to the user.
+				        MediaScannerConnection.scanFile(PixelArt.this,
+				                new String[] { file.toString() }, null,
+				                new MediaScannerConnection.OnScanCompletedListener() {
+				            public void onScanCompleted(String path, Uri uri) {
+				                Log.i("ExternalStorage", "Scanned " + path + ":");
+				                Log.i("ExternalStorage", "-> uri=" + uri);
+				            }
+				        });
+					}
+				}
 				else 
 					Log.d("PixelArt", "Error saving! making /sdcard/pixelesque/saves/ died");
+				
+
 			} catch (Exception e) {
 				
 			}				
@@ -400,6 +427,14 @@ public class PixelArt extends PApplet implements TouchListener {
 		protected void onPostExecute(Void result) {
 			super.onPostExecute(result);
 			dialog.dismiss();
+			if (export) {
+				Intent intent = new Intent(Intent.ACTION_VIEW);
+				intent.setDataAndType(Uri.parse("file://" + file.getAbsolutePath()), "image/*");
+
+				// tells your intent to get the contents
+				// opens the URI for your image directory on your sdcard
+				startActivityForResult(intent, 1);
+			}
 		}
 		
 	}

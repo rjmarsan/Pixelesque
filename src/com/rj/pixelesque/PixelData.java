@@ -58,6 +58,11 @@ public class PixelData {
 	public PixelData() {
 		this(10,8);
 	}
+	
+	public PixelData(PImage image) {
+		
+	}
+	
 	public PixelData(int width, int height) {
 		this.width = width;
 		this.height = height;
@@ -89,6 +94,7 @@ public class PixelData {
 		for (int x = 0; x < data.length; x++) {
 			for (int y = 0; y < data[x].length; y++) {
 				int color = data[x][y].getLastColor();
+				p.noStroke();
 				p.fill(Color.red(color), Color.green(color), Color.blue(color), Color.alpha(color));
 				p.rect(boxsize * x, boxsize * y, boxsize, boxsize);
 			}
