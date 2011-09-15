@@ -268,12 +268,32 @@ public class PixelData {
 	
 	public void removeCursor(Cursor c) {
 		synchronized(cursors) {
-			cursors.remove(c);
+			if (cursors.remove(c)) {
+				return;
+			} else {
+				for (Cursor cc : cursors) {
+					if (cc.curId == c.curId) {
+						cursors.remove(cc);
+						return;
+					}
+				}
+			}
 		}
 	}
 	
 	public boolean hasCursor(Cursor c) {
-		return cursors.contains(c);
+		if ( cursors.contains(c) ) {
+			return true;
+		} else {
+			synchronized(cursors) {
+				for (Cursor cc : cursors) {
+					if (cc.curId == c.curId) {
+						return true;
+					}
+				}
+			}
+		}
+		return false;
 	}
 	
 	public void clearCursors() {

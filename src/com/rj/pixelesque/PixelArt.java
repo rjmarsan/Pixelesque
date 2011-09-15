@@ -96,9 +96,10 @@ public class PixelArt extends PApplet implements TouchListener {
 	}
 	
 	
-	float origx;
-	float origy;
 	private class ScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {
+		float avgx;
+		float avgy;
+		
 	    @Override
 	    public boolean onScale(ScaleGestureDetector detector) {
 	    	float[] coords = art.getDataCoordsFloatFromXY(PixelArt.this, detector.getFocusX(), detector.getFocusY());
@@ -116,8 +117,10 @@ public class PixelArt extends PApplet implements TouchListener {
 	        float[] postcoords = art.getXYFromDataCoordsFloat(PixelArt.this, coords[0], coords[1]);
 	        float diffx = detector.getFocusX() -  postcoords[0];
 	        float diffy = detector.getFocusY() -  postcoords[1];
+	        avgx = avgx / 2 + diffx / 2;
+	        avgy = avgy / 2 + diffy / 2;
 	        //Log.d("Pixelesque", "SCALE: moving: "+diffx+", "+diffy  + "   orig:"+coords[0]+","+coords[1]+ "     post: "+postcoords[0]+","+postcoords[1]);
-	        moveArt(diffx, diffy);
+	        moveArt(avgx, avgy);
 
 	        
 	        return true;
@@ -125,6 +128,8 @@ public class PixelArt extends PApplet implements TouchListener {
 	    
 	    @Override
 	    public boolean onScaleBegin(ScaleGestureDetector detector) {
+	    	avgx = 0;
+	    	avgy = 0;
 	    	// TODO Auto-generated method stub
 	    	return super.onScaleBegin(detector);
 	    }
@@ -149,7 +154,9 @@ public class PixelArt extends PApplet implements TouchListener {
 	}
 	@Override
 	public void touchDown(Cursor c) {
+		Log.d("Pixelesque", "DOWN "+c);
 		if (!mScaleDetector.isInProgress() && art.isValid(art.getDataCoordsFromXY(this, c.firstPoint.x, c.firstPoint.y))) {
+			Log.d("Pixelesque", "DOWNADDED"+c);
 			art.addCursor(c);
 		}
 		if (art.cursors.size() <= 1) {
@@ -168,6 +175,7 @@ public class PixelArt extends PApplet implements TouchListener {
 				if (coords1[0] == coords2[0] && coords1[1] == coords2[1] && !mScaleDetector.isInProgress()) {
 					
 				} else {
+					Log.d("Pixelesque", "MOV REMOVE: c1:("+coords1[0]+","+coords1[1]+")  c2:("+coords2[0]+","+coords2[1]+")   movcur:"+movingCursor);
 					art.removeCursor(c);
 				}
 			} else if (movingCursor != null && movingCursor.curId == c.curId && !mScaleDetector.isInProgress()) {
@@ -189,10 +197,13 @@ public class PixelArt extends PApplet implements TouchListener {
 		Log.d("Pixelesque", "UP: c1:("+coords1[0]+","+coords1[1]+")  c2:("+coords2[0]+","+coords2[1]+")");
 	
 		if (state.mode == PixelArtState.PENCIL || state.mode == PixelArtState.ERASER) {
+			Log.d("Pixelesque", "UP MODE: c1:("+coords1[0]+","+coords1[1]+")  c2:("+coords2[0]+","+coords2[1]+")");
 			if (art.hasCursor(c)) {
+				Log.d("Pixelesque", "UP ALMOST: c1:("+coords1[0]+","+coords1[1]+")  c2:("+coords2[0]+","+coords2[1]+")");
 				if (coords1[0] == coords2[0] && coords1[1] == coords2[1]) {
 					int x = coords1[0];
 					int y = coords1[1];
+					Log.d("Pixelesque", "UP APPLY: c1:("+coords1[0]+","+coords1[1]+")  c2:("+coords2[0]+","+coords2[1]+")");
 					if (state.mode == PixelArtState.PENCIL) art.flipColor(x, y, state.selectedColor);
 					if (state.mode == PixelArtState.ERASER) art.eraseColor(x, y);
 				} else {
