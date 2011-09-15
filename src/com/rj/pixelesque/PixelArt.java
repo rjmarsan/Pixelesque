@@ -1,10 +1,18 @@
 package com.rj.pixelesque;
 
+import java.io.File;
+
 import processing.core.PApplet;
+import processing.core.PImage;
+import android.app.ProgressDialog;
 import android.content.res.Configuration;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
@@ -198,7 +206,7 @@ public class PixelArt extends PApplet implements TouchListener {
 	}
 	@Override
 	public void touchDown(Cursor c) {
-		if (art.isValid(art.getDataCoordsFromXY(this, c.firstPoint.x, c.firstPoint.y))) {
+		if (!mScaleDetector.isInProgress() && art.isValid(art.getDataCoordsFromXY(this, c.firstPoint.x, c.firstPoint.y))) {
 			art.addCursor(c);
 		}
 		if (art.cursors.size() <= 1) {
@@ -208,41 +216,49 @@ public class PixelArt extends PApplet implements TouchListener {
 	
 	@Override
 	public void touchMoved(Cursor c) {
-		Log.d("Pixelesque", "jhlkjhlkjh"+c);
+		int[] coords1 = art.getDataCoordsFromXY(this, c.firstPoint.x, c.firstPoint.y);
+		int[] coords2 = art.getDataCoordsFromXY(this, c.currentPoint.x, c.currentPoint.y);
+		Log.d("Pixelesque", "MOV: c1:("+coords1[0]+","+coords1[1]+")  c2:("+coords2[0]+","+coords2[1]+")   movcur:"+movingCursor);
 
-		if (art.hasCursor(c)) {
-			int[] coords1 = art.getDataCoordsFromXY(this, c.firstPoint.x, c.firstPoint.y);
-			int[] coords2 = art.getDataCoordsFromXY(this, c.currentPoint.x, c.currentPoint.y);
-			Log.d("Pixelesque", "MOV: c1:("+coords1[0]+","+coords1[1]+")  c2:("+coords2[0]+","+coords2[1]+")   movcur:"+movingCursor);
-			if (coords1[0] == coords2[0] && coords1[1] == coords2[1] && !mScaleDetector.isInProgress()) {
-				
-			} else {
-				art.removeCursor(c);
+		if (state.mode == PixelArtState.PENCIL || state.mode == PixelArtState.ERASER) {
+			if (art.hasCursor(c)) {
+				if (coords1[0] == coords2[0] && coords1[1] == coords2[1] && !mScaleDetector.isInProgress()) {
+					
+				} else {
+					art.removeCursor(c);
+				}
+			} else if (movingCursor != null && movingCursor.curId == c.curId && !mScaleDetector.isInProgress()) {
+				if (c.points.size() > 1) {
+					Point p1 = c.points.get(c.points.size()-1);
+					Point p2 = c.points.get(c.points.size()-2);
+					moveArt(p1.x - p2.x, p1.y - p2.y);
+				}
 			}
-		} else if (movingCursor != null && movingCursor.curId == c.curId && !mScaleDetector.isInProgress()) {
-			if (c.points.size() > 1) {
-				Point p1 = c.points.get(c.points.size()-1);
-				Point p2 = c.points.get(c.points.size()-2);
-				moveArt(p1.x - p2.x, p1.y - p2.y);
-			}
-		}
-		
-		
+		} else if (state.mode == PixelArtState.RECTANGLE) {
+			
+		}		
 	}
+	
 	@Override
 	public void touchUp(Cursor c) {
-		if (art.hasCursor(c)) {
-			int[] coords1 = art.getDataCoordsFromXY(this, c.firstPoint.x, c.firstPoint.y);
-			int[] coords2 = art.getDataCoordsFromXY(this, c.currentPoint.x, c.currentPoint.y);
-			Log.d("Pixelesque", "UP: c1:("+coords1[0]+","+coords1[1]+")  c2:("+coords2[0]+","+coords2[1]+")");
-			if (coords1[0] == coords2[0] && coords1[1] == coords2[1]) {
-				int x = coords1[0];
-				int y = coords1[1];
-				art.flipColor(x, y, state.selectedColor);
-			} else {
-			}
-			art.removeCursor(c);
-		}		
+		int[] coords1 = art.getDataCoordsFromXY(this, c.firstPoint.x, c.firstPoint.y);
+		int[] coords2 = art.getDataCoordsFromXY(this, c.currentPoint.x, c.currentPoint.y);
+		Log.d("Pixelesque", "UP: c1:("+coords1[0]+","+coords1[1]+")  c2:("+coords2[0]+","+coords2[1]+")");
+	
+		if (state.mode == PixelArtState.PENCIL || state.mode == PixelArtState.ERASER) {
+			if (art.hasCursor(c)) {
+				if (coords1[0] == coords2[0] && coords1[1] == coords2[1]) {
+					int x = coords1[0];
+					int y = coords1[1];
+					if (state.mode == PixelArtState.PENCIL) art.flipColor(x, y, state.selectedColor);
+					if (state.mode == PixelArtState.ERASER) art.eraseColor(x, y);
+				} else {
+				}
+				art.removeCursor(c);
+			}		
+		} else if (state.mode == PixelArtState.RECTANGLE) {
+			
+		}
 		
 		buttonbar.updateFromState();
 	}
@@ -292,29 +308,100 @@ public class PixelArt extends PApplet implements TouchListener {
 
 	
 		
-//	@Override
-//	public boolean onCreateOptionsMenu(final Menu menu) {
-//	    final MenuInflater inflater = getMenuInflater();
-//	    inflater.inflate(getMenu(), menu);
-//	    return true;
-//	}
-//	
-//	/**
-//	 * its 1:42, and where is Jake?
-//	 * Rj is goofy as fuck.
-//	 */
-//	
-//	@Override
-//	public boolean onMenuItemSelected(final int featureId, final MenuItem item) {
-//	    switch (item.getItemId()) {
-//	    case com.rj.processing.plasmasound.R.id.sequencer_settings:
-//	        sequencerSettings();
-//	        return true;
-//
-//	    default:
-//	        return super.onOptionsItemSelected(item);
-//	    }
-//	}
+	@Override
+	public boolean onCreateOptionsMenu(final Menu menu) {
+	    final MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(com.rj.pixelesque.R.menu.mainmenu, menu);
+	    return true;
+	}
 	
+	/**
+	 * its 1:42, and where is Jake?
+	 * Rj is goofy as fuck.
+	 */
+	
+	@Override
+	public boolean onMenuItemSelected(final int featureId, final MenuItem item) {
+	    switch (item.getItemId()) {
+	    case com.rj.pixelesque.R.id.menu_save:
+	        save();
+	        return true;
+
+	    default:
+	        return super.onOptionsItemSelected(item);
+	    }
+	}
+	
+	public void save() {
+		save("test");
+	}
+	
+	public void save(String name) {
+		File f = new File("/sdcard/pixelesque/");
+		if (!f.mkdir()) {
+			Log.d("PixelArt", "Error saving! making /sdcard/pixelesque died");
+		}
+		new SaveTask(name, -1, -1, art, f).execute(null, null);
+	}
+	
+	public void export(String name, int width, int height) {
+		
+	}
+	
+	public class SaveTask extends AsyncTask<Void, Void, Void> {
+		String name;
+		int width, height;
+		PixelData data;
+		ProgressDialog dialog;
+		File location;
+		public SaveTask(String name, int width, int height, PixelData data) {
+			this(name, width, height, data, null);			
+		}
+		public SaveTask(String name, int width, int height, PixelData data, File location) {
+			this.name = name; this.width = width; this.height = height; this.data = data;
+			this.location = location;
+			if (this.location == null) {
+				this.location = new File(getFilesDir(), "saves");
+				this.location.mkdirs();
+			}
+		}
+		
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			dialog = ProgressDialog.show(PixelArt.this, "Saving...", "Just a moment");
+		}
+		
+		@Override
+		protected Void doInBackground(Void... params) {
+			try {
+				PImage image;
+				if (width < 0 && height < 0)
+					image = art.render(PixelArt.this);
+				else {
+					if (width < 0)
+						width = (height * art.width) / art.height;
+					if (height < 0) 
+						height = (width * art.height) / art.width;
+					image = art.render(PixelArt.this, width, height);
+				}
+				if (location.exists() || location.mkdirs())
+					image.save(new File(location, name+".png").getAbsolutePath());
+				else 
+					Log.d("PixelArt", "Error saving! making /sdcard/pixelesque/saves/ died");
+			} catch (Exception e) {
+				
+			}				
+			return null;
+
+		}
+		
+		@Override
+		protected void onPostExecute(Void result) {
+			super.onPostExecute(result);
+			dialog.dismiss();
+		}
+		
+	}
 
 }

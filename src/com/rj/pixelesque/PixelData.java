@@ -3,7 +3,10 @@ package com.rj.pixelesque;
 import java.util.ArrayList;
 
 import processing.core.PApplet;
+import processing.core.PGraphics;
+import processing.core.PImage;
 import android.graphics.Color;
+import android.util.Log;
 
 import com.rj.pixelesque.History.HistoryAction;
 import com.rj.processing.mt.Cursor;
@@ -11,6 +14,7 @@ import com.rj.processing.mt.Cursor;
 public class PixelData {
 	public static final int MAX_BACKSTACK = 3;
 	public ColorStack[][] data;
+	int width; int height;
 	public History history;
 	public ArrayList<Cursor> cursors = new ArrayList<Cursor>();
 	public float scale;
@@ -55,6 +59,8 @@ public class PixelData {
 		this(10,8);
 	}
 	public PixelData(int width, int height) {
+		this.width = width;
+		this.height = height;
 		data = new ColorStack[width][];
 		for (int i = 0; i < data.length; i++) {
 			data[i] = new ColorStack[height];
@@ -70,6 +76,29 @@ public class PixelData {
 		history = new History(this);
 	}
 
+	public PImage render(PApplet papp) {
+		return render(papp, width, height);
+	}
+	public PImage render(PApplet papp, int width, int height) {
+		PGraphics p = papp.createGraphics(width, height, PApplet.A2D);
+		p.beginDraw();
+		
+		float boxsize = getBoxsize(width, height, 1);
+		Log.d("PixelData", "Rendering: boxsize "+boxsize+" widthheight:"+width+"x"+height+"   ");
+		
+		for (int x = 0; x < data.length; x++) {
+			for (int y = 0; y < data[x].length; y++) {
+				int color = data[x][y].getLastColor();
+				p.fill(Color.red(color), Color.green(color), Color.blue(color), Color.alpha(color));
+				p.rect(boxsize * x, boxsize * y, boxsize, boxsize);
+			}
+		}
+
+		p.endDraw();
+		return p.get();
+	}
+	
+	
 	public void draw(PApplet p) {
 		if (data == null || data[0] == null) return;
 		
@@ -98,19 +127,21 @@ public class PixelData {
 	}
 	
 	
-	
 	float getBoxsize(float width, float height) {
-		float boxwidth = width / data.length * scale;
-		float boxheight = height / data[0].length * scale;
+		return getBoxsize(width, height, scale);
+	}
+	float getBoxsize(float width, float height, float scale) {
+		float boxwidth = width / this.width * scale;
+		float boxheight = height / this.height * scale;
 		float boxsize = PApplet.min(boxwidth, boxheight);
 		return boxsize;
 	}
 	
 	float getWidth(PApplet p) {
-		return getBoxsize(p.width, p.height) * data.length;
+		return getBoxsize(p.width, p.height) * this.width;
 	}
 	float getHeight(PApplet p) {
-		return getBoxsize(p.width, p.height) * data[0].length;
+		return getBoxsize(p.width, p.height) * this.height;
 	}
 	
 	int[] coords = new int[2];
@@ -200,7 +231,7 @@ public class PixelData {
 	}
 	
 	public boolean isValid(int x, int y) {
-		return 	x >= 0 && x < data.length && y >= 0 && y < data[0].length;
+		return 	x >= 0 && x < this.width && y >= 0 && y < this.height;
 	}
 	public boolean isValid(int[] coords) {
 		return isValid(coords[0], coords[1]);

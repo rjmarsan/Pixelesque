@@ -31,8 +31,24 @@ public class PixelArtStateView  extends LinearLayout {
 	public void init() {
 		
 		pencilmode = findViewById(R.id.pencilmode);
+		pencilmode.setOnClickListener(new OnClickListener() {
+			public void onClick(View arg0) {
+				state.mode = PixelArtState.PENCIL;
+				updateFromState();
+			}});
 		erasermode = findViewById(R.id.erasermode);
+		erasermode.setOnClickListener(new OnClickListener() {
+			public void onClick(View arg0) {
+				state.mode = PixelArtState.ERASER;
+				updateFromState();
+			}});
 		rectanglemode = findViewById(R.id.rectanglemode);
+		rectanglemode.setOnClickListener(new OnClickListener() {
+			public void onClick(View arg0) {
+				state.mode = PixelArtState.RECTANGLE;
+				updateFromState();
+			}});
+
 		
 		colorpicker = findViewById(R.id.colorpicker);
 		colorpicker.setOnClickListener(new OnClickListener() {
