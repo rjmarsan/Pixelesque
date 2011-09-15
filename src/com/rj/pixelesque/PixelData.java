@@ -47,7 +47,9 @@ public class PixelData {
 		}
 		
 		public int getLastColor() {
-			return ints.get(ints.size()-1);
+			if (ints.size() > 0)
+				return ints.get(ints.size()-1);
+			return Color.TRANSPARENT;
 		}
 		
 		public void clearStack(int tocolor) {
@@ -94,7 +96,7 @@ public class PixelData {
 		return render(papp, width, height);
 	}
 	public PImage render(PApplet papp, int width, int height) {
-		PGraphics p = papp.createGraphics(width, height, PApplet.A2D);
+		PGraphics p = papp.createGraphics(width, height, PApplet.P2D);
 		p.beginDraw();
 		
 		float boxsize = getBoxsize(width, height, 1);
@@ -122,10 +124,14 @@ public class PixelData {
 		for (int x = 0; x < data.length; x++) {
 
 			for (int y = 0; y < data[x].length; y++) {
-				if (outline) p.stroke(127);
-				int color = data[x][y].getLastColor();
-				p.fill(Color.red(color), Color.green(color), Color.blue(color), Color.alpha(color));
-				p.rect(topx + boxsize * x, topy + boxsize * y, boxsize, boxsize);
+				float left = topx + boxsize * x;
+				float top = topy + boxsize * y;
+				if (top + boxsize > 0 && left + boxsize > 0 && top < p.height && left < p.width) { 
+					if (outline) p.stroke(127);
+					int color = data[x][y].getLastColor();
+					p.fill(Color.red(color), Color.green(color), Color.blue(color), Color.alpha(color));
+					p.rect(left, top, boxsize, boxsize);
+				}
 			}
 		}
 		synchronized(cursors) {
@@ -233,11 +239,13 @@ public class PixelData {
 	}
 	
 	public void rectangle(int x, int y, int width, int height, int color) {
+		Log.d("PixelData", "Rectangle: x"+x+" y:"+y+" width:"+width+" height:"+height+" color:"+color+" ");
 		if (isValid(x,y) && isValid(x+width, y+height)) {
+			Log.d("PixelData", "Rectangle Valid : x"+x+" y:"+y+" width:"+width+" height:"+height+" color:"+color+" ");
 			HistoryAction action = new HistoryAction();
-			for (int i=x; i<x+width; i++) {
-				for (int j=y; j<y+height; j++) {
-					data[x][y].pushColor(color);
+			for (int i=x; i<=x+width; i++) {
+				for (int j=y; j<=y+height; j++) {
+					data[i][j].pushColor(color);
 					action.addPoint(x, y, color);
 				}
 			}

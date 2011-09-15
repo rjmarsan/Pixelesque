@@ -8,6 +8,7 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
@@ -18,7 +19,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
-import android.view.View;
+import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 import android.widget.RelativeLayout.LayoutParams;
@@ -46,15 +47,18 @@ public class PixelArt extends PApplet implements TouchListener {
 	
 	
 	
-	View bbbar;
+	RelativeLayout bbbar;
 	PixelArtStateView buttonbar;
 	
 	@Override
 	public void onCreate(final Bundle savedinstance) {
 		super.onCreate(savedinstance);
-		bbbar = getLayoutInflater().inflate(com.rj.pixelesque.R.layout.buttonbar, null);
-		this.addContentView(bbbar, new RelativeLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+		bbbar = (RelativeLayout)getLayoutInflater().inflate(com.rj.pixelesque.R.layout.buttonbar, null);
+		//this.setContentView()
+		this.setContentView(bbbar, new RelativeLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 		buttonbar = (PixelArtStateView)bbbar.findViewById(com.rj.pixelesque.R.id.buttonbarz);
+		ViewGroup g = (ViewGroup)bbbar.findViewById(com.rj.pixelesque.R.id.surfaceholder);
+		g.addView(surfaceView);
 	}
 	
 	
@@ -126,72 +130,6 @@ public class PixelArt extends PApplet implements TouchListener {
 	    }
 	}
 
-
-	float mLastTouchX;
-	float mLastTouchY;
-	private static final int INVALID_POINTER_ID = -1;
-	// The Ôactive pointerÕ is the one currently moving our object.
-	private int mActivePointerId = INVALID_POINTER_ID;
-	public boolean touchEvent(MotionEvent ev) {
-	    final int action = ev.getAction();
-	    switch (action & MotionEvent.ACTION_MASK) {
-	    case MotionEvent.ACTION_DOWN: {
-	        final float x = ev.getX();
-	        final float y = ev.getY();
-	        
-	        mLastTouchX = x;
-	        mLastTouchY = y;
-	        mActivePointerId = ev.getPointerId(0);
-	        break;
-	    }
-	        
-	    case MotionEvent.ACTION_MOVE: {
-	        final int pointerIndex = ev.findPointerIndex(mActivePointerId);
-	        final float x = ev.getX(pointerIndex);
-	        final float y = ev.getY(pointerIndex);
-
-	        // Only move if the ScaleGestureDetector isn't processing a gesture.
-	        if (!mScaleDetector.isInProgress()) {
-	            final float dx = x - mLastTouchX;
-	            final float dy = y - mLastTouchY;
-
-	            moveArt(dx,dy);
-	        }
-
-	        mLastTouchX = x;
-	        mLastTouchY = y;
-
-	        break;
-	    }
-	        
-	    case MotionEvent.ACTION_UP: {
-	        mActivePointerId = INVALID_POINTER_ID;
-	        break;
-	    }
-	        
-	    case MotionEvent.ACTION_CANCEL: {
-	        mActivePointerId = INVALID_POINTER_ID;
-	        break;
-	    }
-	    
-	    case MotionEvent.ACTION_POINTER_UP: {
-	        final int pointerIndex = (ev.getAction() & MotionEvent.ACTION_POINTER_INDEX_MASK) 
-	                >> MotionEvent.ACTION_POINTER_INDEX_SHIFT;
-	        final int pointerId = ev.getPointerId(pointerIndex);
-	        if (pointerId == mActivePointerId) {
-	            // This was our active pointer going up. Choose a new
-	            // active pointer and adjust accordingly.
-	            final int newPointerIndex = pointerIndex == 0 ? 1 : 0;
-	            mLastTouchX = ev.getX(newPointerIndex);
-	            mLastTouchY = ev.getY(newPointerIndex);
-	            mActivePointerId = ev.getPointerId(newPointerIndex);
-	        }
-	        break;
-	    }
-	    }
-	    
-	    return true;
-	}
 
 	
 	
@@ -425,7 +363,10 @@ public class PixelArt extends PApplet implements TouchListener {
 		    case com.rj.pixelesque.R.id.main_menu_new:
 		        shownew();
 		        return true;
-	
+		    case com.rj.pixelesque.R.id.main_menu_clear:
+		        clear();
+		        return true;
+
 		    default:
 		        return super.onOptionsItemSelected(item);
 	    }
@@ -446,6 +387,10 @@ public class PixelArt extends PApplet implements TouchListener {
 			String path = data.getStringExtra(ArtListActivity.PATH);
 			if (path != null) openArt(path);
 		}
+	}
+	
+	public void clear() {
+		art.rectangle(0, 0, art.width-1, art.height-1, Color.TRANSPARENT);
 	}
 	
 	public void shownew() {

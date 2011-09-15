@@ -3,7 +3,15 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     >
+    <LinearLayout 
+    	android:id="@+id/surfaceholder"
+    	android:layout_width="match_parent"
+    	android:layout_height="match_parent"
+    	android:layout_above="@+id/scroll_buttonbarz"
+    	android:background="#199"
+    />
 	<HorizontalScrollView
+		android:id="@+id/scroll_buttonbarz"
 		android:layout_alignParentBottom="true"
 		android:layout_width="fill_parent"
 	    android:layout_height="70dp"

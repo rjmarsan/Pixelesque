@@ -45,7 +45,7 @@ public class History  {
 		public void undo(PixelData data) {
 			for (PointAndColor p : points) {
 				ColorStack s = data.data[p.x][p.y];
-				s.popColor();
+				if (s.getLastColor() == p.color) s.popColor();
 			}
 		}
 		public void redo(PixelData data) {
@@ -64,7 +64,7 @@ public class History  {
 			history.remove(history.size()-1);
 		}
 		history.add(action);
-		position = position + 1;
+		position = history.size() - 1;
 	}
 	
 	public void undo() {
