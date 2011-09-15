@@ -4,11 +4,10 @@ import java.io.File;
 
 import processing.core.PApplet;
 import processing.core.PImage;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.media.MediaScannerConnection;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
@@ -21,6 +20,7 @@ import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 import android.widget.RelativeLayout.LayoutParams;
 
 import com.rj.processing.mt.Cursor;
@@ -31,11 +31,12 @@ import com.rj.processing.mt.TouchListener;
 public class PixelArt extends PApplet implements TouchListener {
 	
 	public MTManager mtManager;
-	PixelData art;
+	volatile PixelData art;
 	private ScaleGestureDetector mScaleDetector;
 	private PixelArtState state;
 	
 	
+	private static int LOAD_ACTIVITY = 313;
 	
 	
 	public int sketchWidth() { return this.screenWidth; }
@@ -272,8 +273,81 @@ public class PixelArt extends PApplet implements TouchListener {
 		art = new PixelData();
 		state  = new PixelArtState();
 	    buttonbar.setState(state, art);
+	    artChangedName();
+	}
+	
+	void openArt(String art) {
+		new OpenArtTask().execute(art);
+	}
+	
+	void newArt(int width, int height) {
+		new NewArtTask(width, height).execute();
+	}
+	
+	class OpenArtTask extends AsyncTask<String, Void, PixelData> {
+		Dialog d;
+		@Override
+		protected void onPreExecute() {
+			d  = ProgressDialog.show(PixelArt.this, "Loading...", "");
+			super.onPreExecute();
+		}
+		@Override
+		protected PixelData doInBackground(String... params) {
+			String path = params[0];
+			try {
+				PImage image = loadImage(path);
+				if (image == null) return null;
+				PixelData art = new PixelData(image, new File(path).getName().replace(".png", ""));
+				return art;
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return null;
+		}		
+		@Override
+		protected void onPostExecute(PixelData result) {
+			super.onPostExecute(result);
+			if (result != null) {
+				PixelArt.this.art = result;
+				artChangedName();
+			} else
+				Toast.makeText(PixelArt.this, "There was an error opening the image", Toast.LENGTH_SHORT).show();
+			d.dismiss();
+		}	
 	}
 
+	class NewArtTask extends AsyncTask<Void, Void, PixelData> {
+		int width, height;
+		public NewArtTask(int width, int height) {
+			this.width = width; this.height = height;
+		}
+		Dialog d;
+		@Override
+		protected void onPreExecute() {
+			d  = ProgressDialog.show(PixelArt.this, "Loading...", "");
+			super.onPreExecute();
+		}
+		@Override
+		protected PixelData doInBackground(Void... params) {
+			try {
+				PixelData art = new PixelData(width, height);
+				return art;
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return null;
+		}		
+		@Override
+		protected void onPostExecute(PixelData result) {
+			super.onPostExecute(result);
+			if (result != null) {
+				PixelArt.this.art = result;
+				artChangedName();
+			} else
+				Toast.makeText(PixelArt.this, "There was an error opening the image", Toast.LENGTH_SHORT).show();
+			d.dismiss();
+		}	
+	}
 	@Override
 	public void draw() {
 		background(0);
@@ -311,6 +385,17 @@ public class PixelArt extends PApplet implements TouchListener {
 	}
 
 	
+	public void artChangedName() {
+		this.runOnUiThread(new ChangeName());
+	}
+	public class ChangeName implements Runnable {
+		public void run() {
+			if (art.name != null)
+				setTitle("Pixelesque - "+art.name);
+			else
+				setTitle("Pixelesque - "+"New Pixel Art");
+		}
+	}
 		
 	@Override
 	public boolean onCreateOptionsMenu(final Menu menu) {
@@ -319,32 +404,67 @@ public class PixelArt extends PApplet implements TouchListener {
 	    return true;
 	}
 	
-	/**
-	 * its 1:42, and where is Jake?
-	 * Rj is goofy as fuck.
-	 */
 	
 	@Override
 	public boolean onMenuItemSelected(final int featureId, final MenuItem item) {
+		Log.d("PixelArt", "menu z : "+item.getItemId());
+		
 	    switch (item.getItemId()) {
-	    case com.rj.pixelesque.R.id.menu_save:
-	        save();
-	        return true;
-	    case com.rj.pixelesque.R.id.menu_export:
-	        export();
-	        return true;
-
-	    default:
-	        return super.onOptionsItemSelected(item);
+		    case com.rj.pixelesque.R.id.main_menu_save:
+		        save();
+		        return true;
+		    case com.rj.pixelesque.R.id.main_menu_save_as:
+		        saveas();
+		        return true;
+		    case com.rj.pixelesque.R.id.main_menu_export:
+		        export();
+		        return true;
+		    case com.rj.pixelesque.R.id.main_menu_open:
+		        load();
+		        return true;
+		    case com.rj.pixelesque.R.id.main_menu_new:
+		        shownew();
+		        return true;
+	
+		    default:
+		        return super.onOptionsItemSelected(item);
 	    }
 	}
 	
+	public void load() {
+		Intent intent = new Intent(this, ArtListActivity.class);
+		startActivityForResult(intent, LOAD_ACTIVITY);
+	}
+	
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		
+		if (requestCode == LOAD_ACTIVITY) {
+			if (data == null) return;
+			String path = data.getStringExtra(ArtListActivity.PATH);
+			if (path != null) openArt(path);
+		}
+	}
+	
+	public void shownew() {
+		Dialogs.showNewDialog(this);
+	}
+	
 	public void save() {
-		save("test");
+		if (art.name == null)
+			saveas();
+		else
+			save(art.name);
+	}
+	public void saveas() {
+		Dialogs.showSaveAs(this);
 	}
 	
 	public void save(String name) {
-		new SaveTask(name, -1, -1, art).execute(null, null);
+		art.setName(name);
+		new SaveTask(name, -1, -1, art, this).execute();
 	}
 	
 	
@@ -353,90 +473,9 @@ public class PixelArt extends PApplet implements TouchListener {
 	}
 	public void export(String name, int width, int height) {
 		File exportloc = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-		new SaveTask(name, width, height, art, exportloc, true).execute(null, null);
+		new SaveTask(name, width, height, art, this, exportloc, true).execute(null, null);
 	}
 	
-	public class SaveTask extends AsyncTask<Void, Void, Void> {
-		String name;
-		int width, height;
-		PixelData data;
-		ProgressDialog dialog;
-		File location;
-		File file;
-		boolean export;
-		public SaveTask(String name, int width, int height, PixelData data) {
-			this(name, width, height, data, null, false);			
-		}
-		public SaveTask(String name, int width, int height, PixelData data, File location, boolean export) {
-			this.name = name; this.width = width; this.height = height; this.data = data; this.export = export;
-			this.location = location;
-			if (this.location == null) {
-				this.location = new File(getFilesDir(), "saves");
-				this.location.mkdirs();
-			}
-			file = new File(location, name+".png");
-		}
-		
-		@Override
-		protected void onPreExecute() {
-			super.onPreExecute();
-			dialog = ProgressDialog.show(PixelArt.this, "Saving...", "Just a moment");
-		}
-		
-		@Override
-		protected Void doInBackground(Void... params) {
-			try {
-				PImage image;
-				if (width < 0 && height < 0)
-					image = art.render(PixelArt.this);
-				else {
-					if (width < 0)
-						width = (height * art.width) / art.height;
-					if (height < 0) 
-						height = (width * art.height) / art.width;
-					image = art.render(PixelArt.this, width, height);
-				}
-				if (location.exists() || location.mkdirs()) {
-					image.save(file.getAbsolutePath());
-
-					if (export) {
-						// Tell the media scanner about the new file so that it is
-				        // immediately available to the user.
-				        MediaScannerConnection.scanFile(PixelArt.this,
-				                new String[] { file.toString() }, null,
-				                new MediaScannerConnection.OnScanCompletedListener() {
-				            public void onScanCompleted(String path, Uri uri) {
-				                Log.i("ExternalStorage", "Scanned " + path + ":");
-				                Log.i("ExternalStorage", "-> uri=" + uri);
-				            }
-				        });
-					}
-				}
-				else 
-					Log.d("PixelArt", "Error saving! making /sdcard/pixelesque/saves/ died");
-				
-
-			} catch (Exception e) {
-				
-			}				
-			return null;
-
-		}
-		
-		@Override
-		protected void onPostExecute(Void result) {
-			super.onPostExecute(result);
-			dialog.dismiss();
-			if (export) {
-				Intent intent = new Intent(Intent.ACTION_VIEW);
-				intent.setDataAndType(Uri.parse("file://" + file.getAbsolutePath()), "image/*");
-
-				// tells your intent to get the contents
-				// opens the URI for your image directory on your sdcard
-				startActivityForResult(intent, 1);
-			}
-		}
-		
-	}
+	
 
 }

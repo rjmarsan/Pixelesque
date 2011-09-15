@@ -20,6 +20,7 @@ public class PixelData {
 	public float scale;
 	public float topx, topy;
 	public boolean outline;
+	public String name;
 	
 
 	
@@ -59,8 +60,16 @@ public class PixelData {
 		this(10,8);
 	}
 	
-	public PixelData(PImage image) {
-		
+	public PixelData(PImage image, String name) {
+		this(image.width, image.height);
+		image.loadPixels();
+		for (int i = 0; i < data.length; i++) {
+			for (int j = 0; j < data[i].length; j++) {
+				int color = image.get(i, j);
+				data[i][j].pushColor(color);
+			}
+		}
+		this.name = name;
 	}
 	
 	public PixelData(int width, int height) {
@@ -265,4 +274,8 @@ public class PixelData {
 		}
 	}
 	
+	
+	public void setName(String name) {
+		this.name = name;
+	}
 }

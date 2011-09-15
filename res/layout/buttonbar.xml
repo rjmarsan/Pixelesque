@@ -49,18 +49,18 @@
 		    	android:background="#631"
 		    	android:text="Color"
 		    	/>	
-		    <ImageView
+		    <TextView
 		    	android:id="@+id/undo"
 		    	android:layout_width="70dp"
 		    	android:layout_height="70dp"
-		    	android:background="#631"
+		    	android:background="#181"
 		    	android:text="Undo"
 		    	/>	
-			<ImageView
+			<TextView
 		    	android:id="@+id/redo"
 		    	android:layout_width="70dp"
 		    	android:layout_height="70dp"
-		    	android:background="#611"
+		    	android:background="#117"
 		    	android:text="Redo"
 		    	/>
 		</com.rj.pixelesque.PixelArtStateView>
