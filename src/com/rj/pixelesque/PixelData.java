@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import processing.core.PApplet;
 import processing.core.PGraphics;
 import processing.core.PImage;
+import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.Bitmap.Config;
 import android.util.Log;
 
 import com.rj.pixelesque.History.HistoryAction;
@@ -83,6 +85,18 @@ public class PixelData {
 		this.name = name;
 	}
 	
+	public PixelData(Bitmap image, String name) {
+		this(image.getWidth(), image.getHeight());
+		for (int i = 0; i < data.length; i++) {
+			for (int j = 0; j < data[i].length; j++) {
+				int color = image.getPixel(i, j);
+				data[i][j].pushColor(color);
+			}
+		}
+		this.name = name;
+	}
+
+	
 	public PixelData(int width, int height) {
 		this.width = width;
 		this.height = height;
@@ -101,12 +115,21 @@ public class PixelData {
 		history = new History(this);
 	}
 
-	public PImage render(PApplet papp) {
-		return render(papp, width, height);
+	public Bitmap render(PApplet papp) {
+		return renderInternal(papp, width, height);
 	}
-	public PImage render(PApplet papp, int width, int height) {
-		PGraphics p = papp.createGraphics(width, height, PApplet.P2D);
-		p.beginDraw();
+	
+	public Bitmap render(PApplet papp, int width, int height) {
+		Log.d("Renderer", "Starting render...");
+		Bitmap  map = renderInternal(papp, this.width, this.height);
+		Log.d("Renderer", "Done with initial render.");
+		Bitmap scaled = Bitmap.createScaledBitmap(map, width, height, false);
+		Log.d("Renderer", "Scaled.");
+		return scaled;
+	}
+	
+	public Bitmap renderInternal(PApplet papp, int width, int height) {
+		Bitmap image = Bitmap.createBitmap(width, height, Config.ARGB_8888);
 		
 		float boxsize = getBoxsize(width, height, 1);
 		Log.d("PixelData", "Rendering: boxsize "+boxsize+" widthheight:"+width+"x"+height+"   ");
@@ -114,27 +137,24 @@ public class PixelData {
 		for (int x = 0; x < data.length; x++) {
 			for (int y = 0; y < data[x].length; y++) {
 				int color = data[x][y].getLastColor();
-				p.noStroke();
-				p.fill(Color.red(color), Color.green(color), Color.blue(color), Color.alpha(color));
-				p.rect(boxsize * x, boxsize * y, boxsize, boxsize);
+				image.setPixel(x, y, color);
 			}
 		}
 
-		p.endDraw();
-		return p.get();
+		return image;
 	}
 	
 	
 	public void draw(PApplet p) {
 		if (data == null || data[0] == null) return;
 		
-		float boxsize = getBoxsize(p.width, p.height);
+		float boxsize = getBoxsize(p.width-2, p.height-2);
 
 		for (int x = 0; x < data.length; x++) {
 
 			for (int y = 0; y < data[x].length; y++) {
-				float left = topx + boxsize * x;
-				float top = topy + boxsize * y;
+				float left = topx + boxsize * x + 1;
+				float top = topy + boxsize * y + 1;
 				if (top + boxsize > 0 && left + boxsize > 0 && top < p.height && left < p.width) { 
 					if (outline) p.stroke(127);
 					int color = data[x][y].getLastColor();

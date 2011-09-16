@@ -3,54 +3,25 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     >
-    <RelativeLayout
-    	android:id="@+id/topbar"
-    	android:layout_width="match_parent"
-    	android:layout_height="26dp"
-    	android:paddingLeft="10dp"
-    	android:paddingRight="10dp"
-    	android:layout_alignParentTop="true"
-	    android:background="@color/hud_background"
-	    android:layout_marginBottom="2dp"
-    >
-    	<TextView
-        	android:id="@+id/title"
-	    	android:layout_width="wrap_content"
-	    	android:layout_height="wrap_content"
-	    	android:layout_alignParentLeft="true"
-	    	android:layout_centerVertical="true"
-	    	android:text="Pixelesque"
-	    	/>
-    
-    	<TextView
-        	android:id="@+id/picturename"
-	    	android:layout_width="wrap_content"
-	    	android:layout_height="wrap_content"
-	    	android:layout_centerHorizontal="true"
-	    	android:layout_centerVertical="true"
-	    	android:text="New Pixel Art"
-	    	/>
-    </RelativeLayout>
     <LinearLayout 
     	android:id="@+id/surfaceholder"
     	android:layout_width="match_parent"
     	android:layout_height="match_parent"
-    	android:layout_above="@+id/scroll_buttonbarz"
-    	android:layout_below="@+id/topbar"
+    	android:layout_toLeftOf="@+id/scroll_buttonbarz"
     	android:background="#199"
     />
 	<LinearLayout
 		android:id="@+id/scroll_buttonbarz"
-		android:layout_alignParentBottom="true"
-		android:layout_width="match_parent"
-	    android:layout_height="wrap_content"
+		android:layout_alignParentRight="true"
+		android:layout_width="wrap_content"
+	    android:layout_height="match_parent"
 	    android:scrollbars="none"
 		>
 		<com.rj.pixelesque.PixelArtStateView 
 			android:id="@+id/buttonbarz"
-		    android:orientation="horizontal"
-		    android:layout_width="fill_parent"
-		    android:layout_height="wrap_content"
+		    android:orientation="vertical"
+		    android:layout_width="wrap_content"
+		    android:layout_height="match_parent"
 		    android:background="@color/hud_background"
 		    >
 
@@ -88,7 +59,8 @@
 			    	android:layout_width="wrap_content"
 			    	android:layout_height="wrap_content"
 			    	android:src="@drawable/color"
-		    		android:scaleType="centerInside"			    	
+		    		android:scaleType="centerInside"
+			    	android:layout_centerInParent="true"
 			    	/>
 			    <View
 			    	android:id="@+id/colorindicator"

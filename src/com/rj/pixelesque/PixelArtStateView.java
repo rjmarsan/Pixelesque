@@ -60,7 +60,9 @@ public class PixelArtStateView  extends LinearLayout {
 						if (state != null) state.selectedColor = color;
 						updateFromState();
 					}                	
-                }, (state != null) ? state.selectedColor : Color.WHITE).show();
+                }, (state != null) ? state.selectedColor : Color.WHITE, 
+                		PixelArt.isHorizontal() ? ColorSelectorDialog.RIGHT : ColorSelectorDialog.BOTTOM, 
+                				getWidth()).show();
 			}});
 		
 		

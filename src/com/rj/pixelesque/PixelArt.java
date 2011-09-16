@@ -7,9 +7,11 @@ import processing.core.PImage;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.DisplayMetrics;
@@ -21,6 +23,7 @@ import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.RelativeLayout.LayoutParams;
 
@@ -30,6 +33,9 @@ import com.rj.processing.mt.Point;
 import com.rj.processing.mt.TouchListener;
 
 public class PixelArt extends PApplet implements TouchListener {
+	public final static int EXPORT_SMALL_LONGSIDE = 320;
+	public final static int EXPORT_MEDIUM_LONGSIDE = 640;
+	public final static int EXPORT_LARGE_LONGSIDE = 1080;
 	
 	public MTManager mtManager;
 	volatile PixelData art;
@@ -37,14 +43,18 @@ public class PixelArt extends PApplet implements TouchListener {
 	private PixelArtState state;
 	
 	
+	public static boolean isHorizontal() {
+		return Build.VERSION.SDK_INT > 10;
+	}
+	
 	private static int LOAD_ACTIVITY = 313;
 	
 	
 	public int sketchWidth() { return this.screenWidth; }
 	public int sketchHeight() { return this.screenHeight; }
 	public String sketchRenderer() { return PApplet.OPENGL; }
-	public boolean keepTitlebar() { return true; }
-	
+	public boolean keepTitlebar() { return isHorizontal(); }
+	public boolean keepStatusbar() { return true; }
 	
 	
 	RelativeLayout bbbar;
@@ -53,12 +63,21 @@ public class PixelArt extends PApplet implements TouchListener {
 	@Override
 	public void onCreate(final Bundle savedinstance) {
 		super.onCreate(savedinstance);
+		figureOutOrientation();
+		 
 		bbbar = (RelativeLayout)getLayoutInflater().inflate(com.rj.pixelesque.R.layout.buttonbar, null);
-		//this.setContentView()
 		this.setContentView(bbbar, new RelativeLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 		buttonbar = (PixelArtStateView)bbbar.findViewById(com.rj.pixelesque.R.id.buttonbarz);
 		ViewGroup g = (ViewGroup)bbbar.findViewById(com.rj.pixelesque.R.id.surfaceholder);
 		g.addView(surfaceView);
+	}
+	
+	public void figureOutOrientation() {
+		if (isHorizontal()) {
+			setRequestedOrientation(6 /*ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE*/);
+		} else {
+			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+		}
 	}
 	
 	
@@ -243,10 +262,20 @@ public class PixelArt extends PApplet implements TouchListener {
 
 
 	void actualsetup() {
-		art = new PixelData();
+		initialArt();
 		state  = new PixelArtState();
 	    buttonbar.setState(state, art);
 	    artChangedName();
+	}
+	
+	void initialArt() {
+		Configuration config = getResources().getConfiguration();
+		int screen = config.screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK;
+		if (screen <= Configuration.SCREENLAYOUT_SIZE_LARGE) {
+			art = new PixelData(12,16);
+		} else {
+			art = new PixelData(21,12);
+		}
 	}
 	
 	void setArt(PixelData art) {
@@ -368,10 +397,15 @@ public class PixelArt extends PApplet implements TouchListener {
 	}
 	public class ChangeName implements Runnable {
 		public void run() {
-			if (art.name != null)
+			TextView view = (TextView)findViewById(com.rj.pixelesque.R.id.picturename);
+			if (art != null && art.name != null)  {
+				if (view != null) view.setText(art.name);
 				setTitle("Pixelesque - "+art.name);
-			else
+			} else {
+				if (view != null) view.setText("New Pixel Art");
 				setTitle("Pixelesque - "+"New Pixel Art");
+			}
+			
 		}
 	}
 		
@@ -454,12 +488,25 @@ public class PixelArt extends PApplet implements TouchListener {
 	
 	
 	public void export() {
-		if (art.width > art.height)
-			export(art.name, 1000, -1);
-		else
-			export(art.name, -1, 1000);
-
+		Dialogs.showExport(this);
 	}
+	
+	
+	public void export(int longside) {
+		export(longside, null);
+	}
+	public void export(int longside, String extra) {
+		if (extra != null) {
+			extra = "-"+extra;
+		} else {
+			extra = "";
+		}
+		if (art.width > art.height)
+			export(art.name+extra, longside, -1);
+		else
+			export(art.name+extra, -1, longside);
+	}
+	
 	public void export(String name, int width, int height) {
 		File exportloc = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
 		new SaveTask(name, width, height, art, this, exportloc, true).execute(null, null);

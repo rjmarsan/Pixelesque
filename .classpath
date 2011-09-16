@@ -6,6 +6,5 @@
 	<classpathentry kind="src" path="AndMT_src"/>
 	<classpathentry kind="lib" path="/Users/rj/Documents/android/extras/android/compatibility/v4/android-support-v4.jar"/>
 	<classpathentry kind="src" path="Processing15_src"/>
-	<classpathentry kind="src" path="de_devmil_common_ui_color_src"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

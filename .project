@@ -41,10 +41,5 @@
 			<type>2</type>
 			<locationURI>_android_Processing15_81261097/src</locationURI>
 		</link>
-		<link>
-			<name>de_devmil_common_ui_color_src</name>
-			<type>2</type>
-			<locationURI>_android_de_devmil_common_ui_color_b2e8a126/src</locationURI>
-		</link>
 	</linkedResources>
 </projectDescription>

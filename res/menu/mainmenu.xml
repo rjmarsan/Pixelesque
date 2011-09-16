@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu
   xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/main_menu_save" android:title="Save" android:icon="@drawable/ic_menu_save" />
-    <item android:id="@+id/main_menu_save_as" android:title="Save As"   android:icon="@drawable/ic_menu_set_as"   ></item>
-    <item android:id="@+id/main_menu_export" android:title="Export"  android:icon="@drawable/ic_menu_share"   ></item>
-    <item android:id="@+id/main_menu_open" android:title="Open"  android:icon="@drawable/ic_menu_archive"   ></item>
-    <item android:id="@+id/main_menu_new" android:title="New"   android:icon="@drawable/ic_menu_add"  ></item>
-    <item android:id="@+id/main_menu_clear" android:title="Clear"  android:icon="@drawable/ic_menu_close_clear_cancel"   ></item>
+    <item android:id="@+id/main_menu_new" android:title="New"   android:icon="@drawable/menunew"  android:showAsAction="always" ></item>
+    <item android:id="@+id/main_menu_save" android:title="Save" android:icon="@drawable/save" android:showAsAction="always"/>
+    <item android:id="@+id/main_menu_save_as" android:title="Save As"   android:icon="@drawable/saveas"  android:showAsAction="never" ></item>
+    <item android:id="@+id/main_menu_open" android:title="Open"  android:icon="@drawable/open"  android:showAsAction="always" ></item>
+    <item android:id="@+id/main_menu_clear" android:title="Clear"  android:icon="@drawable/clear"  android:showAsAction="always|withText" ></item>
+    <item android:id="@+id/main_menu_export" android:title="Export"  android:icon="@drawable/export"  android:showAsAction="always|withText" ></item>
 </menu>

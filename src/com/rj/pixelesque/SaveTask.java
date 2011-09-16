@@ -1,11 +1,14 @@
 package com.rj.pixelesque;
 
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 
-import processing.core.PImage;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Bitmap.CompressFormat;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -52,7 +55,7 @@ public class SaveTask extends AsyncTask<Void, Void, Void> {
 	@Override
 	protected Void doInBackground(Void... params) {
 		try {
-			PImage image;
+			Bitmap image;
 			if (width < 0 && height < 0)
 				image = data.render(context);
 			else {
@@ -64,19 +67,14 @@ public class SaveTask extends AsyncTask<Void, Void, Void> {
 			}
 			if (location.exists() || location.mkdirs()) {
 				Log.d("SaveTask", "Saving: "+file.getAbsolutePath());
-				image.save(file.getAbsolutePath());
+				FileOutputStream fios = new FileOutputStream(file);
+				BufferedOutputStream bos = new BufferedOutputStream(fios);
+				image.compress(CompressFormat.PNG, 100, bos);
+				bos.flush();
+				Log.d("SaveTask", "saved: "+file.getAbsolutePath());
 
 				if (export) {
-					// Tell the media scanner about the new file so that it is
-			        // immediately available to the user.
-			        MediaScannerConnection.scanFile(context,
-			                new String[] { file.toString() }, null,
-			                new MediaScannerConnection.OnScanCompletedListener() {
-			            public void onScanCompleted(String path, Uri uri) {
-			                Log.i("ExternalStorage", "Scanned " + path + ":");
-			                Log.i("ExternalStorage", "-> uri=" + uri);
-			            }
-			        });
+					new MediaScanTask().execute();
 				}
 			}
 			else 
@@ -84,10 +82,27 @@ public class SaveTask extends AsyncTask<Void, Void, Void> {
 			
 
 		} catch (Exception e) {
-			
+			e.printStackTrace();
 		}				
 		return null;
 
+	}
+	
+	public class MediaScanTask extends AsyncTask<String, Void, Void> {		
+		@Override
+		protected Void doInBackground(String... params) {
+			// Tell the media scanner about the new file so that it is
+	        // immediately available to the user.
+	        MediaScannerConnection.scanFile(context,
+	                new String[] { file.toString() }, null,
+	                new MediaScannerConnection.OnScanCompletedListener() {
+	            public void onScanCompleted(String path, Uri uri) {
+	                Log.i("ExternalStorage", "Scanned " + path + ":");
+	                Log.i("ExternalStorage", "-> uri=" + uri);
+	            }
+	        });
+			return null;
+		}
 	}
 	
 	@Override
