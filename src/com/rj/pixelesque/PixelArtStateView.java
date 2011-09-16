@@ -33,7 +33,7 @@ public class PixelArtStateView  extends LinearLayout {
 		pencilmode = findViewById(R.id.pencilmode);
 		pencilmode.setOnClickListener(new OnClickListener() {
 			public void onClick(View arg0) {
-				state.mode = PixelArtState.PENCIL;
+				state.mode = PixelArtState.DRAW;
 				updateFromState();
 			}});
 		erasermode = findViewById(R.id.erasermode);
@@ -42,10 +42,10 @@ public class PixelArtStateView  extends LinearLayout {
 				state.mode = PixelArtState.ERASER;
 				updateFromState();
 			}});
-		rectanglemode = findViewById(R.id.rectanglemode);
+		rectanglemode = findViewById(R.id.pointermode);
 		rectanglemode.setOnClickListener(new OnClickListener() {
 			public void onClick(View arg0) {
-				state.mode = PixelArtState.DRAW;
+				state.mode = PixelArtState.PENCIL;
 				updateFromState();
 			}});
 
@@ -93,12 +93,12 @@ public class PixelArtStateView  extends LinearLayout {
 		checkHistoryButtons();
 		
 		
-		if (state.mode == PixelArtState.PENCIL) {
+		if (state.mode == PixelArtState.DRAW) {
 			pencilmode.setSelected(true);
 			erasermode.setSelected(false);
 			rectanglemode.setSelected(false);
 		}
-		if (state.mode == PixelArtState.DRAW) {
+		if (state.mode == PixelArtState.PENCIL) {
 			pencilmode.setSelected(false);
 			erasermode.setSelected(false);
 			rectanglemode.setSelected(true);

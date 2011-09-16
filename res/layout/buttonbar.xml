@@ -15,6 +15,7 @@
 		android:layout_alignParentBottom="true"
 		android:layout_width="fill_parent"
 	    android:layout_height="70dp"
+	    android:scrollbars="none"
 		>
 		<com.rj.pixelesque.PixelArtStateView 
 			android:id="@+id/buttonbarz"
@@ -40,29 +41,29 @@
 			    	android:background="@drawable/eraserbutton_bg"
 			    	/>	
 			   	<TextView
-			    	android:id="@+id/rectanglemode"
+			    	android:id="@+id/pointermode"
 			    	android:layout_width="70dp"
 			    	android:layout_height="70dp"
 			    	android:background="@drawable/penbutton_bg"
 			    	/>
 		   	</LinearLayout>
-		   	<LinearLayout
+		   	<RelativeLayout
 		    	android:layout_width="70dp"
 		    	android:layout_height="70dp"
-		    	android:orientation="vertical"
 			>
 				<ImageView
 			    	android:id="@+id/colorpicker"
 			    	android:layout_width="70dp"
-			    	android:layout_height="60dp"
+			    	android:layout_height="70dp"
 			    	android:src="@drawable/color"
 			    	/>
 			    <View
 			    	android:id="@+id/colorindicator"
-			    	android:layout_width="70dp"
-			    	android:layout_height="10dp"
+			    	android:layout_width="20dp"
+			    	android:layout_height="20dp"
+			    	android:layout_centerInParent="true"
 			    		/>
-		    </LinearLayout>
+		    </RelativeLayout>
 		    
 		    <TextView
 		    	android:id="@+id/undo"

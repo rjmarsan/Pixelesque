@@ -68,7 +68,7 @@ public class PixelData {
 	}
 
 	public PixelData() {
-		this(12,12);
+		this(12,16);
 	}
 	
 	public PixelData(PImage image, String name) {
@@ -253,10 +253,14 @@ public class PixelData {
 		}
 	}
 	
+	
 	public void eraseColor(int x, int y) {
+		setColor(x,y,Color.TRANSPARENT);
+	}
+	public void setColor(int x, int y, int color) {
 		if (isValid(x,y)) {
-			data[x][y].pushColor(Color.TRANSPARENT);
-			history.add(new History.HistoryAction(x,y,Color.TRANSPARENT));
+			data[x][y].pushColor(color);
+			history.add(new History.HistoryAction(x,y,color));
 		}
 	}
 	

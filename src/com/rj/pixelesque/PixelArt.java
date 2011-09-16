@@ -167,7 +167,7 @@ public class PixelArt extends PApplet implements TouchListener {
 			int[] last = art.getDataCoordsFromXY(this, c.currentPoint.x, c.currentPoint.y);
 			int x = last[0];
 			int y = last[1];
-			if (state.mode == PixelArtState.DRAW) art.flipColor(x,y,state.selectedColor);
+			if (state.mode == PixelArtState.DRAW) art.setColor(x,y,state.selectedColor);
 			if (state.mode == PixelArtState.ERASER) art.eraseColor(x, y);
 
 		}		
@@ -202,7 +202,7 @@ public class PixelArt extends PApplet implements TouchListener {
 				int x = last[0];
 				int y = last[1];
 				if (last[0] != sectolast[0] || last[1] != sectolast[1]) {
-					if (state.mode == PixelArtState.DRAW) art.flipColor(x,y,state.selectedColor);
+					if (state.mode == PixelArtState.DRAW) art.setColor(x,y,state.selectedColor);
 					if (state.mode == PixelArtState.ERASER) art.eraseColor(x, y);
 				}
 			} else {
