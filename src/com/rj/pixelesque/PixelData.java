@@ -56,10 +56,19 @@ public class PixelData {
 			ints.clear();
 			ints.add(tocolor);
 		}
+		
+		@Override
+		public String toString() {
+			StringBuilder b = new StringBuilder();
+			for (int i : ints) {
+				b.append(i+",");
+			}
+			return b.toString();
+		}
 	}
 
 	public PixelData() {
-		this(10,8);
+		this(12,12);
 	}
 	
 	public PixelData(PImage image, String name) {
@@ -136,7 +145,7 @@ public class PixelData {
 		}
 		synchronized(cursors) {
 			for (Cursor c : cursors) {
-				int[] coords = getDataCoordsFromXY(p, c.firstPoint.x, c.firstPoint.y);
+				int[] coords = getDataCoordsFromXY(p, c.currentPoint.x, c.currentPoint.y);
 				int x = coords[0]; int y = coords[1];
 				if (isValid(x,y)) {
 					float extra = 30;
@@ -145,6 +154,19 @@ public class PixelData {
 				}
 			}
 		}
+	}
+	
+	public String dumpBoard() {
+		StringBuilder b = new StringBuilder();
+		
+		for (int x = 0; x < data.length; x++) {
+			for (int y = 0; y < data[x].length; y++) {
+				b.append(data[x][y].toString());
+				b.append("|");
+			}
+			b.append("\n");
+		}
+		return b.toString();
 	}
 	
 	
@@ -246,7 +268,7 @@ public class PixelData {
 			for (int i=x; i<=x+width; i++) {
 				for (int j=y; j<=y+height; j++) {
 					data[i][j].pushColor(color);
-					action.addPoint(x, y, color);
+					action.addPoint(i, j, color);
 				}
 			}
 			history.add(action);

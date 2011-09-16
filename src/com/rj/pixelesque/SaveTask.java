@@ -25,12 +25,20 @@ public class SaveTask extends AsyncTask<Void, Void, Void> {
 		this(name, width, height, data, context, null, false);			
 	}
 	public SaveTask(String name, int width, int height, PixelData data, PixelArt context, File location, boolean export) {
-		this.name = name; this.width = width; this.height = height; this.data = data; this.export = export;
+		this.name = name; 
+		this.width = width; 
+		this.height = height; 
+		this.data = data; 
+		this.export = export;
 		this.context = context;
 		this.location = location;
-		if (this.location == null) {
+		if (location == null) {
 			this.location = new File(context.getFilesDir(), "saves");
 			this.location.mkdirs();
+		}
+		if (name == null) {
+			String time = System.currentTimeMillis()+"";
+			name = "Pixelesque-"+time.substring(time.length()-5);
 		}
 		file = new File(this.location, name+".png");
 	}

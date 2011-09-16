@@ -5,8 +5,7 @@ import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.LinearLayout;
-
-import com.rj.pixelesque.ColorPickerDialog.OnColorChangedListener;
+import de.devmil.common.ui.color.ColorSelectorDialog;
 
 
 public class PixelArtStateView  extends LinearLayout {
@@ -20,6 +19,7 @@ public class PixelArtStateView  extends LinearLayout {
 	View rectanglemode;
 	
 	View colorpicker;
+	View colorindicator;
 	View undo;
 	View redo;
 	
@@ -45,15 +45,16 @@ public class PixelArtStateView  extends LinearLayout {
 		rectanglemode = findViewById(R.id.rectanglemode);
 		rectanglemode.setOnClickListener(new OnClickListener() {
 			public void onClick(View arg0) {
-				state.mode = PixelArtState.RECTANGLE;
+				state.mode = PixelArtState.DRAW;
 				updateFromState();
 			}});
 
 		
 		colorpicker = findViewById(R.id.colorpicker);
+		colorindicator = findViewById(R.id.colorindicator);
 		colorpicker.setOnClickListener(new OnClickListener() {
 			public void onClick(View arg0) {
-                new ColorPickerDialog(getContext(), new ColorPickerDialog.OnColorChangedListener() {
+                new ColorSelectorDialog(getContext(), new ColorSelectorDialog.OnColorChangedListener() {
 					@Override
 					public void colorChanged(int color) {
 						if (state != null) state.selectedColor = color;
@@ -70,7 +71,7 @@ public class PixelArtStateView  extends LinearLayout {
 				updateFromState();
 			}});
 		redo = findViewById(R.id.redo);
-		redo.setOnClickListener(new OnClickListener() {
+		redo.setOnClickListener(new OnClickListener() { 
 			public void onClick(View arg0) {
 				data.history.redo();
 				updateFromState();
@@ -82,19 +83,41 @@ public class PixelArtStateView  extends LinearLayout {
 	public void setState(PixelArtState state, PixelData data) {
 		this.state = state;
 		this.data = data;
-		updateFromState();
-	}
+		getHandler().post(new Runnable() {
+			public void run() {updateFromState(); }
+		});
+	} 
 	
 	public void updateFromState() {
 		if (pencilmode == null) init();
 		checkHistoryButtons();
+		
+		
+		if (state.mode == PixelArtState.PENCIL) {
+			pencilmode.setSelected(true);
+			erasermode.setSelected(false);
+			rectanglemode.setSelected(false);
+		}
+		if (state.mode == PixelArtState.DRAW) {
+			pencilmode.setSelected(false);
+			erasermode.setSelected(false);
+			rectanglemode.setSelected(true);
+		}
+		if (state.mode == PixelArtState.ERASER) {
+			pencilmode.setSelected(false);
+			erasermode.setSelected(true);
+			rectanglemode.setSelected(false);
+		}
+		
+		colorindicator.setBackgroundColor(state.selectedColor);
+
 	}
 	
 	public void checkHistoryButtons() {
 		if (data == null || data.history == null) return;
 		
-		undo.setClickable(data.history.canUndo());
-		redo.setClickable(data.history.canRedo());
+		undo.setEnabled(data.history.canUndo());
+		redo.setEnabled(data.history.canRedo());
 	}
 	
 }

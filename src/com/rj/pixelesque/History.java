@@ -3,6 +3,8 @@ package com.rj.pixelesque;
 import java.util.ArrayList;
 import java.util.Vector;
 
+import android.util.Log;
+
 import com.rj.pixelesque.PixelData.ColorStack;
 
 
@@ -68,6 +70,8 @@ public class History  {
 	}
 	
 	public void undo() {
+//		Log.d("History", "UNDO position: "+position+" max:"+history.size());
+//		Log.d("History", data.dumpBoard());
 		if (!canUndo()) return;
 		HistoryAction action = history.get(position);
 		action.undo(data);
@@ -75,6 +79,8 @@ public class History  {
 	}
 	
 	public void redo() {
+//		Log.d("History", "REDO position: "+position+" max:"+history.size());
+//		Log.d("History", data.dumpBoard());
 		if (!canRedo()) return;
 		HistoryAction action = history.get(position+1);
 		action.redo(data);

@@ -26,50 +26,55 @@
 		    	android:orientation="horizontal"
 		    	android:layout_width="210dp"
 		    	android:layout_height="70dp"
-		    	android:background="#333"
 		    	>
 			    <TextView
 			    	android:id="@+id/pencilmode"
 			    	android:layout_width="70dp"
-			    	android:layout_height="60dp"
-			    	android:background="#313"
-			    	android:text="Pencil"
+			    	android:layout_height="70dp"
+			    	android:background="@drawable/pencilbutton_bg"
 			    	/>
 			    <TextView
 			    	android:id="@+id/erasermode"
 			    	android:layout_width="70dp"
-			    	android:layout_height="60dp"
-			    	android:background="#163"
-			    	android:text="Eraser"
+			    	android:layout_height="70dp"
+			    	android:background="@drawable/eraserbutton_bg"
 			    	/>	
 			   	<TextView
 			    	android:id="@+id/rectanglemode"
 			    	android:layout_width="70dp"
-			    	android:layout_height="60dp"
-			    	android:background="#136"
-			    	android:text="Rect"
+			    	android:layout_height="70dp"
+			    	android:background="@drawable/penbutton_bg"
 			    	/>
 		   	</LinearLayout>
-		    <TextView
-		    	android:id="@+id/colorpicker"
+		   	<LinearLayout
 		    	android:layout_width="70dp"
 		    	android:layout_height="70dp"
-		    	android:background="#631"
-		    	android:text="Color"
-		    	/>	
+		    	android:orientation="vertical"
+			>
+				<ImageView
+			    	android:id="@+id/colorpicker"
+			    	android:layout_width="70dp"
+			    	android:layout_height="60dp"
+			    	android:src="@drawable/color"
+			    	/>
+			    <View
+			    	android:id="@+id/colorindicator"
+			    	android:layout_width="70dp"
+			    	android:layout_height="10dp"
+			    		/>
+		    </LinearLayout>
+		    
 		    <TextView
 		    	android:id="@+id/undo"
 		    	android:layout_width="70dp"
 		    	android:layout_height="70dp"
-		    	android:background="#181"
-		    	android:text="Undo"
+		    	android:background="@drawable/undobutton_bg"
 		    	/>	
 			<TextView
 		    	android:id="@+id/redo"
 		    	android:layout_width="70dp"
 		    	android:layout_height="70dp"
-		    	android:background="#117"
-		    	android:text="Redo"
+		    	android:background="@drawable/redobutton_bg"
 		    	/>
 		</com.rj.pixelesque.PixelArtStateView>
 	</HorizontalScrollView>
