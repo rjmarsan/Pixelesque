@@ -7,7 +7,7 @@
 	        android:drawable="@drawable/back"
         />
         <item
-	        android:drawable="@drawable/back"
+	        android:drawable="@drawable/back_pressed"
 	        android:state_pressed="true"
 	        android:state_enabled="true"
         />

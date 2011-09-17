@@ -3,72 +3,26 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     >
-    <RelativeLayout
-    	android:id="@+id/topbar"
-    	android:layout_width="match_parent"
-    	android:layout_height="26dp"
-    	android:paddingLeft="10dp"
-    	android:layout_alignParentTop="true"
-	    android:background="@color/hud_background"
-	    android:layout_marginBottom="2dp"
-    >
-    	<ImageView
-	    	android:layout_width="wrap_content"
-	    	android:layout_height="wrap_content"
-	    	android:layout_alignParentRight="true"
-	    	android:layout_alignParentTop="true"
-	    	android:src="@drawable/topbar_rightside"
-			android:scaleType="centerCrop"
-	    	/>    
-    	<ImageView
-        	android:id="@+id/title"
-	    	android:layout_width="wrap_content"
-	    	android:layout_height="wrap_content"
-	    	android:layout_alignParentLeft="true"
-	    	android:layout_centerVertical="true"
-	    	android:src="@drawable/iconsmall"
-	    	/>
-    
-    	<TextView
-        	android:id="@+id/picturename"
-	    	android:layout_width="wrap_content"
-	    	android:layout_height="wrap_content"
-	    	android:layout_centerHorizontal="true"
-	    	android:layout_centerVertical="true"
-	    	android:text="New Pixel Art"
-	    	android:textStyle="bold"
-	    	/>
-	    	
-	 </RelativeLayout>
     <LinearLayout 
     	android:id="@+id/surfaceholder"
     	android:layout_width="match_parent"
     	android:layout_height="match_parent"
-    	android:layout_above="@+id/scroll_buttonbarz"
-    	android:layout_below="@+id/topbar"
+    	android:layout_toLeftOf="@+id/scroll_buttonbarz"
     	android:background="#199"
     />
-	<RelativeLayout
+	<LinearLayout
 		android:id="@+id/scroll_buttonbarz"
-		android:layout_alignParentBottom="true"
-		android:layout_width="match_parent"
-	    android:layout_height="wrap_content"
+		android:layout_alignParentRight="true"
+		android:layout_width="wrap_content"
+	    android:layout_height="match_parent"
 	    android:scrollbars="none"
-		android:background="@color/hud_background"
 		>
-    	<ImageView
-	    	android:layout_width="wrap_content"
-	    	android:layout_height="wrap_content"
-	    	android:layout_alignParentRight="true"
-	    	android:layout_alignParentTop="true"
-	    	android:src="@drawable/bottombar_bg"
-			android:scaleType="centerCrop"
-	    	/>    
 		<com.rj.pixelesque.PixelArtStateView 
 			android:id="@+id/buttonbarz"
-		    android:orientation="horizontal"
-		    android:layout_width="fill_parent"
-		    android:layout_height="wrap_content"
+		    android:orientation="vertical"
+		    android:layout_width="wrap_content"
+		    android:layout_height="match_parent"
+		    android:background="@color/hud_background"
 		    >
 
 		    <ImageView
@@ -114,6 +68,7 @@
 			    	android:layout_centerInParent="true"
 			    		/>
 		    </RelativeLayout>
+
 		    
 		    <ImageView
 		    	android:id="@+id/undo"
@@ -132,5 +87,5 @@
 		    	android:layout_weight="1"
 		    	/>
 		</com.rj.pixelesque.PixelArtStateView>
-	</RelativeLayout>
+	</LinearLayout>
 </RelativeLayout>

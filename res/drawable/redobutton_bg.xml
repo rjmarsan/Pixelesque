@@ -7,7 +7,7 @@
 	        android:drawable="@drawable/forward"
         />
         <item
-	        android:drawable="@drawable/forward"
+	        android:drawable="@drawable/forward_pressed"
 	        android:state_pressed="true"
 	        android:state_enabled="true"
         />

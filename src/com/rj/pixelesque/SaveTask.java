@@ -36,13 +36,13 @@ public class SaveTask extends AsyncTask<Void, Void, Void> {
 		this.context = context;
 		this.location = location;
 		if (location == null) {
-			this.location = new File(context.getFilesDir(), "saves");
-			this.location.mkdirs();
+			this.location = StorageUtils.getSaveDirectory(context);
 		}
 		if (name == null) {
 			String time = System.currentTimeMillis()+"";
 			name = "Pixelesque-"+time.substring(time.length()-5);
 		}
+		this.location.mkdirs();
 		file = new File(this.location, name+".png");
 	}
 	
@@ -65,20 +65,13 @@ public class SaveTask extends AsyncTask<Void, Void, Void> {
 					height = (width * data.height) / data.width;
 				image = data.render(context, width, height);
 			}
-			if (location.exists() || location.mkdirs()) {
-				Log.d("SaveTask", "Saving: "+file.getAbsolutePath());
-				FileOutputStream fios = new FileOutputStream(file);
-				BufferedOutputStream bos = new BufferedOutputStream(fios);
-				image.compress(CompressFormat.PNG, 100, bos);
-				bos.flush();
-				Log.d("SaveTask", "saved: "+file.getAbsolutePath());
-
-				if (export) {
-					new MediaScanTask().execute();
-				}
+			
+			StorageUtils.saveFile(name, file, image, context);
+			
+			if (export) {
+				new MediaScanTask().execute();
 			}
-			else 
-				Log.d("PixelArt", "Error saving! making /sdcard/pixelesque/saves/ died");
+
 			
 
 		} catch (Exception e) {

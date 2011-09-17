@@ -20,6 +20,9 @@
         </activity>
         <activity android:name=".ArtListActivity"
                   android:configChanges="orientation" />
+        <activity android:name="de.devmil.common.ui.color.ColorSelectorActivity"
+                  android:configChanges="orientation"
+                  android:theme="@style/myBackgroundStyle" />
 
     </application>
 </manifest>

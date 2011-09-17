@@ -64,8 +64,8 @@ public class ArtListFragment extends Fragment {
 		});
 		adapter = new ArtAdapter(getActivity(), 0);
 		gridview.setAdapter(adapter);
-		File path = new File(getActivity().getFilesDir(), "saves");
-		new ImageListLoader().execute(path.getAbsolutePath());
+		//File path = new File(getActivity().getFilesDir(), "saves");
+		new ImageListLoader().execute();
 	}
 	
 	public void setListener(ArtItemSelectedListener listen) {
@@ -110,25 +110,7 @@ public class ArtListFragment extends Fragment {
 		@Override
 		protected ArrayList<ArtElement> doInBackground(String... params) {
 			try {
-				String path = params[0];
-				ArrayList<ArtElement> elements = new ArrayList<ArtElement>();
-				
-				File folder = new File(path);
-				for (File file : folder.listFiles(new FilenameFilter() {
-					public boolean accept(File dir, String filename) {
-						if (filename.toLowerCase().endsWith(".png"))
-							return true;
-						return false;
-					}
-					})) {
-					
-					ArtElement e = new ArtElement(file, file.getName().substring(0, file.getName().length()-4));
-					elements.add(e);
-					Log.d("ArtList", "Adding list item: "+file.getAbsolutePath());
-					
-				}
-				
-				return elements;
+				return StorageUtils.getSavedFiles(getActivity());
 			} catch (Exception e) {
 				e.printStackTrace();
 				//Toast.makeText(getActivity(), "Error loading folder!", Toast.LENGTH_SHORT);
