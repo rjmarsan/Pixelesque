@@ -3,17 +3,16 @@ package com.rj.pixelesque;
 import java.io.File;
 
 import processing.core.PApplet;
-import processing.core.PImage;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
@@ -42,7 +41,9 @@ public class PixelArt extends PApplet implements TouchListener {
 	public final static int EXPORT_SMALL_LONGSIDE = 320;
 	public final static int EXPORT_MEDIUM_LONGSIDE = 640;
 	public final static int EXPORT_LARGE_LONGSIDE = 1080;
-	
+
+	public final static int SHARE_MEDIUM_LONGSIDE = 500;
+
 	
 	public MTManager mtManager;
 	volatile PixelData art;
@@ -170,7 +171,7 @@ public class PixelArt extends PApplet implements TouchListener {
 	@Override
 	public boolean surfaceTouchEvent(final MotionEvent event) {
 		if (mtManager != null) mtManager.surfaceTouchEvent(event);
-	    mScaleDetector.onTouchEvent(event);
+	    if (mScaleDetector != null) mScaleDetector.onTouchEvent(event);
 	    //touchEvent(event);
 	    return super.surfaceTouchEvent(event);
 	}
@@ -179,12 +180,14 @@ public class PixelArt extends PApplet implements TouchListener {
 	
 	@Override
 	public void touchAllUp(Cursor c) {
+		if (art == null) return;
 		art.clearCursors();
 	}
 	@Override
 	public void touchDown(Cursor c) {
+		if (art == null) return;
 		if (DEBUG) Log.d("Pixelesque", "DOWN "+c);
-		if (!mScaleDetector.isInProgress() && art.isValid(art.getDataCoordsFromXY(this, c.firstPoint.x, c.firstPoint.y))) {
+		if (mScaleDetector != null && !mScaleDetector.isInProgress() && art.isValid(art.getDataCoordsFromXY(this, c.firstPoint.x, c.firstPoint.y))) {
 			if (DEBUG) Log.d("Pixelesque", "DOWNADDED"+c);
 			art.addCursor(c);
 		}
@@ -204,6 +207,7 @@ public class PixelArt extends PApplet implements TouchListener {
 	
 	@Override
 	public void touchMoved(Cursor c) {
+		if (art == null) return;
 		int[] coords1 = art.getDataCoordsFromXY(this, c.firstPoint.x, c.firstPoint.y);
 		int[] coords2 = art.getDataCoordsFromXY(this, c.currentPoint.x, c.currentPoint.y);
 		if (DEBUG) Log.d("Pixelesque", "MOV: c1:("+coords1[0]+","+coords1[1]+")  c2:("+coords2[0]+","+coords2[1]+")   movcur:"+movingCursor);
@@ -243,6 +247,7 @@ public class PixelArt extends PApplet implements TouchListener {
 	
 	@Override
 	public void touchUp(Cursor c) {
+		if (art == null) return;
 		int[] coords1 = art.getDataCoordsFromXY(this, c.firstPoint.x, c.firstPoint.y);
 		int[] coords2 = art.getDataCoordsFromXY(this, c.currentPoint.x, c.currentPoint.y);
 		if (DEBUG) Log.d("Pixelesque", "UP: c1:("+coords1[0]+","+coords1[1]+")  c2:("+coords2[0]+","+coords2[1]+")");
@@ -311,14 +316,14 @@ public class PixelArt extends PApplet implements TouchListener {
 		Dialog d;
 		@Override
 		protected void onPreExecute() {
-			d  = ProgressDialog.show(PixelArt.this, "Loading...", "");
+			d  = ProgressDialog.show(PixelArt.this, "Loading...", "Just a moment");
 			super.onPreExecute();
 		}
 		@Override
 		protected PixelData doInBackground(String... params) {
 			String path = params[0];
 			try {
-				PImage image = StorageUtils.loadFile(PixelArt.this, path, PixelArt.this);
+				Bitmap image = StorageUtils.loadFile(PixelArt.this, path, PixelArt.this, true);
 				if (image == null) return null;
 				PixelData art = new PixelData(image, new File(path).getName().replace(".png", ""));
 				return art;
@@ -449,6 +454,9 @@ public class PixelArt extends PApplet implements TouchListener {
 		    case com.rj.pixelesque.R.id.main_menu_export:
 		        export();
 		        return true;
+		    case com.rj.pixelesque.R.id.main_menu_share:
+		        share();
+		        return true;
 		    case com.rj.pixelesque.R.id.main_menu_open:
 		        load();
 		        return true;
@@ -488,6 +496,7 @@ public class PixelArt extends PApplet implements TouchListener {
 	
 	public void clear() {
 		art.rectangle(0, 0, art.width-1, art.height-1, Color.TRANSPARENT);
+		buttonbar.updateFromState();
 	}
 	
 	public void shownew() {
@@ -535,9 +544,27 @@ public class PixelArt extends PApplet implements TouchListener {
 	
 	public void export(String name, int width, int height) {
 		File exportloc = StorageUtils.getExportDirectory(this);
-		new SaveTask(name, width, height, art, this, exportloc, true).execute(null, null);
+		new SaveTask(name, width, height, art, this, exportloc, true, false).execute(null, null);
+	}
+	 
+	public void share() {
+		share(SHARE_MEDIUM_LONGSIDE);
+	}
+
+	public void share(int longside) {
+		if (art.width > art.height) {
+			if (art.name != null) share(art.name+"shared", longside, -1);
+			else share(null, longside, -1);
+		} else {
+			if (art.name != null) share(art.name+"shared", -1, longside);
+			else share(null, -1, longside);
+		}
 	}
 	
+	public void share(String name, int width, int height) {
+		File exportloc = StorageUtils.getExportDirectory(this);
+		new SaveTask(name, width, height, art, this, exportloc, false, true).execute(null, null);
+	}
 	
 
 }

@@ -3,8 +3,9 @@
   xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/main_menu_new" android:title="New"   android:icon="@drawable/menunew"  android:showAsAction="always" ></item>
     <item android:id="@+id/main_menu_save" android:title="Save" android:icon="@drawable/save" android:showAsAction="always"/>
-    <item android:id="@+id/main_menu_save_as" android:title="Save As"   android:icon="@drawable/saveas"  android:showAsAction="never" ></item>
     <item android:id="@+id/main_menu_open" android:title="Open"  android:icon="@drawable/open"  android:showAsAction="always" ></item>
     <item android:id="@+id/main_menu_clear" android:title="Clear"  android:icon="@drawable/clear"  android:showAsAction="always|withText" ></item>
-    <item android:id="@+id/main_menu_export" android:title="Export"  android:icon="@drawable/export"  android:showAsAction="always|withText" ></item>
+    <item android:id="@+id/main_menu_share" android:title="Share"  android:icon="@drawable/share"  android:showAsAction="always|withText" ></item>
+    <item android:id="@+id/main_menu_export" android:title="Export"  android:icon="@drawable/export"  android:showAsAction="never" ></item>
+    <item android:id="@+id/main_menu_save_as" android:title="Save As"   android:icon="@drawable/saveas"  android:showAsAction="never" ></item>
 </menu>

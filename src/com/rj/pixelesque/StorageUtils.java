@@ -12,6 +12,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Bitmap.CompressFormat;
 import android.os.Environment;
 import android.util.Log;
@@ -69,7 +70,7 @@ public class StorageUtils {
 		return elements;
 	}
 	
-	public static void saveFile(String name, File file, Bitmap image, Context context) {
+	public static void saveFile(String name, File file, Bitmap image, Context context, boolean addToRecent) {
 		try {
 			Log.d("SaveTask", "Saving: "+file.getAbsolutePath());
 			FileOutputStream fios = new FileOutputStream(file);
@@ -77,15 +78,16 @@ public class StorageUtils {
 			image.compress(CompressFormat.PNG, 100, bos);
 			bos.flush();
 			Log.d("SaveTask", "saved: "+file.getAbsolutePath());
-			setLastOpened(file.getAbsolutePath(), context);
+			if (addToRecent) setLastOpened(file.getAbsolutePath(), context);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
-	public static PImage loadFile(PApplet p, String path, Context context) {
-		setLastOpened(path, context);
-		return p.loadImage(path);
+	public static Bitmap loadFile(PApplet p, String path, Context context, boolean addToRecent) {
+		if (addToRecent) setLastOpened(path, context);
+//		return p.loadImage(path);
+		return BitmapFactory.decodeFile(path);
 	}
 	
 	
@@ -96,16 +98,16 @@ public class StorageUtils {
 		edit.commit();
 	}
 
-	public static PImage getLastOpened(PApplet p, Context context) {
-		SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, 0);
-		if (! prefs.contains(RECENTLY_OPENED)) 
-			return null;
-		
-		String path = prefs.getString(RECENTLY_OPENED, "");
-		PImage image = loadFile(p, path, context);
-		
-		return image;
-	}
+//	public static PImage getLastOpened(PApplet p, Context context) {
+//		SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, 0);
+//		if (! prefs.contains(RECENTLY_OPENED)) 
+//			return null;
+//		
+//		String path = prefs.getString(RECENTLY_OPENED, "");
+//		PImage image = loadFile(p, path, context, false);
+//		
+//		return image;
+//	}
 	
 	public static String getLastOpenedFile(Context context) {
 		SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, 0);

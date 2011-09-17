@@ -23,6 +23,7 @@ import android.text.InputType;
 import android.text.Spanned;
 import android.text.method.NumberKeyListener;
 import android.util.AttributeSet;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -133,6 +134,12 @@ public class NumberPicker extends LinearLayout implements OnClickListener,
         mText.setOnFocusChangeListener(this);
         mText.setFilters(new InputFilter[] {inputFilter});
         mText.setRawInputType(InputType.TYPE_CLASS_NUMBER);
+        mText.setOnKeyListener(new OnKeyListener() {
+			public boolean onKey(View v, int keyCode, KeyEvent event) {
+				//validateInput(v);
+				return false;
+			}
+        });
 
         if (!isEnabled()) {
             setEnabled(false);
@@ -421,6 +428,14 @@ public class NumberPicker extends LinearLayout implements OnClickListener,
      * @return the current value.
      */
     public int getCurrent() {
+    	try {
+	    	int val = Integer.parseInt(mText.getText().toString());
+	        if ((val >= mStart) && (val <= mEnd)) {
+	        	mCurrent = val;
+	        }
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    	}
         return mCurrent;
     }
 }

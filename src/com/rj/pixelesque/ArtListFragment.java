@@ -1,16 +1,16 @@
 package com.rj.pixelesque;
 
 import java.io.File;
-import java.io.FilenameFilter;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import processing.core.PApplet;
 import android.content.Context;
-import android.net.Uri;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -94,7 +94,21 @@ public class ArtListFragment extends Fragment {
 			TextView title = (TextView) convertView.findViewById(R.id.title);
 			
 			//image.setScaleType(ScaleType.)
-			image.setImageURI(Uri.fromFile(element.image));
+			//image.setImageURI(Uri.fromFile(element.image));
+			Bitmap bitmz = BitmapFactory.decodeFile(element.image.getAbsolutePath());
+			int width = bitmz.getWidth();
+			int height = bitmz.getHeight();
+			int max = PApplet.max(image.getWidth(), image.getHeight());
+			if (max <= 0) max = 150; //just a good number off the top of my head;
+			if (width > height) {
+				height = (height * max)/width;
+				width = max;
+			} else {
+				width = (width * max)/height;
+				height = max;
+			}
+			Bitmap scaled = Bitmap.createScaledBitmap(bitmz, width, height, false);
+			image.setImageBitmap(scaled);
 			title.setText(element.name);
 			
 			return convertView;

@@ -22,17 +22,19 @@ public class SaveTask extends AsyncTask<Void, Void, Void> {
 	File location;
 	File file;
 	boolean export;
+	boolean share;
 	PixelArt context;
 	
 	public SaveTask(String name, int width, int height, PixelData data, PixelArt context) {
-		this(name, width, height, data, context, null, false);			
+		this(name, width, height, data, context, null, false, false);			
 	}
-	public SaveTask(String name, int width, int height, PixelData data, PixelArt context, File location, boolean export) {
+	public SaveTask(String name, int width, int height, PixelData data, PixelArt context, File location, boolean export, boolean share) {
 		this.name = name; 
 		this.width = width; 
 		this.height = height; 
 		this.data = data; 
 		this.export = export;
+		this.share = share;
 		this.context = context;
 		this.location = location;
 		if (location == null) {
@@ -66,9 +68,9 @@ public class SaveTask extends AsyncTask<Void, Void, Void> {
 				image = data.render(context, width, height);
 			}
 			
-			StorageUtils.saveFile(name, file, image, context);
+			StorageUtils.saveFile(name, file, image, context, !share && !export);
 			
-			if (export) {
+			if (share || export) {
 				new MediaScanTask().execute();
 			}
 
@@ -103,12 +105,22 @@ public class SaveTask extends AsyncTask<Void, Void, Void> {
 		super.onPostExecute(result);
 		dialog.dismiss();
 		if (export) {
+			Log.d("SaveTask", "Exporting...");
 			Intent intent = new Intent(Intent.ACTION_VIEW);
 			intent.setDataAndType(Uri.parse("file://" + file.getAbsolutePath()), "image/*");
 
 			// tells your intent to get the contents
 			// opens the URI for your image directory on your sdcard
 			context.startActivityForResult(intent, 1);
+		} if (share) {
+			Log.d("SaveTask", "Sharing...");
+			Intent share = new Intent(Intent.ACTION_SEND);
+			share.setType("image/jpeg");
+
+			share.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://" + file.getAbsolutePath()));
+
+			context.startActivity(Intent.createChooser(share, "Share Image"));
+
 		} else {
 			context.artChangedName();
 		}
