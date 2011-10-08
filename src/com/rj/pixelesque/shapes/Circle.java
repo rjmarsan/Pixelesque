@@ -1,11 +1,12 @@
 package com.rj.pixelesque.shapes;
 
+import java.util.HashMap;
+
 import processing.core.PApplet;
 import android.graphics.Point;
-import android.util.Log;
 
-import com.rj.pixelesque.PixelArt;
 import com.rj.pixelesque.History.HistoryAction;
+import com.rj.pixelesque.PixelArt;
 import com.rj.processing.mt.Cursor;
 
 public class Circle extends SuperShape {	
@@ -24,23 +25,21 @@ public class Circle extends SuperShape {
 	
 	public void fillShape() {
 		int maxx = Integer.MIN_VALUE, maxy = Integer.MIN_VALUE, minx = Integer.MAX_VALUE, miny = Integer.MAX_VALUE;
-		
+		HashMap<Integer, Point> rowminmaxs = new HashMap<Integer,Point>();
 		for (Point p : selectedPoints) {
 			if (p.x > maxx) maxx = p.x;
 			if (p.y > maxy) maxy = p.y;
 			if (p.x < minx) minx = p.x;
 			if (p.y < miny) miny = p.y;
+			if (! rowminmaxs.containsKey(p.y)) rowminmaxs.put(p.y, new Point(Integer.MAX_VALUE, Integer.MIN_VALUE));
+			Point rowminmax = rowminmaxs.get(p.y);
+			if (p.x < rowminmax.x /*min*/ ) rowminmax.x = p.x;
+			if (p.x > rowminmax.y /*max*/ ) rowminmax.y = p.x;
 		}
 		HistoryAction action = new HistoryAction();
 		for (int row=miny; row<=maxy; row++) {
-			int rowmin = Integer.MAX_VALUE;
-			int rowmax = Integer.MIN_VALUE;
-			for (Point p : selectedPoints) {
-				if (p.y == row) {
-					if (p.x > rowmax) rowmax = p.x;
-					if (p.x < rowmin) rowmin = p.x;
-				}
-			}
+			int rowmin = rowminmaxs.get(row).x;
+			int rowmax = rowminmaxs.get(row).y;
 			for (int x = rowmin; x <= rowmax; x++ ) {
 				art.setColor(x, row, this.color, action);
 			}

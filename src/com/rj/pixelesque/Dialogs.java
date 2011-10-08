@@ -25,8 +25,8 @@ public class Dialogs {
 		final NumberPicker pickerx = new NumberPicker(p);
 		final TextView text = new TextView(p);
 		final NumberPicker pickery = new NumberPicker(p);
-		pickerx.setRange(1, 50);
-		pickery.setRange(1, 50);
+		pickerx.setRange(1, 64);
+		pickery.setRange(1, 64);
 		pickerx.setCurrent(p.art.width);
 		pickery.setCurrent(p.art.height);
 		text.setText("x");

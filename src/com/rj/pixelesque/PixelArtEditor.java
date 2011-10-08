@@ -26,7 +26,7 @@ import android.widget.RelativeLayout.LayoutParams;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.rj.pixelesque.shapes.Circle;
+import com.rj.pixelesque.shapes.Line;
 import com.rj.pixelesque.shapes.Pen;
 import com.rj.pixelesque.shapes.Pencil;
 import com.rj.pixelesque.shapes.Shape;
@@ -135,10 +135,13 @@ public class PixelArtEditor extends PApplet implements TouchListener, Drawer {
 	private class ScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {
 		float avgx;
 		float avgy;
+		float lastx;
+		float lasty;
+		float avg = 20;
 		
 	    @Override
 	    public boolean onScale(ScaleGestureDetector detector) {
-	    	if (state.mode == PixelArtState.DRAW  || state.mode == PixelArtState.ERASER) return false;
+	    	//if (state.mode == PixelArtState.DRAW  || state.mode == PixelArtState.ERASER) return false;
 	    	
 	    	float[] coords = art.getDataCoordsFloatFromXY(PixelArtEditor.this, detector.getFocusX(), detector.getFocusY());
 
@@ -154,12 +157,15 @@ public class PixelArtEditor extends PApplet implements TouchListener, Drawer {
 	        float[] postcoords = art.getXYFromDataCoordsFloat(PixelArtEditor.this, coords[0], coords[1]);
 	        float diffx = detector.getFocusX() -  postcoords[0];
 	        float diffy = detector.getFocusY() -  postcoords[1];
-	        avgx = avgx / 2 + diffx / 2;
-	        avgy = avgy / 2 + diffy / 2;
+	        avgx = (avgx + (diffx*(avg-1))) / avg;
+	        avgy = (avgy + (diffy*(avg-1))) / avg;
 	        //Log.d("Pixelesque", "SCALE: moving: "+diffx+", "+diffy  + "   orig:"+coords[0]+","+coords[1]+ "     post: "+postcoords[0]+","+postcoords[1]);
 	        moveArt(avgx, avgy);
 	        
-
+	        moveArt(detector.getFocusX()-lastx, detector.getFocusY()-lasty);
+	        lastx = detector.getFocusX();
+	        lasty = detector.getFocusY();
+	        
 	        scheduleRedraw();
 	        return true;
 	    }
@@ -168,6 +174,8 @@ public class PixelArtEditor extends PApplet implements TouchListener, Drawer {
 	    public boolean onScaleBegin(ScaleGestureDetector detector) {
 	    	avgx = 0;
 	    	avgy = 0;
+	        lastx = detector.getFocusX();
+	        lasty = detector.getFocusY();
 	    	// TODO Auto-generated method stub
 	    	return super.onScaleBegin(detector);
 	    }
@@ -194,7 +202,7 @@ public class PixelArtEditor extends PApplet implements TouchListener, Drawer {
 	}
 	@Override
 	public void touchDown(Cursor c) {
-		if (art == null) return;
+		if (art == null || state == null) return;
 		if (state.mode == PixelArtState.DRAW) {
 			art.shapeeditor.factory = penFactory;
 		} else if (state.mode == PixelArtState.ERASER) {
@@ -224,6 +232,8 @@ public class PixelArtEditor extends PApplet implements TouchListener, Drawer {
 		int[] coords2 = art.getDataCoordsFromXY(this, c.currentPoint.x, c.currentPoint.y);
 		if (DEBUG) Log.d("Pixelesque", "MOV: c1:("+coords1[0]+","+coords1[1]+")  c2:("+coords2[0]+","+coords2[1]+")   movcur:"+movingCursor);
 
+		art.shapeeditor.update();
+
 		if (state.mode == PixelArtState.PENCIL) {
 			if (art.shapeeditor.hasCursor(c)) {
 				if (coords1[0] == coords2[0] && coords1[1] == coords2[1] && !mScaleDetector.isInProgress()) {
@@ -232,7 +242,7 @@ public class PixelArtEditor extends PApplet implements TouchListener, Drawer {
 					if (DEBUG) Log.d("Pixelesque", "MOV REMOVE: c1:("+coords1[0]+","+coords1[1]+")  c2:("+coords2[0]+","+coords2[1]+")   movcur:"+movingCursor);
 					art.shapeeditor.cancelCursor(c);
 				}
-			} else if (movingCursor != null && movingCursor.curId == c.curId && !mScaleDetector.isInProgress()) {
+			} else if (!mScaleDetector.isInProgress()) {
 				if (c.points.size() > 1) {
 					Point p1 = c.points.get(c.points.size()-1);
 					Point p2 = c.points.get(c.points.size()-2);
@@ -240,8 +250,10 @@ public class PixelArtEditor extends PApplet implements TouchListener, Drawer {
 				}
 			}
 		} else if (state.mode == PixelArtState.DRAW  || state.mode == PixelArtState.ERASER) {
+			if (mScaleDetector.isInProgress()) {
+				art.shapeeditor.cancelCursor(c);
+			}
 		}		
-		art.shapeeditor.update();
 		scheduleRedraw();
 	}
 	
@@ -261,7 +273,7 @@ public class PixelArtEditor extends PApplet implements TouchListener, Drawer {
 	
 	public ShapeFactory penFactory = new ShapeFactory() {
 		public Shape makeShape(PApplet p, PixelArt pix, Cursor cursor) {
-			return new Circle(p, pix, cursor, state.selectedColor, true);
+			return new Line(p, pix, cursor, state.selectedColor, false);
 		}
 	};
 	public ShapeFactory eraserFactory = new ShapeFactory() {
@@ -394,10 +406,10 @@ public class PixelArtEditor extends PApplet implements TouchListener, Drawer {
 	@Override
 	public void draw() {
 		if (scheduleRedraw) {
-			background(0);
+			scheduleRedraw = false;
+			background(5);
 			PApplet p = this;
 			art.draw(p);
-			scheduleRedraw = false;
 		} 
 	}
 	

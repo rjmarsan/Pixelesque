@@ -23,6 +23,7 @@ public class PixelArt {
 	public float scale;
 	public float topx, topy;
 	public boolean outline;
+	public float outlineThresh = 17; //boxsize before outlines go into effect
 	public String name;
 	public Drawer drawer;
 	public ShapeEditor shapeeditor = new ShapeEditor();
@@ -114,7 +115,7 @@ public class PixelArt {
 		topx = 0;
 		topy = 0;
 		scale = 1;
-		outline = true;
+		outline = false;
 		history = new History(this);
 	}
 	
@@ -172,9 +173,20 @@ public class PixelArt {
 	
 	public void draw(PApplet p) {
 		if (data == null || data[0] == null) return;
+		float topx = this.topx;
+		float topy = this.topy;
+		float scale = this.scale;
 		
-		float boxsize = getBoxsize(p.width-2, p.height-2);
+		float boxsize = getBoxsize(p.width-2, p.height-2, scale);
+		outline = false;
+		if (boxsize > outlineThresh) outline = true;
 
+		if (!outline && data.length * boxsize < p.height) {
+			p.stroke(127);
+			p.fill(0, 40, 40);
+			p.rect(-1, data.length * boxsize, p.width+1, p.height+1);
+		}
+		
 		for (int x = 0; x < data.length; x++) {
 
 			for (int y = 0; y < data[x].length; y++) {
@@ -182,6 +194,7 @@ public class PixelArt {
 				float top = topy + boxsize * y + 1;
 				if (top + boxsize > 0 && left + boxsize > 0 && top < p.height && left < p.width) { 
 					if (outline) p.stroke(127);
+					else p.noStroke();
 					int color = data[x][y].getLastColor();
 					p.fill(Color.red(color), Color.green(color), Color.blue(color), Color.alpha(color));
 					p.rect(left, top, boxsize, boxsize);
