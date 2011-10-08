@@ -26,9 +26,9 @@ import android.widget.RelativeLayout.LayoutParams;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.rj.pixelesque.shapes.Circle;
 import com.rj.pixelesque.shapes.Pen;
 import com.rj.pixelesque.shapes.Pencil;
-import com.rj.pixelesque.shapes.Rectangle;
 import com.rj.pixelesque.shapes.Shape;
 import com.rj.pixelesque.shapes.ShapeEditor.ShapeFactory;
 import com.rj.processing.mt.Cursor;
@@ -261,7 +261,7 @@ public class PixelArtEditor extends PApplet implements TouchListener, Drawer {
 	
 	public ShapeFactory penFactory = new ShapeFactory() {
 		public Shape makeShape(PApplet p, PixelArt pix, Cursor cursor) {
-			return new Rectangle(p, pix, cursor, state.selectedColor);
+			return new Circle(p, pix, cursor, state.selectedColor, true);
 		}
 	};
 	public ShapeFactory eraserFactory = new ShapeFactory() {

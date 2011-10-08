@@ -66,8 +66,9 @@ public abstract class Shape {
 		
 		HistoryAction action = new HistoryAction();
 		for (Point point : selectedPoints) {
-			art.setColor(point.x, point.y, this.color, false);
-			action.addPoint(point.x, point.y, color);
+			if (art.isValid(point.x, point.y)) {
+				art.setColor(point.x, point.y, this.color, action);
+			}
 		}
 		art.history.add(action);
 	}

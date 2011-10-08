@@ -25,8 +25,7 @@ public class Pen extends Shape {
 		ColorStack s = art.data[coords[0]][coords[1]];
 		int color = s.getLastColor();
 		if (color != this.color) {
-			art.setColor(coords[0], coords[1], this.color, false);
-			action.addPoint(coords[0], coords[1], this.color);
+			art.setColor(coords[0], coords[1], this.color, action);
 		}
 	}
 	

@@ -294,13 +294,14 @@ public class PixelArt {
 	}
 	
 	
-	public void eraseColor(int x, int y, boolean addToBack) {
-		setColor(x,y,Color.TRANSPARENT, addToBack);
+	public void eraseColor(int x, int y, HistoryAction action) {
+		setColor(x,y,Color.TRANSPARENT, action);
 	}
-	public void setColor(int x, int y, int color, boolean addToBack) {
+	public void setColor(int x, int y, int color, HistoryAction action) {
 		if (isValid(x,y)) {
 			data[x][y].pushColor(color);
-			if (addToBack) history.add(new History.HistoryAction(x,y,color));
+			if (action == null) history.add(new History.HistoryAction(x,y,color));
+			else action.addPoint(x, y, color);
 		}
 		if (drawer != null) drawer.scheduleRedraw();
 	}
