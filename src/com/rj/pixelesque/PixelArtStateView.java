@@ -14,8 +14,8 @@ public class PixelArtStateView  extends LinearLayout {
 
 
 	PixelArtState state;
-	PixelData data;
-	PixelArt pixelart;
+	PixelArt data;
+	PixelArtEditor pixelart;
 	
 	View pencilmode;
 	View erasermode;
@@ -67,14 +67,14 @@ public class PixelArtStateView  extends LinearLayout {
 //                }, (state != null) ? state.selectedColor : Color.WHITE, 
 //                		PixelArt.isHorizontal() ? ColorSelectorDialog.RIGHT : ColorSelectorDialog.BOTTOM, 
 //                				getWidth()).show();
-				int side = PixelArt.isHorizontal() ? ColorSelectorDialog.RIGHT : ColorSelectorDialog.BOTTOM;
-				int offset = PixelArt.isHorizontal()? getWidth() : getHeight();
+				int side = PixelArtEditor.isHorizontal() ? ColorSelectorDialog.RIGHT : ColorSelectorDialog.BOTTOM;
+				int offset = PixelArtEditor.isHorizontal()? getWidth() : getHeight();
 				int color = (state != null) ? state.selectedColor : Color.WHITE;
 				Intent intent = new Intent(getContext(), ColorSelectorActivity.class);
 				intent.putExtra(ColorSelectorActivity.COLOR, color);
 				intent.putExtra(ColorSelectorActivity.SIDE, side);
 				intent.putExtra(ColorSelectorActivity.OFFSET, offset);
-				pixelart.startActivityForResult(intent, PixelArt.COLOR_ACTIVITY);
+				pixelart.startActivityForResult(intent, PixelArtEditor.COLOR_ACTIVITY);
 			}});
 		
 		
@@ -94,7 +94,7 @@ public class PixelArtStateView  extends LinearLayout {
 
 	}
 	
-	public void setState(PixelArtState state, PixelData data, PixelArt pixelart) {
+	public void setState(PixelArtState state, PixelArt data, PixelArtEditor pixelart) {
 		this.state = state;
 		this.data = data;
 		this.pixelart = pixelart;

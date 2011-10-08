@@ -5,6 +5,7 @@
 		android:layout_height="wrap_content"
 		android:orientation="vertical">
 	<HorizontalScrollView
+		android:id="@+id/colorlistscroll"
 		android:layout_width="wrap_content" 
 		android:layout_height="50dp"
 		android:scrollbars="none"

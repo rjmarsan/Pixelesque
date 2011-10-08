@@ -5,16 +5,16 @@ import java.util.Vector;
 
 import android.util.Log;
 
-import com.rj.pixelesque.PixelData.ColorStack;
+import com.rj.pixelesque.PixelArt.ColorStack;
 
 
 public class History  {
 
 	private Vector<HistoryAction> history = new Vector<HistoryAction>();
 	private int position = -1;
-	private PixelData data;
+	private PixelArt data;
 	
-	public History(PixelData data) {
+	public History(PixelArt data) {
 		this.data = data;
 	}
 	
@@ -44,13 +44,13 @@ public class History  {
 			PointAndColor p = new PointAndColor(x, y, color);
 			points.add(p);
 		}
-		public void undo(PixelData data) {
+		public void undo(PixelArt data) {
 			for (PointAndColor p : points) {
 				ColorStack s = data.data[p.x][p.y];
 				if (s.getLastColor() == p.color) s.popColor();
 			}
 		}
-		public void redo(PixelData data) {
+		public void redo(PixelArt data) {
 			for (PointAndColor p : points) {
 				ColorStack s = data.data[p.x][p.y];
 				s.pushColor(p.color);
@@ -76,6 +76,7 @@ public class History  {
 		HistoryAction action = history.get(position);
 		action.undo(data);
 		position -= 1;
+		if (data.drawer != null) data.drawer.scheduleRedraw();
 	}
 	
 	public void redo() {
@@ -85,6 +86,7 @@ public class History  {
 		HistoryAction action = history.get(position+1);
 		action.redo(data);
 		position += 1;
+		if (data.drawer != null) data.drawer.scheduleRedraw();
 	}
 	
 	public boolean canUndo() {

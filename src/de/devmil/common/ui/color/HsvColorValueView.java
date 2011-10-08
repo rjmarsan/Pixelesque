@@ -101,7 +101,8 @@ public class HsvColorValueView extends FrameLayout {
 	public int getBackgroundSize()
 	{
 		ensureCache();
-		return drawCache.getHeight();
+		if (drawCache != null) return drawCache.getHeight();
+		return 0;
 	}
 	
 	private void ensureCache()

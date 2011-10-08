@@ -17,18 +17,18 @@ import android.util.Log;
 public class SaveTask extends AsyncTask<Void, Void, Void> {
 	String name;
 	int width, height;
-	PixelData data;
+	PixelArt data;
 	ProgressDialog dialog;
 	File location;
 	File file;
 	boolean export;
 	boolean share;
-	PixelArt context;
+	PixelArtEditor context;
 	
-	public SaveTask(String name, int width, int height, PixelData data, PixelArt context) {
+	public SaveTask(String name, int width, int height, PixelArt data, PixelArtEditor context) {
 		this(name, width, height, data, context, null, false, false);			
 	}
-	public SaveTask(String name, int width, int height, PixelData data, PixelArt context, File location, boolean export, boolean share) {
+	public SaveTask(String name, int width, int height, PixelArt data, PixelArtEditor context, File location, boolean export, boolean share) {
 		this.name = name; 
 		this.width = width; 
 		this.height = height; 

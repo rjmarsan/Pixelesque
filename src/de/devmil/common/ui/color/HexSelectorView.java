@@ -18,14 +18,21 @@ package de.devmil.common.ui.color;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.AttributeSet;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.TextView.OnEditorActionListener;
 
 import com.rj.pixelesque.R;
 
@@ -71,40 +78,80 @@ public class HexSelectorView extends LinearLayout {
                 }
             }
         });
+		edit.setOnKeyListener(new OnKeyListener() {
+			@Override
+			public boolean onKey(View v, int keyCode, KeyEvent event) {
+				Log.d("HexSelector", "onKey: keyCode"+keyCode+ " event: "+event);
+				validateColorInTextView();
+				return false;
+			}
+		});
+		edit.addTextChangedListener(new TextWatcher() {
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before, int count) {
+			}
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+			}
+			@Override
+			public void afterTextChanged(Editable s) {
+				validateColorInTextView();
+			}
+		});
+		edit.setOnEditorActionListener(new OnEditorActionListener() {
+			@Override
+			public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+				if (actionId == EditorInfo.IME_ACTION_DONE || actionId == EditorInfo.IME_NULL)  {
+					validateColorInTextView();
+	                InputMethodManager in = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+	                in.hideSoftInputFromWindow(edit.getApplicationWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+					return true;
+				}
+				return false;
+			}
+		});
 		btnSave = (Button)content.findViewById(R.id.color_hex_btnSave);
 		btnSave.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				try
-				{
-					String hex = edit.getText().toString();
-//					String prefix = "";
-					if(hex.startsWith("0x"))
-					{
-						hex = hex.substring(2);
-//						prefix = "0x";
-					}
-					if(hex.startsWith("#"))
-					{
-						hex = hex.substring(1);
-//						prefix = "#";
-					}
-					if(hex.length() == 6)
-					{
-						hex = "FF" + hex;
-					}
-					if(hex.length() != 8)
-						throw new Exception();
-					color = (int)Long.parseLong(hex, 16);
-					txtError.setVisibility(GONE);
-					onColorChanged();
-				}
-				catch(Exception e)
-				{
-					txtError.setVisibility(VISIBLE);
-				}
+				validateColorInTextView();
 			}
 		});
+	}
+	
+	public void validateColorInTextView() {
+		try
+		{
+			String hex = edit.getText().toString().toUpperCase().trim();
+			Log.d("HexSelector", "String parsing: "+hex);
+//			String prefix = "";
+			if(hex.startsWith("0x"))
+			{
+				hex = hex.substring(2);
+//				prefix = "0x";
+			}
+			if(hex.startsWith("#"))
+			{
+				hex = hex.substring(1);
+//				prefix = "#";
+			}
+			if(hex.length() == 6)
+			{
+				hex = "FF" + hex;
+			}
+			if(hex.length() != 8)
+				throw new Exception();
+			color = (int)Long.parseLong(hex, 16);
+			txtError.setVisibility(GONE);
+			onColorChanged();
+		}
+		catch(Exception e)
+		{
+			Log.d("HexSelector", "String parsing died");
+			e.printStackTrace();
+			txtError.setVisibility(VISIBLE);
+		}
 	}
 	
 	public int getColor()
@@ -117,7 +164,9 @@ public class HexSelectorView extends LinearLayout {
 		if(color == this.color)
 			return;
 		this.color = color;
-		edit.setText(padLeft(Integer.toHexString(color).toUpperCase(), '0', 8));
+		if (!edit.hasFocus()) {
+			edit.setText(padLeft(Integer.toHexString(color).toUpperCase(), '0', 8));
+		}
 		txtError.setVisibility(GONE);
 	}
 	
@@ -134,6 +183,7 @@ public class HexSelectorView extends LinearLayout {
 	
 	private void onColorChanged()
 	{
+		Log.d("HexSelector", "String parsing succeeded. changing to "+color);
 		if(listener != null)
 			listener.colorChanged(getColor());
 	}

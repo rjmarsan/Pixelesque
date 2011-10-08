@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
       package="com.rj.pixelesque"
-      android:versionCode="2"
-      android:versionName="1.0">
+      android:versionCode="3"
+      android:versionName="1.0.1">
     <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="13" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application android:icon="@drawable/icon" android:label="@string/app_name" android:hardwareAccelerated="true"
     			android:theme="@style/Theme.Pixelesque">
-        <activity android:name=".PixelArt"
+        <activity android:name=".PixelArtEditor"
                   android:label="@string/app_name"
                   android:hardwareAccelerated="true"
                   android:configChanges="orientation"

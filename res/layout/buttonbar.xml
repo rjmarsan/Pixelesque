@@ -110,8 +110,8 @@
  			    	/>
 			    <View
 			    	android:id="@+id/colorindicator"
-			    	android:layout_width="30dp"
-			    	android:layout_height="30dp"
+			    	android:layout_width="25dp"
+			    	android:layout_height="25dp"
 			    	android:layout_centerInParent="true"
 			    		/>
 		    </RelativeLayout>

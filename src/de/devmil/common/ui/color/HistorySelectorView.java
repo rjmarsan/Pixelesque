@@ -75,6 +75,7 @@ public class HistorySelectorView extends LinearLayout {
 			View nocolors = findViewById(R.id.nocolors);
 			nocolors.setVisibility(View.VISIBLE);
 			colorlist.setVisibility(View.GONE);
+			findViewById(R.id.colorlistscroll).setVisibility(View.GONE); //have to remove it's parent container too
 			return;
 		}
 		try {		

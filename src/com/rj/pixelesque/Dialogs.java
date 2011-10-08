@@ -14,7 +14,7 @@ import com.rj.pixelesque.NumberPicker.OnChangedListener;
 
 public class Dialogs {
 
-	public static void showNewDialog(final PixelArt p) {
+	public static void showNewDialog(final PixelArtEditor p) {
 		Log.d("PixelArt", "alertz shownew");
 		
 		AlertDialog.Builder builder = new AlertDialog.Builder(p);
@@ -57,7 +57,7 @@ public class Dialogs {
 	}
 	
 	
-	public static void showSaveAs(final PixelArt p) {
+	public static void showSaveAs(final PixelArtEditor p) {
 		Log.d("PixelArt", "alertz showsaveas");
 		
 		AlertDialog.Builder builder = new AlertDialog.Builder(p);
@@ -83,11 +83,11 @@ public class Dialogs {
 	}
 	
 	
-	public static void showExport(final PixelArt p) {
+	public static void showExport(final PixelArtEditor p) {
 		Log.d("PixelArt", "alertz showexport");
-		int[] lowxy = getResize(p.art.width, p.art.height, PixelArt.EXPORT_SMALL_LONGSIDE);
-		int[] medxy = getResize(p.art.width, p.art.height, PixelArt.EXPORT_MEDIUM_LONGSIDE);
-		int[] highxy = getResize(p.art.width, p.art.height, PixelArt.EXPORT_LARGE_LONGSIDE);
+		int[] lowxy = getResize(p.art.width, p.art.height, PixelArtEditor.EXPORT_SMALL_LONGSIDE);
+		int[] medxy = getResize(p.art.width, p.art.height, PixelArtEditor.EXPORT_MEDIUM_LONGSIDE);
+		int[] highxy = getResize(p.art.width, p.art.height, PixelArtEditor.EXPORT_LARGE_LONGSIDE);
 		final String[] qualities = { 
 				"Low ("+lowxy[0]+"x"+lowxy[1]+")", //Low (320x240) 
 				"Medium ("+medxy[0]+"x"+medxy[1]+")", 
@@ -99,11 +99,11 @@ public class Dialogs {
 		builder.setItems(qualities, new OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) {
 				if (which == 0)
-					p.export(PixelArt.EXPORT_SMALL_LONGSIDE, "small");
+					p.export(PixelArtEditor.EXPORT_SMALL_LONGSIDE, "small");
 				else if (which == 1) 
-					p.export(PixelArt.EXPORT_MEDIUM_LONGSIDE, "medium");
+					p.export(PixelArtEditor.EXPORT_MEDIUM_LONGSIDE, "medium");
 				else
-					p.export(PixelArt.EXPORT_LARGE_LONGSIDE, "large");
+					p.export(PixelArtEditor.EXPORT_LARGE_LONGSIDE, "large");
 			}
 		});
 		builder.setPositiveButton("Other", new DialogInterface.OnClickListener() {  
@@ -138,7 +138,7 @@ public class Dialogs {
 	
 	
 	
-	public static void showExportCustom(final PixelArt p) {		
+	public static void showExportCustom(final PixelArtEditor p) {		
 		AlertDialog.Builder builder = new AlertDialog.Builder(p);
 		builder.setTitle("Pick a size to export to");
 		LinearLayout layout = new LinearLayout(p);
