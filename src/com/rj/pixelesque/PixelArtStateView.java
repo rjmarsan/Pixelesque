@@ -31,6 +31,7 @@ public class PixelArtStateView  extends LinearLayout {
 	ImageView bucketmode;
 	ViewGroup shapeselector;
 	ImageView shapesmode;
+	View shapescontainer;
 	
 	boolean shapeselectoropen = false;
 	int shapeselectorchoice = -1;
@@ -99,6 +100,7 @@ public class PixelArtStateView  extends LinearLayout {
 			}});
 		
 		shapeselector = (ViewGroup)parent.findViewById(R.id.shapesmenu);
+		shapescontainer = parent.findViewById(R.id.shapesholder);
 		shapesmode = (ImageView)findViewById(R.id.shapesmode);
 		shapesmode.setOnTouchListener(new OnTouchListener() {
 			@Override
@@ -108,10 +110,16 @@ public class PixelArtStateView  extends LinearLayout {
 					shapeselectoropen  = true;
 					shapeselector.setVisibility(View.VISIBLE);
 					RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)shapeselector.getLayoutParams();
-					params.leftMargin = shapesmode.getLeft()-shapesmode.getWidth()/2;
-					params.width = shapesmode.getWidth()*2;
-					params.height = RelativeLayout.LayoutParams.WRAP_CONTENT;
-					Log.d("StateView", String.format("params: width:%d height:%d marginLeft:%d ", params.width, params.height, params.leftMargin));
+					if (PixelArtEditor.isHorizontal()) {
+						params.topMargin = shapescontainer.getTop(); 
+						//params.width = shapescontainer.getWidth()*2;
+						//params.height = RelativeLayout.LayoutParams.WRAP_CONTENT;
+					} else {
+						params.leftMargin = shapescontainer.getLeft()-shapesmode.getWidth()/2;
+						//params.width = shapescontainer.getWidth()*2;
+						//params.height = RelativeLayout.LayoutParams.WRAP_CONTENT;
+					}
+					//Log.d("StateView", String.format("params: width:%d height:%d marginLeft:%d ", params.width, params.height, params.leftMargin));
 					shapeselector.setLayoutParams(params);
 				} else if (event.getAction() == MotionEvent.ACTION_CANCEL || event.getAction() == MotionEvent.ACTION_UP){
 					shapeselector.setVisibility(View.GONE);
@@ -190,7 +198,7 @@ public class PixelArtStateView  extends LinearLayout {
 		int viewymax = viewy + view.getHeight();
 		if (viewx < x && viewxmax > x && 
 				viewy < y && viewymax > y) {
-			Log.d("StateView", "Detected hit: "+view);
+			//Log.d("StateView", "Detected hit: "+view);
 			view.performClick();
 			view.setPressed(true);
 		} else {
@@ -217,6 +225,7 @@ public class PixelArtStateView  extends LinearLayout {
 		rectanglemode.setSelected(false);
 		circlemode.setSelected(false);
 		linemode.setSelected(false);
+		bucketmode.setSelected(false);
 		//shapeselector;
 		shapesmode.setSelected(false);
 

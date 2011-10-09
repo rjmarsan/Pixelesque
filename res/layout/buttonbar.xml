@@ -52,7 +52,7 @@
     <RelativeLayout 
 	   	android:id="@+id/shapesmenu"
 	   	android:layout_width="wrap_content"
-	   	android:layout_height="120dp"
+	   	android:layout_height="wrap_content"
 	   	android:orientation="vertical"
 		android:visibility="gone"
 		android:background="@color/hud_background"
@@ -63,7 +63,6 @@
 	    	android:layout_height="wrap_content"
 	    	android:src="@drawable/bucketbutton_bg"
 	    	android:scaleType="centerInside"
-	    	android:layout_weight="1"
 	    	/>
 	    <ImageView
 	    	android:id="@+id/circlemode"
@@ -71,8 +70,8 @@
 	    	android:layout_height="wrap_content"
 	    	android:src="@drawable/circlebutton_bg"
 	    	android:scaleType="centerInside"
-	    	android:layout_weight="1"
 	    	android:layout_toRightOf="@+id/bucketmode"
+	    	android:layout_alignBottom="@+id/bucketmode"    
 	    	/>
 	    <ImageView
 	    	android:id="@+id/rectanglemode"
@@ -80,7 +79,6 @@
 	    	android:layout_height="wrap_content"
 	    	android:src="@drawable/rectbutton_bg"
 	    	android:scaleType="centerInside"
-	    	android:layout_weight="1"
 	    	android:layout_below="@+id/bucketmode"
 	    	/>
 	    <ImageView
@@ -89,9 +87,10 @@
 	    	android:layout_height="wrap_content"
 	    	android:src="@drawable/linebutton_bg"
 	    	android:scaleType="centerInside"
-	    	android:layout_weight="1"
 	    	android:layout_below="@+id/circlemode"
 	    	android:layout_toRightOf="@+id/rectanglemode"
+	    	android:layout_alignBottom="@+id/rectanglemode"  
+	    	android:layout_alignRight="@+id/circlemode"  
 	    	/>
 	    	
     </RelativeLayout>
@@ -130,15 +129,31 @@
 		    	android:layout_weight="1"
 		    	/>
 
-		    <ImageView
-		    	android:id="@+id/shapesmode"
+		   	<RelativeLayout
+		   		android:id="@+id/shapesholder"
 		    	android:layout_width="wrap_content"
 		    	android:layout_height="wrap_content"
-		    	android:src="@drawable/shapesbutton_bg"
-		    	android:background="@drawable/more"
-		    	android:scaleType="centerInside"
 		    	android:layout_weight="1"
-		    	/>
+			>
+			
+				<ImageView
+			    	android:id="@+id/shapesmode"
+			    	android:layout_width="wrap_content"
+			    	android:layout_height="wrap_content"
+			    	android:src="@drawable/shapesbutton_bg"
+		    		android:scaleType="centerInside"	
+		    		android:layout_centerInParent="true"		    	
+			    	/>
+				<ImageView
+			    	android:id="@+id/shapesmode"
+			    	android:layout_width="wrap_content"
+			    	android:layout_height="wrap_content"
+			    	android:src="@drawable/more"
+		    		android:scaleType="centerInside"	
+		    		android:layout_centerInParent="true"		    	
+			    	/>
+		    </RelativeLayout>
+
 		    <ImageView
 		    	android:id="@+id/erasermode"
 		    	android:layout_width="wrap_content"

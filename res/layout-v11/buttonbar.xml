@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:id="@+id/layout"
     >
     <LinearLayout 
     	android:id="@+id/surfaceholder"
@@ -10,6 +11,54 @@
     	android:layout_toLeftOf="@+id/scroll_buttonbarz"
     	android:background="#199"
     />
+    
+        <RelativeLayout 
+	   	android:id="@+id/shapesmenu"
+	   	android:layout_width="wrap_content"
+	   	android:layout_height="wrap_content"
+	   	android:orientation="vertical"
+		android:visibility="gone"
+		android:background="@color/hud_background"
+	   	android:layout_toLeftOf="@+id/scroll_buttonbarz">
+	    <ImageView
+	    	android:id="@+id/bucketmode"
+	    	android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:src="@drawable/bucketbutton_bg"
+	    	android:scaleType="centerInside"
+	    	/>
+	    <ImageView
+	    	android:id="@+id/circlemode"
+	    	android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:src="@drawable/circlebutton_bg"
+	    	android:scaleType="centerInside"
+	    	android:layout_toRightOf="@+id/bucketmode"
+	    	android:layout_alignBottom="@+id/bucketmode"    
+	    	/>
+	    <ImageView
+	    	android:id="@+id/rectanglemode"
+	    	android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:src="@drawable/rectbutton_bg"
+	    	android:scaleType="centerInside"
+	    	android:layout_below="@+id/bucketmode"
+	    	/>
+	    <ImageView
+	    	android:id="@+id/linemode"
+	    	android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:src="@drawable/linebutton_bg"
+	    	android:scaleType="centerInside"
+	    	android:layout_below="@+id/circlemode"
+	    	android:layout_toRightOf="@+id/rectanglemode"
+	    	android:layout_alignBottom="@+id/rectanglemode"  
+	    	android:layout_alignRight="@+id/circlemode"  
+	    	/>
+	    	
+    </RelativeLayout>
+    
+    
 	<LinearLayout
 		android:id="@+id/scroll_buttonbarz"
 		android:layout_alignParentRight="true"
@@ -25,6 +74,9 @@
 		    android:background="@color/hud_background"
 		    >
 
+
+
+
 		    <ImageView
 		    	android:id="@+id/pencilmode"
 		    	android:layout_width="wrap_content"
@@ -33,6 +85,37 @@
 		    	android:scaleType="centerInside"
 		    	android:layout_weight="1"
 		    	/>
+
+
+
+
+		   	<RelativeLayout
+		   		android:id="@+id/shapesholder"
+		    	android:layout_width="wrap_content"
+		    	android:layout_height="wrap_content"
+		    	android:layout_weight="1"
+			>
+			
+				<ImageView
+			    	android:id="@+id/shapesmode"
+			    	android:layout_width="wrap_content"
+			    	android:layout_height="wrap_content"
+			    	android:src="@drawable/shapesbutton_bg"
+		    		android:scaleType="centerInside"	
+		    		android:layout_centerInParent="true"		    	
+			    	/>
+				<ImageView
+			    	android:id="@+id/shapesmode"
+			    	android:layout_width="wrap_content"
+			    	android:layout_height="wrap_content"
+			    	android:src="@drawable/more"
+		    		android:scaleType="centerInside"	
+		    		android:layout_centerInParent="true"		    	
+			    	/>
+		    </RelativeLayout>
+
+
+
 		    <ImageView
 		    	android:id="@+id/erasermode"
 		    	android:layout_width="wrap_content"
@@ -41,14 +124,20 @@
 		    	android:scaleType="centerInside"		    	
 		    	android:layout_weight="1"
 		    	/>	
-		   	<ImageView
+		    	
+ 		   	<ImageView
 		    	android:id="@+id/pointermode"
 		    	android:layout_width="wrap_content"
 		    	android:layout_height="wrap_content"
 		    	android:src="@drawable/penbutton_bg"
 		    	android:scaleType="centerInside"		    	
 		    	android:layout_weight="1"
-		    	/>
+		    	android:visibility="gone"
+		    	/>   	
+
+
+
+
 		   	<RelativeLayout
 		    	android:layout_width="wrap_content"
 		    	android:layout_height="wrap_content"
