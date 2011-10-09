@@ -79,6 +79,7 @@ public abstract class Shape {
 	
 	
 	public void draw(PApplet p, PixelArt pix, float topx, float topy, float boxsize) {
+		if (done) return;
 		float extra = 30;
 		
 		for (Point coords : this.getSelectedPoints()) {

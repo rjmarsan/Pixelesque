@@ -26,9 +26,12 @@ import android.widget.RelativeLayout.LayoutParams;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.rj.pixelesque.shapes.Bucket;
+import com.rj.pixelesque.shapes.Circle;
 import com.rj.pixelesque.shapes.Line;
 import com.rj.pixelesque.shapes.Pen;
 import com.rj.pixelesque.shapes.Pencil;
+import com.rj.pixelesque.shapes.Rectangle;
 import com.rj.pixelesque.shapes.Shape;
 import com.rj.pixelesque.shapes.ShapeEditor.ShapeFactory;
 import com.rj.processing.mt.Cursor;
@@ -138,30 +141,39 @@ public class PixelArtEditor extends PApplet implements TouchListener, Drawer {
 		float lastx;
 		float lasty;
 		float avg = 20;
+		float origdist = 1f;
+		float thresh = getThresh();
+		boolean passedthresh;
+		
+		private float getThresh() {
+			 DisplayMetrics metrics = new DisplayMetrics();
+			 getWindowManager().getDefaultDisplay().getMetrics(metrics);
+			 return metrics.density * 35;
+		}
 		
 	    @Override
 	    public boolean onScale(ScaleGestureDetector detector) {
 	    	//if (state.mode == PixelArtState.DRAW  || state.mode == PixelArtState.ERASER) return false;
-	    	
 	    	float[] coords = art.getDataCoordsFloatFromXY(PixelArtEditor.this, detector.getFocusX(), detector.getFocusY());
-
+	    	if (passedthresh || Math.abs(origdist - detector.getCurrentSpan()) > thresh) {
+	    		passedthresh = true;
+		        art.scale *= detector.getScaleFactor();
+		        // Don't let the object get too small or too large.
+		        art.scale = Math.max(1f, Math.min(art.scale, 5.0f));
+		        
+		        if (art.scale < 1.1f && art.scale > 0.9f) {
+		        	art.scale = 1f;
+		        }
+		        
+		        float[] postcoords = art.getXYFromDataCoordsFloat(PixelArtEditor.this, coords[0], coords[1]);
+		        float diffx = detector.getFocusX() -  postcoords[0];
+		        float diffy = detector.getFocusY() -  postcoords[1];
+		        avgx = (avgx + (diffx*(avg-1))) / avg;
+		        avgy = (avgy + (diffy*(avg-1))) / avg;
+		        //Log.d("Pixelesque", "SCALE: moving: "+diffx+", "+diffy  + "   orig:"+coords[0]+","+coords[1]+ "     post: "+postcoords[0]+","+postcoords[1]);
+		        moveArt(avgx, avgy);
+	    	}
 	    	
-	        art.scale *= detector.getScaleFactor();
-	        // Don't let the object get too small or too large.
-	        art.scale = Math.max(1f, Math.min(art.scale, 5.0f));
-	        
-	        if (art.scale < 1.1f && art.scale > 0.9f) {
-	        	art.scale = 1f;
-	        }
-	        
-	        float[] postcoords = art.getXYFromDataCoordsFloat(PixelArtEditor.this, coords[0], coords[1]);
-	        float diffx = detector.getFocusX() -  postcoords[0];
-	        float diffy = detector.getFocusY() -  postcoords[1];
-	        avgx = (avgx + (diffx*(avg-1))) / avg;
-	        avgy = (avgy + (diffy*(avg-1))) / avg;
-	        //Log.d("Pixelesque", "SCALE: moving: "+diffx+", "+diffy  + "   orig:"+coords[0]+","+coords[1]+ "     post: "+postcoords[0]+","+postcoords[1]);
-	        moveArt(avgx, avgy);
-	        
 	        moveArt(detector.getFocusX()-lastx, detector.getFocusY()-lasty);
 	        lastx = detector.getFocusX();
 	        lasty = detector.getFocusY();
@@ -176,6 +188,9 @@ public class PixelArtEditor extends PApplet implements TouchListener, Drawer {
 	    	avgy = 0;
 	        lastx = detector.getFocusX();
 	        lasty = detector.getFocusY();
+	        origdist = detector.getCurrentSpan();
+	        passedthresh = false;
+	        //avg = 0;
 	    	// TODO Auto-generated method stub
 	    	return super.onScaleBegin(detector);
 	    }
@@ -209,6 +224,14 @@ public class PixelArtEditor extends PApplet implements TouchListener, Drawer {
 			art.shapeeditor.factory = eraserFactory;
 		} else if (state.mode == PixelArtState.PENCIL) {
 			art.shapeeditor.factory = pencilFactory;
+		} else if (state.mode == PixelArtState.RECTANGLE_FILL) {
+			art.shapeeditor.factory = rectangleFactory;
+		} else if (state.mode == PixelArtState.CIRCLE_FILL) {
+			art.shapeeditor.factory = circleFactory;
+		} else if (state.mode == PixelArtState.LINE) {
+			art.shapeeditor.factory = lineFactory;
+		} else if (state.mode == PixelArtState.BUCKET) {
+			art.shapeeditor.factory = bucketFactory;
 		}
 
 		if (DEBUG) Log.d("Pixelesque", "DOWN "+c);
@@ -249,7 +272,7 @@ public class PixelArtEditor extends PApplet implements TouchListener, Drawer {
 					moveArt(p1.x - p2.x, p1.y - p2.y);
 				}
 			}
-		} else if (state.mode == PixelArtState.DRAW  || state.mode == PixelArtState.ERASER) {
+		} else {
 			if (mScaleDetector.isInProgress()) {
 				art.shapeeditor.cancelCursor(c);
 			}
@@ -273,7 +296,7 @@ public class PixelArtEditor extends PApplet implements TouchListener, Drawer {
 	
 	public ShapeFactory penFactory = new ShapeFactory() {
 		public Shape makeShape(PApplet p, PixelArt pix, Cursor cursor) {
-			return new Line(p, pix, cursor, state.selectedColor, false);
+			return new Pen(p, pix, cursor, state.selectedColor);
 		}
 	};
 	public ShapeFactory eraserFactory = new ShapeFactory() {
@@ -286,12 +309,33 @@ public class PixelArtEditor extends PApplet implements TouchListener, Drawer {
 			return new Pencil(p, pix, cursor, state.selectedColor);
 		}
 	};
+	public ShapeFactory rectangleFactory = new ShapeFactory() {
+		public Shape makeShape(PApplet p, PixelArt pix, Cursor cursor) {
+			return new Rectangle(p, pix, cursor, state.selectedColor, true);
+		}
+	};
+	public ShapeFactory circleFactory = new ShapeFactory() {
+		public Shape makeShape(PApplet p, PixelArt pix, Cursor cursor) {
+			return new Circle(p, pix, cursor, state.selectedColor, true);
+		}
+	};
+	public ShapeFactory lineFactory = new ShapeFactory() {
+		public Shape makeShape(PApplet p, PixelArt pix, Cursor cursor) {
+			return new Line(p, pix, cursor, state.selectedColor, false);
+		}
+	};
+	public ShapeFactory bucketFactory = new ShapeFactory() {
+		public Shape makeShape(PApplet p, PixelArt pix, Cursor cursor) {
+			return new Bucket(p, pix, cursor, state.selectedColor, false);
+		}
+	};
 
 
 
 	void actualsetup() {
 		initialArt();
 		state  = new PixelArtState();
+	    buttonbar.setParent(findViewById(com.rj.pixelesque.R.id.layout));
 	    buttonbar.setState(state, art, this);
 	    artChangedName();
 	    scheduleRedraw();
@@ -497,6 +541,9 @@ public class PixelArtEditor extends PApplet implements TouchListener, Drawer {
 		    case com.rj.pixelesque.R.id.main_menu_clear:
 		        clear();
 		        return true;
+		    case com.rj.pixelesque.R.id.main_menu_preview:
+		        togglePreview();
+		        return true;
 
 		    default:
 		        return super.onOptionsItemSelected(item);
@@ -528,6 +575,11 @@ public class PixelArtEditor extends PApplet implements TouchListener, Drawer {
 	public void clear() {
 		art.rectangle(0, 0, art.width-1, art.height-1, Color.TRANSPARENT);
 		buttonbar.updateFromState();
+	}
+	
+	public void togglePreview() {
+		art.preview = !art.preview;
+		this.scheduleRedraw();
 	}
 	
 	public void shownew() {

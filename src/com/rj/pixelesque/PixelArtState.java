@@ -11,6 +11,7 @@ public class PixelArtState {
 	public final static int RECTANGLE_FILL = 40;
 	public final static int CIRCLE = 6;
 	public final static int CIRCLE_FILL = 60;
+	public final static int BUCKET = 7;
 	public final static int DRAW = 5;
 	
 	public int mode = DRAW;

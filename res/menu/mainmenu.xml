@@ -8,4 +8,5 @@
     <item android:id="@+id/main_menu_share" android:title="Share"  android:icon="@drawable/share"  android:showAsAction="always|withText" ></item>
     <item android:id="@+id/main_menu_export" android:title="Export"  android:icon="@drawable/export"  android:showAsAction="never" ></item>
     <item android:id="@+id/main_menu_save_as" android:title="Save As"   android:icon="@drawable/saveas"  android:showAsAction="never" ></item>
+    <item android:id="@+id/main_menu_preview" android:title="Toggle Preview"   android:showAsAction="never" ></item>
 </menu>

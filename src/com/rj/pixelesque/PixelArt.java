@@ -28,6 +28,8 @@ public class PixelArt {
 	public Drawer drawer;
 	public ShapeEditor shapeeditor = new ShapeEditor();
 	
+	public boolean preview = true;
+	
 
 	
 	public static class ColorStack {
@@ -188,7 +190,6 @@ public class PixelArt {
 		}
 		
 		for (int x = 0; x < data.length; x++) {
-
 			for (int y = 0; y < data[x].length; y++) {
 				float left = topx + boxsize * x + 1;
 				float top = topy + boxsize * y + 1;
@@ -198,6 +199,21 @@ public class PixelArt {
 					int color = data[x][y].getLastColor();
 					p.fill(Color.red(color), Color.green(color), Color.blue(color), Color.alpha(color));
 					p.rect(left, top, boxsize, boxsize);
+				}
+			}
+		}
+		if (preview) {
+			p.stroke(127);
+			p.fill(0);
+			p.rect(p.width - width - 1, p.height - height - 1, width+1, height+1);
+			p.rect(p.width - width*3 - 1, p.height - height*2 - 1, width*2+1, height*2+1);
+			p.noStroke();
+			for (int x = 0; x < data.length; x++) {
+				for (int y = 0; y < data[x].length; y++) {
+					int color = data[x][y].getLastColor();
+					p.fill(Color.red(color), Color.green(color), Color.blue(color), Color.alpha(color));
+					p.rect(p.width - width + x, p.height - height + y,1,1);
+					p.rect(p.width - width-width-width + x+x, p.height - height-height + y+y,2,2);
 				}
 			}
 		}
@@ -236,7 +252,10 @@ public class PixelArt {
 		return getBoxsize(p.width, p.height) * this.width;
 	}
 	public float getHeight(PApplet p) {
-		return getBoxsize(p.width, p.height) * this.height;
+		if (preview)
+			return getBoxsize(p.width, p.height) * this.height + this.height*2;
+		else
+			return getBoxsize(p.width, p.height) * this.height;
 	}
 	
 	int[] coords = new int[2];
