@@ -22,7 +22,7 @@ public class Pen extends Shape {
 		if (cursor == null || art == null || action == null) return;
 		int[] coords = art.getDataCoordsFromXY(p, cursor.currentPoint.x, cursor.currentPoint.y);
 		if ( ! art.isValid(coords)) return;
-		ColorStack s = art.data[coords[0]][coords[1]];
+		ColorStack s = art.data[coords[0]*art.width+coords[1]];
 		int color = s.getLastColor();
 		if (color != this.color) {
 			art.setColor(coords[0], coords[1], this.color, action);

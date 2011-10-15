@@ -17,7 +17,7 @@ import com.rj.pixelesque.shapes.ShapeEditor;
 
 public class PixelArt {
 	public static final int MAX_BACKSTACK = 3;
-	public ColorStack[][] data;
+	public ColorStack[] data;
 	public int width; public int height;
 	public History history;
 	public float scale;
@@ -83,10 +83,10 @@ public class PixelArt {
 	public PixelArt(PImage image, String name) {
 		this(image.width, image.height);
 		image.loadPixels();
-		for (int i = 0; i < data.length; i++) {
-			for (int j = 0; j < data[i].length; j++) {
+		for (int i = 0; i < width; i++) {
+			for (int j = 0; j < height; j++) {
 				int color = image.get(i, j);
-				data[i][j].pushColor(color);
+				data[i*width+j].pushColor(color);
 			}
 		}
 		this.name = name;
@@ -94,10 +94,10 @@ public class PixelArt {
 	
 	public PixelArt(Bitmap image, String name) {
 		this(image.getWidth(), image.getHeight());
-		for (int i = 0; i < data.length; i++) {
-			for (int j = 0; j < data[i].length; j++) {
+		for (int i = 0; i < width; i++) {
+			for (int j = 0; j < height; j++) {
 				int color = image.getPixel(i, j);
-				data[i][j].pushColor(color);
+				data[i*width+j].pushColor(color);
 			}
 		}
 		this.name = name;
@@ -107,12 +107,11 @@ public class PixelArt {
 	public PixelArt(int width, int height) {
 		this.width = width;
 		this.height = height;
-		data = new ColorStack[width][];
-		for (int i = 0; i < data.length; i++) {
-			data[i] = new ColorStack[height];
-			for (int j = 0; j < data[i].length; j++) {
-				data[i][j] = new ColorStack();
-				data[i][j].pushColor(Color.TRANSPARENT);
+		data = new ColorStack[width*height];
+		for (int i = 0; i < width; i++) {
+			for (int j = 0; j < height; j++) {
+				data[i*width+j] = new ColorStack();
+				data[i*width+j].pushColor(Color.TRANSPARENT);
 			}
 		}
 		topx = 0;
@@ -163,9 +162,9 @@ public class PixelArt {
 		float boxsize = getBoxsize(width, height, 1);
 		Log.d("PixelData", "Rendering: boxsize "+boxsize+" widthheight:"+width+"x"+height+"   ");
 		
-		for (int x = 0; x < data.length; x++) {
-			for (int y = 0; y < data[x].length; y++) {
-				int color = data[x][y].getLastColor();
+		for (int x = 0; x < width; x++) {
+			for (int y = 0; y < height; y++) {
+				int color = data[x*width+y].getLastColor();
 				image.setPixel(x, y, color);
 			}
 		}
@@ -190,14 +189,14 @@ public class PixelArt {
 			p.rect(-1, data.length * boxsize, p.width+1, p.height+1);
 		}
 		
-		for (int x = 0; x < data.length; x++) {
-			for (int y = 0; y < data[x].length; y++) {
+		for (int x = 0; x < width; x++) {
+			for (int y = 0; y < height; y++) {
 				float left = topx + boxsize * x + 1;
 				float top = topy + boxsize * y + 1;
 				if (top + boxsize > 0 && left + boxsize > 0 && top < p.height && left < p.width) { 
 					if (outline) p.stroke(127);
 					else p.noStroke();
-					int color = data[x][y].getLastColor();
+					int color = data[x*width+y].getLastColor();
 					p.fill(Color.red(color), Color.green(color), Color.blue(color), Color.alpha(color));
 					p.rect(left, top, boxsize, boxsize);
 				}
@@ -209,9 +208,9 @@ public class PixelArt {
 			p.rect(p.width - width - 1, p.height - height - 1, width+1, height+1);
 			p.rect(p.width - width*3 - 2, p.height - height*2 - 1, width*2+1, height*2+1);
 			p.noStroke();
-			for (int x = 0; x < data.length; x++) {
-				for (int y = 0; y < data[x].length; y++) {
-					int color = data[x][y].getLastColor();
+			for (int x = 0; x < width; x++) {
+				for (int y = 0; y < height; y++) {
+					int color = data[x*width+y].getLastColor();
 					p.fill(Color.red(color), Color.green(color), Color.blue(color), Color.alpha(color));
 					p.rect(p.width - width + x, p.height - height + y,1,1);
 					p.rect(p.width - width-width-width - 1 + x+x, p.height - height-height + y+y,2,2);
@@ -233,9 +232,9 @@ public class PixelArt {
 	public String dumpBoard() {
 		StringBuilder b = new StringBuilder();
 		
-		for (int x = 0; x < data.length; x++) {
-			for (int y = 0; y < data[x].length; y++) {
-				b.append(data[x][y].toString());
+		for (int x = 0; x < width; x++) {
+			for (int y = 0; y < height; y++) {
+				b.append(data[x*width+y].toString());
 				b.append("|");
 			}
 			b.append("\n");
@@ -318,12 +317,12 @@ public class PixelArt {
 
 	public void flipColor(int x, int y, int tocolor) {
 		if (isValid(x,y)) {
-			int c = data[x][y].getLastColor();
+			int c = data[x*width+y].getLastColor();
 			if (c == tocolor) {
-				int color = data[x][y].pushUnderneathColor();
+				int color = data[x*width+y].pushUnderneathColor();
 				history.add(new History.HistoryAction(x,y,color));
 			} else {
-				data[x][y].pushColor(tocolor);
+				data[x*width+y].pushColor(tocolor);
 				history.add(new History.HistoryAction(x,y,tocolor));
 			}
 		} else {
@@ -337,7 +336,7 @@ public class PixelArt {
 	}
 	public void setColor(int x, int y, int color, HistoryAction action) {
 		if (isValid(x,y)) {
-			data[x][y].pushColor(color);
+			data[x*width+y].pushColor(color);
 			if (action == null) history.add(new History.HistoryAction(x,y,color));
 			else action.addPoint(x, y, color);
 		}
@@ -351,7 +350,7 @@ public class PixelArt {
 			HistoryAction action = new HistoryAction();
 			for (int i=x; i<=x+width; i++) {
 				for (int j=y; j<=y+height; j++) {
-					data[i][j].pushColor(color);
+					data[i*width+j].pushColor(color);
 					action.addPoint(i, j, color);
 				}
 			}

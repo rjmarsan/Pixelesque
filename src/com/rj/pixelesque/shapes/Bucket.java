@@ -36,17 +36,17 @@ public class Bucket extends SuperShape {
 			
 			if (!art.isValid(endCoord.x, endCoord.y)) return;
 			
-			
-			Point[][] points = new Point[art.width][];
-			for (int i=0; i<points.length; i++) {
-				points[i] = new Point[art.height]; 
-				for (int j=0; j<art.height; j++) {
-					points[i][j] = new Point(i,j);
+			final int width = art.width;
+			final int height = art.height;
+			Point[] points = new Point[art.width*art.height];
+			for (int i=0; i<width; i++) {
+				for (int j=0; j<height; j++) {
+					points[i*width+j] = new Point(i,j);
 				}
 			}
 			
 			
-			int currentcolor = art.data[endCoord.x][endCoord.y].getLastColor();
+			int currentcolor = art.data[endCoord.x*width + endCoord.y].getLastColor();
 			Queue<Point> toExplore = new LinkedList<Point>();
 			HashSet<Point> explored = new HashSet<Point>();
 			toExplore.add(endCoord);
@@ -55,53 +55,38 @@ public class Bucket extends SuperShape {
 				
 				selectedPoints.add(p);
 				
-	//			Point[] neighbors = new Point[] {
-	//				new Point(p.x, p.y-1),
-	//				new Point(p.x, p.y+1),
-	//				new Point(p.x-1, p.y),
-	//				new Point(p.x+1, p.y),
-	//			};
-	//			for (Point pp : neighbors) {
-	//				if (!explored.contains(pp)) { 
-	//					if (art.isValid(pp.x,pp.y) && art.data[pp.x][pp.y].getLastColor() == currentcolor ) {
-	//						toExplore.add(pp);
-	//					}
-	//					explored.add(pp);
-	//				}
-	//			}
-				
 				Point pp;
 				if (art.isValid(p.x,p.y-1)) {
-					pp = points[p.x][p.y-1];
+					pp = points[p.x*width + p.y-1];
 					if (!explored.contains(pp)) { 
-						if (art.data[pp.x][pp.y].getLastColor() == currentcolor )
+						if (art.data[pp.x*width + pp.y].getLastColor() == currentcolor )
 							toExplore.add(pp);
 						explored.add(pp);
 					}
 				}
 				
 				if (art.isValid(p.x,p.y+1)) {
-					pp = points[p.x][p.y+1];
+					pp = points[p.x*width + p.y+1];
 					if (!explored.contains(pp)) { 
-						if (art.data[pp.x][pp.y].getLastColor() == currentcolor )
+						if (art.data[pp.x*width + pp.y].getLastColor() == currentcolor )
 							toExplore.add(pp);
 						explored.add(pp);
 					}
 				}
 				
 				if (art.isValid(p.x-1,p.y)) {
-					pp = points[p.x-1][p.y];
+					pp = points[(p.x-1)*width + p.y];
 					if (!explored.contains(pp)) { 
-						if (art.data[pp.x][pp.y].getLastColor() == currentcolor )
+						if (art.data[pp.x*width + pp.y].getLastColor() == currentcolor )
 							toExplore.add(pp);
 						explored.add(pp);
 					}
 				}
 	
 				if (art.isValid(p.x+1,p.y)) {
-					pp = points[p.x+1][p.y];
+					pp = points[(p.x+1)*width + p.y];
 					if (!explored.contains(pp)) { 
-						if (art.data[pp.x][pp.y].getLastColor() == currentcolor )
+						if (art.data[pp.x*width + pp.y].getLastColor() == currentcolor )
 							toExplore.add(pp);
 						explored.add(pp);
 					}

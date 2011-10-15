@@ -46,13 +46,13 @@ public class History  {
 		}
 		public void undo(PixelArt data) {
 			for (PointAndColor p : points) {
-				ColorStack s = data.data[p.x][p.y];
+				ColorStack s = data.data[p.x*data.width+p.y];
 				if (s.getLastColor() == p.color) s.popColor();
 			}
 		}
 		public void redo(PixelArt data) {
 			for (PointAndColor p : points) {
-				ColorStack s = data.data[p.x][p.y];
+				ColorStack s = data.data[p.x*data.width+p.y];
 				s.pushColor(p.color);
 			}
 		}
