@@ -5,7 +5,6 @@ import java.util.HashMap;
 import processing.core.PApplet;
 import android.graphics.Point;
 
-import com.rj.pixelesque.History.HistoryAction;
 import com.rj.pixelesque.PixelArt;
 import com.rj.processing.mt.Cursor;
 
@@ -36,15 +35,14 @@ public class Circle extends SuperShape {
 			if (p.x < rowminmax.x /*min*/ ) rowminmax.x = p.x;
 			if (p.x > rowminmax.y /*max*/ ) rowminmax.y = p.x;
 		}
-		HistoryAction action = new HistoryAction();
 		for (int row=miny; row<=maxy; row++) {
 			int rowmin = rowminmaxs.get(row).x;
 			int rowmax = rowminmaxs.get(row).y;
 			for (int x = rowmin; x <= rowmax; x++ ) {
-				art.setColor(x, row, this.color, action);
+				art.setColor(x, row, this.color, false);
 			}
 		}
-		art.history.add(action);
+		art.history.add();
 	}
 	
 	/**

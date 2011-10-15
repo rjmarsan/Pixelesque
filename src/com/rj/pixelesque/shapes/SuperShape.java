@@ -2,10 +2,8 @@ package com.rj.pixelesque.shapes;
 
 import processing.core.PApplet;
 import android.graphics.Point;
-import android.util.Log;
 
 import com.rj.pixelesque.PixelArt;
-import com.rj.pixelesque.History.HistoryAction;
 import com.rj.processing.mt.Cursor;
 
 public abstract class SuperShape extends Shape {	

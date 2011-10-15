@@ -423,7 +423,7 @@ public class PixelArtEditor extends PApplet implements TouchListener, Drawer {
 		@Override
 		protected PixelArt doInBackground(Void... params) {
 			try {
-				PixelArt art = new PixelArt(width, height);
+				PixelArt art = new PixelArt(width, height, true);
 				return art;
 			} catch (Exception e) {
 				e.printStackTrace();

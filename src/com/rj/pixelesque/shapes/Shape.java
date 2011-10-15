@@ -6,7 +6,6 @@ import processing.core.PApplet;
 import android.graphics.Point;
 
 import com.rj.pixelesque.PixelArt;
-import com.rj.pixelesque.History.HistoryAction;
 import com.rj.processing.mt.Cursor;
 
 public abstract class Shape {
@@ -84,15 +83,12 @@ public abstract class Shape {
 	
 	public void setAllPoints() {
 		if (cursor == null || art == null) return;
-		
-		
-		HistoryAction action = new HistoryAction();
 		for (Point point : selectedPoints) {
 			if (art.isValid(point.x, point.y)) {
-				art.setColor(point.x, point.y, this.color, action);
+				art.setColor(point.x, point.y, this.color, false);
 			}
 		}
-		art.history.add(action);
+		art.history.add();
 	}
 	
 	public ArrayList<Point> getSelectedPoints() {

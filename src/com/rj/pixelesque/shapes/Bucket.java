@@ -46,7 +46,7 @@ public class Bucket extends SuperShape {
 			}
 			
 			
-			int currentcolor = art.data[endCoord.x*width + endCoord.y].getLastColor();
+			int currentcolor = art.workingdata[endCoord.x*width + endCoord.y];
 			Queue<Point> toExplore = new LinkedList<Point>();
 			HashSet<Point> explored = new HashSet<Point>();
 			toExplore.add(endCoord);
@@ -59,7 +59,7 @@ public class Bucket extends SuperShape {
 				if (art.isValid(p.x,p.y-1)) {
 					pp = points[p.x*width + p.y-1];
 					if (!explored.contains(pp)) { 
-						if (art.data[pp.x*width + pp.y].getLastColor() == currentcolor )
+						if (art.workingdata[pp.x*width + pp.y] == currentcolor )
 							toExplore.add(pp);
 						explored.add(pp);
 					}
@@ -68,7 +68,7 @@ public class Bucket extends SuperShape {
 				if (art.isValid(p.x,p.y+1)) {
 					pp = points[p.x*width + p.y+1];
 					if (!explored.contains(pp)) { 
-						if (art.data[pp.x*width + pp.y].getLastColor() == currentcolor )
+						if (art.workingdata[pp.x*width + pp.y] == currentcolor )
 							toExplore.add(pp);
 						explored.add(pp);
 					}
@@ -77,7 +77,7 @@ public class Bucket extends SuperShape {
 				if (art.isValid(p.x-1,p.y)) {
 					pp = points[(p.x-1)*width + p.y];
 					if (!explored.contains(pp)) { 
-						if (art.data[pp.x*width + pp.y].getLastColor() == currentcolor )
+						if (art.workingdata[pp.x*width + pp.y] == currentcolor )
 							toExplore.add(pp);
 						explored.add(pp);
 					}
@@ -86,7 +86,7 @@ public class Bucket extends SuperShape {
 				if (art.isValid(p.x+1,p.y)) {
 					pp = points[(p.x+1)*width + p.y];
 					if (!explored.contains(pp)) { 
-						if (art.data[pp.x*width + pp.y].getLastColor() == currentcolor )
+						if (art.workingdata[pp.x*width + pp.y] == currentcolor )
 							toExplore.add(pp);
 						explored.add(pp);
 					}

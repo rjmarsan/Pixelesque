@@ -1,71 +1,37 @@
 package com.rj.pixelesque;
 
 import java.util.ArrayList;
-import java.util.Vector;
-
-import android.util.Log;
-
-import com.rj.pixelesque.PixelArt.ColorStack;
+import java.util.Arrays;
 
 
 public class History  {
 
-	private Vector<HistoryAction> history = new Vector<HistoryAction>();
-	private int position = -1;
-	private PixelArt data;
+	private int position = 0;
+	private PixelArt art;
 	
 	public History(PixelArt data) {
-		this.data = data;
+		this.art = data;
 	}
 	
 	
-	/**
-	 * Simply will pop something off of the stack
-	 * @author rj
-	 *
-	 */
-	public static class PointAndColor {
-		int x;
-		int y;
-		int color;
-		public PointAndColor(int x, int y, int color) {
-			this.x = x; this.y = y; this.color = color;
-		}
-	}
-	public static class HistoryAction {
-		ArrayList<PointAndColor> points = new ArrayList<PointAndColor>();
-		public HistoryAction() {
-			
-		}
-		public HistoryAction(int x, int y, int color) {
-			addPoint(x,y,color);
-		}
-		public void addPoint(int x, int y, int color) {
-			PointAndColor p = new PointAndColor(x, y, color);
-			points.add(p);
-		}
-		public void undo(PixelArt data) {
-			for (PointAndColor p : points) {
-				ColorStack s = data.data[p.x*data.width+p.y];
-				if (s.getLastColor() == p.color) s.popColor();
-			}
-		}
-		public void redo(PixelArt data) {
-			for (PointAndColor p : points) {
-				ColorStack s = data.data[p.x*data.width+p.y];
-				s.pushColor(p.color);
-			}
-		}
+	public void cancel() {
+		ArrayList<int[]> history = this.art.historydata;
+		int[] data = history.get(position);
+		art.setData(data);
+		if (art.drawer != null) art.drawer.scheduleRedraw();	
 	}
 	
-	public void add(HistoryAction action) {
+	public void add() {
+		int[] curdata = new int[this.art.workingdata.length];
+		System.arraycopy(this.art.workingdata, 0, curdata, 0, this.art.workingdata.length);
+		ArrayList<int[]> history = this.art.historydata;
 		/**
 		 * clear the backstack of anything past the current position
 		 */
 		while ( position < history.size() - 1) {
 			history.remove(history.size()-1);
 		}
-		history.add(action);
+		history.add(curdata);
 		position = history.size() - 1;
 	}
 	
@@ -73,28 +39,32 @@ public class History  {
 //		Log.d("History", "UNDO position: "+position+" max:"+history.size());
 //		Log.d("History", data.dumpBoard());
 		if (!canUndo()) return;
-		HistoryAction action = history.get(position);
-		action.undo(data);
+		ArrayList<int[]> history = this.art.historydata;
+		int[] data = history.get(position-1);
+		art.setData(data);
 		position -= 1;
-		if (data.drawer != null) data.drawer.scheduleRedraw();
+		if (art.drawer != null) art.drawer.scheduleRedraw();
 	}
 	
 	public void redo() {
 //		Log.d("History", "REDO position: "+position+" max:"+history.size());
 //		Log.d("History", data.dumpBoard());
 		if (!canRedo()) return;
-		HistoryAction action = history.get(position+1);
-		action.redo(data);
+		
+		ArrayList<int[]> history = this.art.historydata;
+		int[] data = history.get(position+1);
+		art.setData(data);
 		position += 1;
-		if (data.drawer != null) data.drawer.scheduleRedraw();
+		if (art.drawer != null) art.drawer.scheduleRedraw();
 	}
 	
 	public boolean canUndo() {
-		return position >= 0;
+		return position >= 1;
 		
 	}
 	
 	public boolean canRedo() {
+		ArrayList<int[]> history = this.art.historydata;
 		return position < history.size()-1;
 	}
 	

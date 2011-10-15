@@ -2,10 +2,8 @@ package com.rj.pixelesque.shapes;
 
 import processing.core.PApplet;
 import android.graphics.Point;
-import android.util.Log;
 
 import com.rj.pixelesque.PixelArt;
-import com.rj.pixelesque.History.HistoryAction;
 import com.rj.processing.mt.Cursor;
 
 public class Rectangle extends SuperShape {	
@@ -62,15 +60,14 @@ public class Rectangle extends SuperShape {
 		int width = highx - lowx;
 		int height = highy - lowy;
 		
-		HistoryAction action = new HistoryAction();
 		for (int i=0; i<=width; i++) {
 			int nx = lowx + i;
 			for (int j=0; j<=height; j++) {
 				int ny = lowy + j;
-				art.setColor(nx, ny, this.color, action);
+				art.setColor(nx, ny, this.color, false);
 			}
 		}
-		art.history.add(action);
+		art.history.add();
 		
 	}
 
