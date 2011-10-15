@@ -34,11 +34,12 @@ public class Pen extends Shape {
 		action.undo(art);
 	}
 	
-	public void commit() {
-		super.commit();
+	public boolean commit() {
+		if (!super.commit()) return false;
 		update();
 		art.history.add(action);
 		action = null; // no more updates;
+		return true;
 	}
 	
 }

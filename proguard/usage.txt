@@ -1,0 +1,2070 @@
+android.support.v4.app.ActivityCompatHoneycomb:
+    34:35:static void dump(android.app.Activity,java.lang.String,java.io.FileDescriptor,java.io.PrintWriter,java.lang.String[])
+android.support.v4.app.BackStackRecord:
+    static final java.lang.String TAG
+    static final int OP_NULL
+    static final int OP_ADD
+    static final int OP_REPLACE
+    static final int OP_REMOVE
+    static final int OP_HIDE
+    static final int OP_SHOW
+    static final int OP_DETACH
+    static final int OP_ATTACH
+    269:269:public int getId()
+    273:273:public int getBreadCrumbTitleRes()
+    277:277:public int getBreadCrumbShortTitleRes()
+    281:284:public java.lang.CharSequence getBreadCrumbTitle()
+    288:291:public java.lang.CharSequence getBreadCrumbShortTitle()
+    308:309:public android.support.v4.app.FragmentTransaction add(android.support.v4.app.Fragment,java.lang.String)
+    318:319:public android.support.v4.app.FragmentTransaction add(int,android.support.v4.app.Fragment,java.lang.String)
+    354:354:public android.support.v4.app.FragmentTransaction replace(int,android.support.v4.app.Fragment)
+    358:363:public android.support.v4.app.FragmentTransaction replace(int,android.support.v4.app.Fragment,java.lang.String)
+    367:377:public android.support.v4.app.FragmentTransaction remove(android.support.v4.app.Fragment)
+    381:390:public android.support.v4.app.FragmentTransaction hide(android.support.v4.app.Fragment)
+    394:403:public android.support.v4.app.FragmentTransaction show(android.support.v4.app.Fragment)
+    411:416:public android.support.v4.app.FragmentTransaction detach(android.support.v4.app.Fragment)
+    424:429:public android.support.v4.app.FragmentTransaction attach(android.support.v4.app.Fragment)
+    433:435:public android.support.v4.app.FragmentTransaction setCustomAnimations(int,int)
+    439:440:public android.support.v4.app.FragmentTransaction setTransition(int)
+    444:445:public android.support.v4.app.FragmentTransaction setTransitionStyle(int)
+    449:455:public android.support.v4.app.FragmentTransaction addToBackStack(java.lang.String)
+    459:459:public boolean isAddToBackStackAllowed()
+    463:468:public android.support.v4.app.FragmentTransaction disallowAddToBackStack()
+    472:474:public android.support.v4.app.FragmentTransaction setBreadCrumbTitle(int)
+    478:480:public android.support.v4.app.FragmentTransaction setBreadCrumbTitle(java.lang.CharSequence)
+    484:486:public android.support.v4.app.FragmentTransaction setBreadCrumbShortTitle(int)
+    490:492:public android.support.v4.app.FragmentTransaction setBreadCrumbShortTitle(java.lang.CharSequence)
+    523:523:public int commitAllowingStateLoss()
+    702:702:public int getTransition()
+    706:706:public int getTransitionStyle()
+    710:710:public boolean isEmpty()
+android.support.v4.app.DialogFragment
+android.support.v4.app.Fragment:
+    static final int INITIALIZING
+    static final int CREATED
+    static final int ACTIVITY_CREATED
+    static final int STOPPED
+    static final int STARTED
+    static final int RESUMED
+    455:455:public final int getId()
+    462:462:public final java.lang.String getTag()
+    496:501:public void setInitialSavedState(android.support.v4.app.Fragment$SavedState)
+    515:517:public void setTargetFragment(android.support.v4.app.Fragment,int)
+    523:523:public final android.support.v4.app.Fragment getTargetFragment()
+    530:530:public final int getTargetRequestCode()
+    544:547:public final android.content.res.Resources getResources()
+    557:557:public final java.lang.CharSequence getText(int)
+    567:567:public final java.lang.String getString(int)
+    580:580:public final java.lang.String getString(int,java.lang.Object[])
+    591:591:public final android.support.v4.app.FragmentManager getFragmentManager()
+    598:598:public final boolean isAdded()
+    607:607:public final boolean isDetached()
+    616:616:public final boolean isRemoving()
+    627:627:public final boolean isInLayout()
+    635:635:public final boolean isResumed()
+    644:644:public final boolean isVisible()
+    656:656:public final boolean isHidden()
+    684:685:public void setRetainInstance(boolean)
+    688:688:public final boolean getRetainInstance()
+    699:705:public void setHasOptionsMenu(boolean)
+    711:719:public android.support.v4.app.LoaderManager getLoaderManager()
+    727:731:public void startActivity(android.content.Intent)
+    738:742:public void startActivityForResult(android.content.Intent,int)
+    1165:1166:public void registerForContextMenu(android.view.View)
+    1176:1177:public void unregisterForContextMenu(android.view.View)
+android.support.v4.app.Fragment$SavedState:
+    285:287:Fragment$SavedState(android.os.Bundle)
+android.support.v4.app.FragmentActivity:
+    private static final java.lang.String TAG
+    private static final java.lang.String FRAGMENTS_TAG
+    private static final int HONEYCOMB
+    static final int MSG_REALLY_STOPPED
+    static final int MSG_RESUME_PENDING
+    647:655:public void startActivityFromFragment(android.support.v4.app.Fragment,android.content.Intent,int)
+    676:681:public android.support.v4.app.LoaderManager getSupportLoaderManager()
+android.support.v4.app.FragmentActivity$FragmentTag:
+    public static final int Fragment_id
+    public static final int Fragment_name
+    public static final int Fragment_tag
+android.support.v4.app.FragmentManager:
+    public static final int POP_BACK_STACK_INCLUSIVE
+    132:132:public android.support.v4.app.FragmentTransaction openTransaction()
+    public abstract boolean executePendingTransactions()
+    public abstract android.support.v4.app.Fragment findFragmentById(int)
+    public abstract android.support.v4.app.Fragment findFragmentByTag(java.lang.String)
+    public abstract void popBackStack()
+    public abstract boolean popBackStackImmediate()
+    public abstract void popBackStack(java.lang.String,int)
+    public abstract boolean popBackStackImmediate(java.lang.String,int)
+    public abstract void popBackStack(int,int)
+    public abstract boolean popBackStackImmediate(int,int)
+    public abstract int getBackStackEntryCount()
+    public abstract android.support.v4.app.FragmentManager$BackStackEntry getBackStackEntryAt(int)
+    public abstract void addOnBackStackChangedListener(android.support.v4.app.FragmentManager$OnBackStackChangedListener)
+    public abstract void removeOnBackStackChangedListener(android.support.v4.app.FragmentManager$OnBackStackChangedListener)
+    public abstract void putFragment(android.os.Bundle,java.lang.String,android.support.v4.app.Fragment)
+    public abstract android.support.v4.app.Fragment getFragment(android.os.Bundle,java.lang.String)
+    public abstract android.support.v4.app.Fragment$SavedState saveFragmentInstanceState(android.support.v4.app.Fragment)
+    public abstract void dump(java.lang.String,java.io.FileDescriptor,java.io.PrintWriter,java.lang.String[])
+    327:328:public static void enableDebugLogging(boolean)
+android.support.v4.app.FragmentManager$BackStackEntry
+android.support.v4.app.FragmentManagerImpl:
+    static final java.lang.String TAG
+    static final java.lang.String TARGET_REQUEST_CODE_STATE_TAG
+    static final java.lang.String TARGET_STATE_TAG
+    static final java.lang.String VIEW_STATE_TAG
+    static final int ANIM_DUR
+    public static final int ANIM_STYLE_OPEN_ENTER
+    public static final int ANIM_STYLE_OPEN_EXIT
+    public static final int ANIM_STYLE_CLOSE_ENTER
+    public static final int ANIM_STYLE_CLOSE_EXIT
+    public static final int ANIM_STYLE_FADE_ENTER
+    public static final int ANIM_STYLE_FADE_EXIT
+    427:432:public void popBackStack()
+    443:448:public void popBackStack(java.lang.String,int)
+    452:454:public boolean popBackStackImmediate(java.lang.String,int)
+    459:467:public void popBackStack(int,int)
+    471:476:public boolean popBackStackImmediate(int,int)
+    481:481:public int getBackStackEntryCount()
+    486:486:public android.support.v4.app.FragmentManager$BackStackEntry getBackStackEntryAt(int)
+    491:495:public void addOnBackStackChangedListener(android.support.v4.app.FragmentManager$OnBackStackChangedListener)
+    499:502:public void removeOnBackStackChangedListener(android.support.v4.app.FragmentManager$OnBackStackChangedListener)
+    533:541:public android.support.v4.app.Fragment$SavedState saveFragmentInstanceState(android.support.v4.app.Fragment)
+    1229:1237:public android.support.v4.app.Fragment findFragmentByWho(java.lang.String)
+android.support.v4.app.FragmentManagerImpl$2
+android.support.v4.app.FragmentManagerImpl$3
+android.support.v4.app.FragmentManagerImpl$4
+android.support.v4.app.FragmentPagerAdapter
+android.support.v4.app.FragmentStatePagerAdapter
+android.support.v4.app.FragmentTransaction:
+    public static final int TRANSIT_ENTER_MASK
+    public static final int TRANSIT_EXIT_MASK
+    public static final int TRANSIT_UNSET
+    public static final int TRANSIT_NONE
+    public static final int TRANSIT_FRAGMENT_OPEN
+    public static final int TRANSIT_FRAGMENT_CLOSE
+    public static final int TRANSIT_FRAGMENT_FADE
+    public abstract android.support.v4.app.FragmentTransaction add(android.support.v4.app.Fragment,java.lang.String)
+    public abstract android.support.v4.app.FragmentTransaction add(int,android.support.v4.app.Fragment,java.lang.String)
+    public abstract android.support.v4.app.FragmentTransaction replace(int,android.support.v4.app.Fragment)
+    public abstract android.support.v4.app.FragmentTransaction replace(int,android.support.v4.app.Fragment,java.lang.String)
+    public abstract android.support.v4.app.FragmentTransaction remove(android.support.v4.app.Fragment)
+    public abstract android.support.v4.app.FragmentTransaction hide(android.support.v4.app.Fragment)
+    public abstract android.support.v4.app.FragmentTransaction show(android.support.v4.app.Fragment)
+    public abstract android.support.v4.app.FragmentTransaction detach(android.support.v4.app.Fragment)
+    public abstract android.support.v4.app.FragmentTransaction attach(android.support.v4.app.Fragment)
+    public abstract boolean isEmpty()
+    public abstract android.support.v4.app.FragmentTransaction setCustomAnimations(int,int)
+    public abstract android.support.v4.app.FragmentTransaction setTransition(int)
+    public abstract android.support.v4.app.FragmentTransaction setTransitionStyle(int)
+    public abstract android.support.v4.app.FragmentTransaction addToBackStack(java.lang.String)
+    public abstract boolean isAddToBackStackAllowed()
+    public abstract android.support.v4.app.FragmentTransaction disallowAddToBackStack()
+    public abstract android.support.v4.app.FragmentTransaction setBreadCrumbTitle(int)
+    public abstract android.support.v4.app.FragmentTransaction setBreadCrumbTitle(java.lang.CharSequence)
+    public abstract android.support.v4.app.FragmentTransaction setBreadCrumbShortTitle(int)
+    public abstract android.support.v4.app.FragmentTransaction setBreadCrumbShortTitle(java.lang.CharSequence)
+    public abstract int commitAllowingStateLoss()
+android.support.v4.app.HCSparseArray:
+    224:229:public void setValueAt(int,java.lang.Object)
+    237:241:public int indexOfKey(int)
+    253:261:public int indexOfValue(java.lang.Object)
+    284:311:public void append(int,java.lang.Object)
+    334:343:private void checkIntegrity()
+android.support.v4.app.ListFragment
+android.support.v4.app.ListFragment$1
+android.support.v4.app.ListFragment$2
+android.support.v4.app.LoaderManager:
+    public abstract android.support.v4.content.Loader initLoader(int,android.os.Bundle,android.support.v4.app.LoaderManager$LoaderCallbacks)
+    public abstract android.support.v4.content.Loader restartLoader(int,android.os.Bundle,android.support.v4.app.LoaderManager$LoaderCallbacks)
+    public abstract void destroyLoader(int)
+    public abstract android.support.v4.content.Loader getLoader(int)
+    public abstract void dump(java.lang.String,java.io.FileDescriptor,java.io.PrintWriter,java.lang.String[])
+    176:177:public static void enableDebugLogging(boolean)
+android.support.v4.app.LoaderManagerImpl:
+    static final java.lang.String TAG
+    boolean mRetainingStarted
+    boolean mCreatingLoader
+    475:478:private android.support.v4.app.LoaderManagerImpl$LoaderInfo createLoader(int,android.os.Bundle,android.support.v4.app.LoaderManager$LoaderCallbacks)
+    484:489:private android.support.v4.app.LoaderManagerImpl$LoaderInfo createAndInstallLoader(int,android.os.Bundle,android.support.v4.app.LoaderManager$LoaderCallbacks)
+    494:501:void installLoader(android.support.v4.app.LoaderManagerImpl$LoaderInfo)
+    529:551:public android.support.v4.content.Loader initLoader(int,android.os.Bundle,android.support.v4.app.LoaderManager$LoaderCallbacks)
+    579:633:public android.support.v4.content.Loader restartLoader(int,android.os.Bundle,android.support.v4.app.LoaderManager$LoaderCallbacks)
+    644:661:public void destroyLoader(int)
+    669:680:public android.support.v4.content.Loader getLoader(int)
+android.support.v4.app.LoaderManagerImpl$LoaderInfo:
+    219:223:public LoaderManagerImpl$LoaderInfo(android.support.v4.app.LoaderManagerImpl,int,android.os.Bundle,android.support.v4.app.LoaderManager$LoaderCallbacks)
+    353:402:public void onLoadComplete(android.support.v4.content.Loader,java.lang.Object)
+android.support.v4.content.AsyncTaskLoader
+android.support.v4.content.AsyncTaskLoader$LoadTask
+android.support.v4.content.CursorLoader
+android.support.v4.content.Loader:
+    android.content.Context mContext
+    75:77:public Loader(android.content.Context)
+    87:90:public void deliverResult(java.lang.Object)
+    96:96:public android.content.Context getContext()
+    103:103:public int getId()
+    142:142:public boolean isStarted()
+    151:151:public boolean isAbandoned()
+    160:160:public boolean isReset()
+    202:203:public void forceLoad()
+    210:210:protected void onForceLoad()
+    246:248:public void abandon()
+    260:260:protected void onAbandon()
+    297:299:public boolean takeContentChanged()
+    311:319:public void onContentChanged()
+android.support.v4.content.Loader$ForceLoadContentObserver
+android.support.v4.content.Loader$OnLoadCompleteListener:
+    public abstract void onLoadComplete(android.support.v4.content.Loader,java.lang.Object)
+android.support.v4.os.ParcelableCompatCreatorHoneycombMR2:
+    36:36:public java.lang.Object createFromParcel(android.os.Parcel)
+    40:40:public java.lang.Object createFromParcel(android.os.Parcel,java.lang.ClassLoader)
+    44:44:public java.lang.Object[] newArray(int)
+android.support.v4.util.LruCache
+android.support.v4.util.TimeUtils
+android.support.v4.view.MenuCompat
+android.support.v4.view.MenuCompat$BaseMenuVersionImpl
+android.support.v4.view.MenuCompat$HoneycombMenuVersionImpl
+android.support.v4.view.MenuCompat$MenuVersionImpl
+android.support.v4.view.MenuCompatHoneycomb
+android.support.v4.view.MotionEventCompat:
+    public static final int ACTION_MASK
+    public static final int ACTION_POINTER_DOWN
+    public static final int ACTION_POINTER_UP
+    public static final int ACTION_HOVER_MOVE
+    public static final int ACTION_SCROLL
+    public static final int ACTION_POINTER_INDEX_MASK
+    public static final int ACTION_POINTER_INDEX_SHIFT
+    133:133:public static int getActionMasked(android.view.MotionEvent)
+android.support.v4.view.PagerAdapter:
+    private android.support.v4.view.PagerAdapter$DataSetObserver mObserver
+    public static final int POSITION_UNCHANGED
+    public static final int POSITION_NONE
+    110:110:public int getItemPosition(java.lang.Object)
+    118:121:public void notifyDataSetChanged()
+    124:125:void setDataSetObserver(android.support.v4.view.PagerAdapter$DataSetObserver)
+android.support.v4.view.PagerAdapter$DataSetObserver
+android.support.v4.view.VelocityTrackerCompat:
+    81:81:public static float getXVelocity(android.view.VelocityTracker,int)
+android.support.v4.view.VelocityTrackerCompat$BaseVelocityTrackerVersionImpl:
+    39:39:public float getXVelocity(android.view.VelocityTracker,int)
+android.support.v4.view.VelocityTrackerCompat$HoneycombVelocityTrackerVersionImpl:
+    53:53:public float getXVelocity(android.view.VelocityTracker,int)
+android.support.v4.view.VelocityTrackerCompat$VelocityTrackerVersionImpl:
+    public abstract float getXVelocity(android.view.VelocityTracker,int)
+android.support.v4.view.VelocityTrackerCompatHoneycomb:
+    26:26:public static float getXVelocity(android.view.VelocityTracker,int)
+android.support.v4.view.ViewPager:
+    private static final java.lang.String TAG
+    private static final boolean DEBUG
+    private static final boolean USE_CACHE
+    private android.support.v4.view.PagerAdapter$DataSetObserver mObserver
+    private static final int INVALID_POINTER
+    public static final int SCROLL_STATE_IDLE
+    public static final int SCROLL_STATE_DRAGGING
+    public static final int SCROLL_STATE_SETTLING
+    214:236:public void setAdapter(android.support.v4.view.PagerAdapter)
+    239:239:public android.support.v4.view.PagerAdapter getAdapter()
+    243:245:public void setCurrentItem(int)
+    287:288:public void setOnPageChangeListener(android.support.v4.view.ViewPager$OnPageChangeListener)
+    332:376:void dataSetChanged()
+android.support.v4.view.ViewPager$1
+android.support.v4.view.ViewPager$DataSetObserver
+android.support.v4.view.ViewPager$SimpleOnPageChangeListener
+android.support.v4.widget.CursorAdapter
+android.support.v4.widget.CursorAdapter$1
+android.support.v4.widget.CursorAdapter$ChangeObserver
+android.support.v4.widget.CursorAdapter$MyDataSetObserver
+android.support.v4.widget.CursorFilter
+android.support.v4.widget.CursorFilter$CursorFilterClient
+android.support.v4.widget.ResourceCursorAdapter
+android.support.v4.widget.SimpleCursorAdapter
+android.support.v4.widget.SimpleCursorAdapter$CursorToStringConverter
+android.support.v4.widget.SimpleCursorAdapter$ViewBinder
+com.rj.pixelesque.ArtListActivity:
+    public static final java.lang.String PATH
+com.rj.pixelesque.BrushSelectorView
+com.rj.pixelesque.ColorPickerDialog
+com.rj.pixelesque.ColorPickerDialog$1
+com.rj.pixelesque.ColorPickerDialog$ColorPickerView
+com.rj.pixelesque.ColorPickerDialog$OnColorChangedListener
+com.rj.pixelesque.Drawer:
+    public abstract void scheduleUIRedraw()
+com.rj.pixelesque.IntArrayList
+com.rj.pixelesque.NumberPicker:
+    private static final java.lang.String TAG
+    private static final int DEFAULT_MAX
+    private static final int DEFAULT_MIN
+    165:166:public void setFormatter(com.rj.pixelesque.NumberPicker$Formatter)
+    192:197:public void setRange(int,int,java.lang.String[])
+    209:210:public void setSpeed(long)
+com.rj.pixelesque.PixelArt:
+    public static final int MAX_BACKSTACK
+    84:93:public PixelArt(processing.core.PImage,java.lang.String)
+    234:243:public java.lang.String dumpBoard()
+    336:337:public void eraseColor(int,int,com.rj.pixelesque.History$HistoryAction)
+    373:373:public void startCalculatingBrush()
+    377:377:public void stopCalculatingBrush()
+com.rj.pixelesque.PixelArt$ColorStack:
+    65:67:public void clearStack(int)
+com.rj.pixelesque.PixelArtEditor:
+    private static final boolean DEBUG
+    public static final int EXPORT_SMALL_LONGSIDE
+    public static final int EXPORT_MEDIUM_LONGSIDE
+    public static final int EXPORT_LARGE_LONGSIDE
+    public static final int SHARE_MEDIUM_LONGSIDE
+    public static final int LOAD_ACTIVITY
+    public static final int COLOR_ACTIVITY
+    616:617:public void export(int)
+com.rj.pixelesque.PixelArtState:
+    public static final int PENCIL
+    public static final int ERASER
+    public static final int LINE
+    public static final int RECTANGLE
+    public static final int RECTANGLE_FILL
+    public static final int CIRCLE
+    public static final int CIRCLE_FILL
+    public static final int BUCKET
+    public static final int DRAW
+com.rj.pixelesque.R
+com.rj.pixelesque.R$attr
+com.rj.pixelesque.R$color
+com.rj.pixelesque.R$drawable
+com.rj.pixelesque.R$id
+com.rj.pixelesque.R$layout
+com.rj.pixelesque.R$menu
+com.rj.pixelesque.R$string
+com.rj.pixelesque.R$style
+com.rj.pixelesque.StorageUtils:
+    public static final java.lang.String PREFS_NAME
+    public static final java.lang.String RECENTLY_OPENED
+com.rj.processing.mt.Cursor:
+    public static final float VEL_AVG
+    public static final float MAX_VEL
+    public static final float MIN_VEL
+com.rj.processing.mt.MTCallback
+com.rj.processing.mt.Point:
+    16:16:public static float distanceSquared(com.rj.processing.mt.Point,com.rj.processing.mt.Point)
+    20:20:public static float distance(com.rj.processing.mt.Point,com.rj.processing.mt.Point)
+com.rj.processing.mt.R
+com.rj.processing.mt.R$attr
+com.rj.processing.mt.R$color
+com.rj.processing.mt.R$drawable
+com.rj.processing.mt.R$id
+com.rj.processing.mt.R$layout
+com.rj.processing.mt.R$menu
+com.rj.processing.mt.R$string
+com.rj.processing.mt.R$style
+de.devmil.common.ui.color.ColorSelectorActivity:
+    public static final java.lang.String COLOR
+    public static final java.lang.String RESULT_COLOR
+    public static final java.lang.String SIDE
+    public static final java.lang.String OFFSET
+    public static final int BOTTOM
+    public static final int RIGHT
+    public static final int TOP
+    public static final int LEFT
+    public static final int CENTER
+    151:152:public void setColor(int)
+de.devmil.common.ui.color.ColorSelectorDialog
+de.devmil.common.ui.color.ColorSelectorDialog$1
+de.devmil.common.ui.color.ColorSelectorDialog$2
+de.devmil.common.ui.color.ColorSelectorDialog$3
+de.devmil.common.ui.color.ColorSelectorDialog$4
+de.devmil.common.ui.color.ColorSelectorDialog$OnColorChangedListener
+de.devmil.common.ui.color.ColorSelectorView:
+    private static final java.lang.String HSV_TAG
+    private static final java.lang.String RGB_TAG
+    private static final java.lang.String HEX_TAG
+    63:64:public void setDialog(android.app.Dialog)
+de.devmil.common.ui.color.HexSelectorView:
+    61:62:public void setDialog(android.app.Dialog)
+de.devmil.common.ui.color.HistorySelectorView:
+    private static final int MAX_COLORS
+de.devmil.common.ui.color.HsvSelectorView:
+    121:121:public int getColor()
+processing.core.PApplet:
+    static final boolean DEBUG
+    public int[] pixels
+    public static final java.lang.String ARGS_EDITOR_LOCATION
+    public static final java.lang.String ARGS_EXTERNAL
+    public static final java.lang.String ARGS_LOCATION
+    public static final java.lang.String ARGS_DISPLAY
+    public static final java.lang.String ARGS_BGCOLOR
+    public static final java.lang.String ARGS_PRESENT
+    public static final java.lang.String ARGS_EXCLUSIVE
+    public static final java.lang.String ARGS_STOP_COLOR
+    public static final java.lang.String ARGS_HIDE_STOP
+    public static final java.lang.String ARGS_SKETCH_FOLDER
+    public static final java.lang.String EXTERNAL_STOP
+    public static final java.lang.String EXTERNAL_MOVE
+    static final java.lang.String ERROR_MIN_MAX
+    java.util.Random internalRandom
+    static final int PERLIN_YWRAPB
+    static final int PERLIN_YWRAP
+    static final int PERLIN_ZWRAPB
+    static final int PERLIN_ZWRAP
+    static final int PERLIN_SIZE
+    int perlin_TWOPI
+    int perlin_PI
+    float[] perlin_cosTable
+    float[] perlin
+    java.util.Random perlinRandom
+    volatile int requestImageCount
+    protected java.lang.String[] loadShapeFormats
+    protected static java.util.HashMap matchPatterns
+    private static java.text.NumberFormat int_nf
+    private static int int_nf_digits
+    private static boolean int_nf_commas
+    private static java.text.NumberFormat float_nf
+    private static int float_nf_left
+    private static int float_nf_right
+    private static boolean float_nf_commas
+    994:999:public void orientation(int)
+    1063:1064:public void destroy()
+    1168:1170:public void registerSize(java.lang.Object)
+    1173:1174:public void registerPre(java.lang.Object)
+    1177:1178:public void registerDraw(java.lang.Object)
+    1181:1182:public void registerPost(java.lang.Object)
+    1187:1187:public void registerMouseEvent(java.lang.Object)
+    1191:1193:public void registerKeyEvent(java.lang.Object)
+    1197:1197:public void registerDispose(java.lang.Object)
+    1202:1214:protected void registerNoArgs(processing.core.PApplet$RegisteredMethods,java.lang.String,java.lang.Object)
+    1219:1231:protected void registerWithArgs(processing.core.PApplet$RegisteredMethods,java.lang.String,java.lang.Object,java.lang.Class[])
+    1235:1237:public void unregisterSize(java.lang.Object)
+    1240:1241:public void unregisterPre(java.lang.Object)
+    1244:1245:public void unregisterDraw(java.lang.Object)
+    1248:1249:public void unregisterPost(java.lang.Object)
+    1254:1254:public void unregisterMouseEvent(java.lang.Object)
+    1257:1259:public void unregisterKeyEvent(java.lang.Object)
+    1262:1263:public void unregisterDispose(java.lang.Object)
+    1268:1275:protected void unregisterNoArgs(processing.core.PApplet$RegisteredMethods,java.lang.String,java.lang.Object)
+    1280:1287:protected void unregisterWithArgs(processing.core.PApplet$RegisteredMethods,java.lang.String,java.lang.Object,java.lang.Class[])
+    1335:1336:public void size(int,int)
+    1340:1341:public void size(int,int,java.lang.String)
+    1377:1453:public void size(int,int,java.lang.String,java.lang.String)
+    1507:1559:public processing.core.PGraphics createGraphics(int,int,java.lang.String)
+    1906:1920:public synchronized void redraw()
+    1924:1927:public synchronized void loop()
+    1931:1934:public synchronized void noLoop()
+    2287:2287:public void keyTyped()
+    2323:2323:public int millis()
+    2329:2330:public static int second()
+    2336:2337:public static int minute()
+    2349:2350:public static int hour()
+    2361:2362:public static int day()
+    2371:2372:public static int month()
+    2380:2381:public static int year()
+    2438:2439:public void link(java.lang.String)
+    2454:2456:public void link(java.lang.String,java.lang.String)
+    2463:2464:public static void open(java.lang.String)
+    2474:2474:public static java.lang.Process open(java.lang.String[])
+    2480:2483:public static java.lang.Process exec(java.lang.String[])
+    2496:2497:public void die(java.lang.String)
+    2505:2507:public void die(java.lang.String,java.lang.Exception)
+    2582:2597:public void method(java.lang.String)
+    2610:2616:public void thread(java.lang.String)
+    2645:2650:public void saveFrame()
+    2665:2670:public void saveFrame(java.lang.String)
+    2681:2690:protected java.lang.String insertFrame(java.lang.String)
+    2787:2789:public static void print(byte)
+    2792:2794:public static void print(boolean)
+    2797:2799:public static void print(char)
+    2802:2804:public static void print(int)
+    2807:2809:public static void print(float)
+    2817:2823:public static void print(java.lang.Object)
+    2828:2829:public static void println()
+    2834:2835:public static void println(byte)
+    2838:2839:public static void println(boolean)
+    2842:2843:public static void println(char)
+    2846:2847:public static void println(int)
+    2850:2851:public static void println(float)
+    2858:2935:public static void println(java.lang.Object)
+    2971:2971:public static final float sq(float)
+    2979:2979:public static final float log(float)
+    2983:2983:public static final float exp(float)
+    2987:2987:public static final float pow(float,float)
+    2996:2996:public static final float max(float,float)
+    3005:3005:public static final float max(float,float,float)
+    3016:3023:public static final int max(int[])
+    3033:3040:public static final float max(float[])
+    3058:3058:public static final float min(float,float,float)
+    3069:3076:public static final int min(int[])
+    3085:3092:public static final float min(float[])
+    3097:3097:public static final int constrain(int,int,int)
+    3101:3101:public static final float constrain(float,float,float)
+    3106:3106:public static final float sin(float)
+    3110:3110:public static final float cos(float)
+    3114:3114:public static final float tan(float)
+    3119:3119:public static final float asin(float)
+    3123:3123:public static final float acos(float)
+    3127:3127:public static final float atan(float)
+    3131:3131:public static final float atan2(float,float)
+    3136:3136:public static final float degrees(float)
+    3140:3140:public static final float radians(float)
+    3145:3145:public static final int ceil(float)
+    3158:3158:public static final float mag(float,float)
+    3162:3162:public static final float mag(float,float,float)
+    3167:3167:public static final float dist(float,float,float,float)
+    3172:3172:public static final float dist(float,float,float,float,float,float)
+    3177:3177:public static final float lerp(float,float,float)
+    3186:3186:public static final float norm(float,float,float)
+    3196:3196:public static final float map(float,float,float,float,float)
+    3220:3230:public final float random(float)
+    3245:3247:public final float random(float,float)
+    3253:3255:public final void randomSeed(long)
+    3297:3297:public float noise(float)
+    3304:3304:public float noise(float,float)
+    3311:3373:public float noise(float,float,float)
+    3381:3381:private float noise_fsc(float)
+    3390:3391:public void noiseDetail(int)
+    3394:3396:public void noiseDetail(int,float)
+    3399:3403:public void noiseSeed(long)
+    3414:3414:public processing.core.PImage loadImage(java.lang.String)
+    3420:3442:public processing.core.PImage loadImage(java.lang.String,java.lang.Object)
+    3529:3532:public processing.core.PImage requestImage(java.lang.String)
+    3599:3599:public processing.core.PShape loadShape(java.lang.String)
+    3610:3650:public processing.core.PShape loadShape(java.lang.String,java.lang.Object)
+    3659:3659:public processing.core.PShape createShape(int,java.lang.Object)
+    3669:3669:public processing.core.XML loadNode(java.lang.String)
+    3690:3698:public processing.core.PFont loadFont(java.lang.String)
+    3711:3711:public processing.core.PFont createFont(java.lang.String,float)
+    3716:3716:public processing.core.PFont createFont(java.lang.String,float,boolean)
+    3899:3913:public java.io.BufferedReader createReader(java.lang.String)
+    3922:3933:public static java.io.BufferedReader createReader(java.io.File)
+    3946:3950:public static java.io.BufferedReader createReader(java.io.InputStream)
+    3958:3958:public java.io.PrintWriter createWriter(java.lang.String)
+    3968:3979:public static java.io.PrintWriter createWriter(java.io.File)
+    3993:3997:public static java.io.PrintWriter createWriter(java.io.OutputStream)
+    4038:4047:public java.io.InputStream createInput(java.lang.String)
+    4057:4221:public java.io.InputStream createInputRaw(java.lang.String)
+    4226:4239:public static java.io.InputStream createInput(java.io.File)
+    4245:4252:public byte[] loadBytes(java.lang.String)
+    4258:4272:public static byte[] loadBytes(java.io.InputStream)
+    4277:4278:public static byte[] loadBytes(java.io.File)
+    4283:4285:public static java.lang.String[] loadStrings(java.io.File)
+    4302:4309:public java.lang.String[] loadStrings(java.lang.String)
+    4316:4344:public static java.lang.String[] loadStrings(java.io.InputStream)
+    4414:4414:public boolean saveStream(java.lang.String,java.lang.String)
+    4425:4425:public boolean saveStream(java.io.File,java.lang.String)
+    4430:4430:public boolean saveStream(java.lang.String,java.io.InputStream)
+    4435:4472:public static boolean saveStream(java.io.File,java.io.InputStream)
+    4485:4486:public void saveBytes(java.lang.String,byte[])
+    4494:4507:public static void saveBytes(java.io.File,byte[])
+    4515:4521:public static void saveBytes(java.io.OutputStream,byte[])
+    4526:4527:public void saveStrings(java.lang.String,java.lang.String[])
+    4532:4544:public static void saveStrings(java.io.File,java.lang.String[])
+    4549:4556:public static void saveStrings(java.io.OutputStream,java.lang.String[])
+    4597:4597:public java.io.File sketchFile(java.lang.String)
+    4628:4628:public java.io.File saveFile(java.lang.String)
+    4646:4648:public java.lang.String dataPath(java.lang.String)
+    4657:4657:public java.io.File dataFile(java.lang.String)
+    4691:4691:public static byte[] sort(byte[])
+    4696:4699:public static byte[] sort(byte[],int)
+    4704:4704:public static char[] sort(char[])
+    4709:4712:public static char[] sort(char[],int)
+    4717:4717:public static int[] sort(int[])
+    4722:4725:public static int[] sort(int[],int)
+    4730:4730:public static float[] sort(float[])
+    4735:4738:public static float[] sort(float[],int)
+    4743:4743:public static java.lang.String[] sort(java.lang.String[])
+    4748:4751:public static java.lang.String[] sort(java.lang.String[],int)
+    4794:4794:public static boolean[] expand(boolean[])
+    4798:4800:public static boolean[] expand(boolean[],int)
+    4805:4805:public static byte[] expand(byte[])
+    4809:4811:public static byte[] expand(byte[],int)
+    4816:4816:public static char[] expand(char[])
+    4820:4822:public static char[] expand(char[],int)
+    4838:4838:public static processing.core.PImage[] expand(processing.core.PImage[])
+    4842:4844:public static processing.core.PImage[] expand(processing.core.PImage[],int)
+    4849:4849:public static float[] expand(float[])
+    4853:4855:public static float[] expand(float[],int)
+    4860:4860:public static java.lang.String[] expand(java.lang.String[])
+    4864:4867:public static java.lang.String[] expand(java.lang.String[],int)
+    4891:4893:public static byte[] append(byte[],byte)
+    4897:4899:public static char[] append(char[],char)
+    4903:4905:public static int[] append(int[],int)
+    4909:4911:public static float[] append(float[],float)
+    4915:4917:public static java.lang.String[] append(java.lang.String[],java.lang.String)
+    4921:4924:public static java.lang.Object append(java.lang.Object,java.lang.Object)
+    4930:4930:public static boolean[] shorten(boolean[])
+    4934:4934:public static byte[] shorten(byte[])
+    4938:4938:public static char[] shorten(char[])
+    4942:4942:public static int[] shorten(int[])
+    4946:4946:public static float[] shorten(float[])
+    4950:4950:public static java.lang.String[] shorten(java.lang.String[])
+    4954:4955:public static java.lang.Object shorten(java.lang.Object)
+    4962:4967:public static final boolean[] splice(boolean[],boolean,int)
+    4972:4977:public static final boolean[] splice(boolean[],boolean[],int)
+    4983:4988:public static final byte[] splice(byte[],byte,int)
+    4993:4998:public static final byte[] splice(byte[],byte[],int)
+    5004:5009:public static final char[] splice(char[],char,int)
+    5014:5019:public static final char[] splice(char[],char[],int)
+    5025:5030:public static final int[] splice(int[],int,int)
+    5035:5040:public static final int[] splice(int[],int[],int)
+    5046:5051:public static final float[] splice(float[],float,int)
+    5056:5061:public static final float[] splice(float[],float[],int)
+    5067:5072:public static final java.lang.String[] splice(java.lang.String[],java.lang.String,int)
+    5077:5082:public static final java.lang.String[] splice(java.lang.String[],java.lang.String[],int)
+    5087:5104:public static final java.lang.Object splice(java.lang.Object,java.lang.Object,int)
+    5110:5110:public static boolean[] subset(boolean[],int)
+    5114:5116:public static boolean[] subset(boolean[],int,int)
+    5121:5121:public static byte[] subset(byte[],int)
+    5125:5127:public static byte[] subset(byte[],int,int)
+    5132:5132:public static char[] subset(char[],int)
+    5136:5138:public static char[] subset(char[],int,int)
+    5143:5143:public static int[] subset(int[],int)
+    5147:5149:public static int[] subset(int[],int,int)
+    5154:5154:public static float[] subset(float[],int)
+    5158:5160:public static float[] subset(float[],int,int)
+    5165:5165:public static java.lang.String[] subset(java.lang.String[],int)
+    5169:5171:public static java.lang.String[] subset(java.lang.String[],int,int)
+    5176:5177:public static java.lang.Object subset(java.lang.Object,int)
+    5181:5184:public static java.lang.Object subset(java.lang.Object,int,int)
+    5190:5193:public static boolean[] concat(boolean[],boolean[])
+    5197:5200:public static byte[] concat(byte[],byte[])
+    5204:5207:public static char[] concat(char[],char[])
+    5211:5214:public static int[] concat(int[],int[])
+    5218:5221:public static float[] concat(float[],float[])
+    5225:5228:public static java.lang.String[] concat(java.lang.String[],java.lang.String[])
+    5232:5238:public static java.lang.Object concat(java.lang.Object,java.lang.Object)
+    5244:5249:public static boolean[] reverse(boolean[])
+    5253:5258:public static byte[] reverse(byte[])
+    5262:5267:public static char[] reverse(char[])
+    5271:5276:public static int[] reverse(int[])
+    5280:5285:public static float[] reverse(float[])
+    5289:5294:public static java.lang.String[] reverse(java.lang.String[])
+    5298:5304:public static java.lang.Object reverse(java.lang.Object)
+    5320:5320:public static java.lang.String trim(java.lang.String)
+    5329:5335:public static java.lang.String[] trim(java.lang.String[])
+    5344:5344:public static java.lang.String join(java.lang.String[],char)
+    5360:5365:public static java.lang.String join(java.lang.String[],java.lang.String)
+    5385:5385:public static java.lang.String[] splitTokens(java.lang.String)
+    5404:5411:public static java.lang.String[] splitTokens(java.lang.String,java.lang.String)
+    5429:5463:public static java.lang.String[] split(java.lang.String,char)
+    5474:5484:public static java.lang.String[] split(java.lang.String,java.lang.String)
+    5491:5511:static java.util.regex.Pattern matchPattern(java.lang.String)
+    5526:5536:public static java.lang.String[] match(java.lang.String,java.lang.String)
+    5545:5563:public static java.lang.String[][] matchAll(java.lang.String,java.lang.String)
+    5591:5591:public static final boolean parseBoolean(int)
+    5606:5606:public static final boolean parseBoolean(java.lang.String)
+    5630:5634:public static final boolean[] parseBoolean(byte[])
+    5643:5647:public static final boolean[] parseBoolean(int[])
+    5662:5666:public static final boolean[] parseBoolean(java.lang.String[])
+    5672:5672:public static final byte parseByte(boolean)
+    5676:5676:public static final byte parseByte(char)
+    5680:5680:public static final byte parseByte(int)
+    5684:5684:public static final byte parseByte(float)
+    5697:5701:public static final byte[] parseByte(boolean[])
+    5705:5709:public static final byte[] parseByte(char[])
+    5713:5717:public static final byte[] parseByte(int[])
+    5721:5725:public static final byte[] parseByte(float[])
+    5747:5747:public static final char parseChar(byte)
+    5751:5751:public static final char parseChar(int)
+    5777:5781:public static final char[] parseChar(byte[])
+    5785:5789:public static final char[] parseChar(int[])
+    5813:5813:public static final int parseInt(boolean)
+    5820:5820:public static final int parseInt(byte)
+    5829:5829:public static final int parseInt(char)
+    5836:5836:public static final int parseInt(float)
+    5865:5869:public static final int[] parseInt(boolean[])
+    5873:5877:public static final int[] parseInt(byte[])
+    5881:5885:public static final int[] parseInt(char[])
+    5889:5893:public static int[] parseInt(float[])
+    5906:5906:public static int[] parseInt(java.lang.String[])
+    5920:5928:public static int[] parseInt(java.lang.String[],int)
+    5944:5944:public static final float parseFloat(int)
+    5948:5948:public static final float parseFloat(java.lang.String)
+    5953:5956:public static final float parseFloat(java.lang.String,float)
+    5980:5984:public static final float[] parseByte(byte[])
+    5988:5992:public static final float[] parseFloat(int[])
+    5996:5996:public static final float[] parseFloat(java.lang.String[])
+    6000:6008:public static final float[] parseFloat(java.lang.String[],float)
+    6014:6014:public static final java.lang.String str(boolean)
+    6018:6018:public static final java.lang.String str(byte)
+    6022:6022:public static final java.lang.String str(char)
+    6026:6026:public static final java.lang.String str(int)
+    6030:6030:public static final java.lang.String str(float)
+    6036:6038:public static final java.lang.String[] str(boolean[])
+    6042:6044:public static final java.lang.String[] str(byte[])
+    6048:6050:public static final java.lang.String[] str(char[])
+    6054:6056:public static final java.lang.String[] str(int[])
+    6060:6062:public static final java.lang.String[] str(float[])
+    6080:6084:public static java.lang.String[] nf(int[],int)
+    6089:6100:public static java.lang.String nf(int,int)
+    6105:6109:public static java.lang.String[] nfc(int[])
+    6114:6125:public static java.lang.String nfc(int)
+    6136:6136:public static java.lang.String nfs(int,int)
+    6140:6144:public static java.lang.String[] nfs(int[],int)
+    6155:6155:public static java.lang.String nfp(int,int)
+    6159:6163:public static java.lang.String[] nfp(int[],int)
+    6179:6183:public static java.lang.String[] nf(float[],int,int)
+    6188:6206:public static java.lang.String nf(float,int,int)
+    6211:6215:public static java.lang.String[] nfc(float[],int)
+    6220:6237:public static java.lang.String nfc(float,int)
+    6246:6250:public static java.lang.String[] nfs(float[],int,int)
+    6254:6254:public static java.lang.String nfs(float,int,int)
+    6259:6263:public static java.lang.String[] nfp(float[],int,int)
+    6267:6267:public static java.lang.String nfp(float,int,int)
+    6281:6281:public static final java.lang.String hex(byte)
+    6288:6288:public static final java.lang.String hex(char)
+    6295:6295:public static final java.lang.String hex(int)
+    6305:6317:public static final java.lang.String hex(int,int)
+    6322:6322:public static final int unhex(java.lang.String)
+    6332:6332:public static final java.lang.String binary(byte)
+    6341:6341:public static final java.lang.String binary(char)
+    6350:6350:public static final java.lang.String binary(int)
+    6358:6371:public static final java.lang.String binary(int,int)
+    6380:6380:public static final int unbinary(java.lang.String)
+    6394:6398:public final int color(int)
+    6403:6408:public final int color(float)
+    6416:6426:public final int color(int,int)
+    6431:6438:public final int color(float,float)
+    6443:6450:public final int color(int,int,int)
+    6455:6462:public final int color(float,float,float)
+    6467:6475:public final int color(int,int,int,int)
+    6480:6488:public final int color(float,float,float,float)
+    6632:6632:public static void main(java.lang.String[])
+    7033:7035:public void loadPixels()
+    7039:7040:public void updatePixels()
+    7044:7045:public void updatePixels(int,int,int,int)
+    7074:7075:public void flush()
+    7084:7085:public void beginShape()
+    7089:7090:public void beginShape(int)
+    7094:7095:public void edge(boolean)
+    7099:7100:public void normal(float,float,float)
+    7104:7105:public void textureMode(int)
+    7109:7110:public void texture(processing.core.PImage)
+    7114:7115:public void noTexture()
+    7119:7120:public void vertex(float,float)
+    7124:7125:public void vertex(float,float,float)
+    7129:7130:public void vertexFields(float[])
+    7134:7135:public void vertex(float,float,float,float)
+    7139:7140:public void vertex(float,float,float,float,float)
+    7144:7145:public void breakShape()
+    7149:7150:public void endShape()
+    7154:7155:public void endShape(int)
+    7161:7162:public void bezierVertex(float,float,float,float,float,float)
+    7168:7169:public void bezierVertex(float,float,float,float,float,float,float,float,float)
+    7173:7174:public void curveVertex(float,float)
+    7178:7179:public void curveVertex(float,float,float)
+    7183:7184:public void point(float,float)
+    7188:7189:public void point(float,float,float)
+    7193:7194:public void line(float,float,float,float)
+    7199:7200:public void line(float,float,float,float,float,float)
+    7205:7206:public void triangle(float,float,float,float,float,float)
+    7211:7212:public void quad(float,float,float,float,float,float,float,float)
+    7216:7217:public void rectMode(int)
+    7226:7227:public void rect(float,float,float,float,float)
+    7232:7233:public void rect(float,float,float,float,float,float,float,float)
+    7237:7238:public void ellipseMode(int)
+    7242:7243:public void ellipse(float,float,float,float)
+    7248:7249:public void arc(float,float,float,float,float,float)
+    7253:7254:public void box(float)
+    7258:7259:public void box(float,float,float)
+    7263:7264:public void sphereDetail(int)
+    7268:7269:public void sphereDetail(int,int)
+    7273:7274:public void sphere(float)
+    7278:7278:public float bezierPoint(float,float,float,float,float)
+    7283:7283:public float bezierTangent(float,float,float,float,float)
+    7288:7289:public void bezierDetail(int)
+    7296:7297:public void bezier(float,float,float,float,float,float,float,float)
+    7304:7305:public void bezier(float,float,float,float,float,float,float,float,float,float,float,float)
+    7309:7309:public float curvePoint(float,float,float,float,float)
+    7314:7314:public float curveTangent(float,float,float,float,float)
+    7319:7320:public void curveDetail(int)
+    7324:7325:public void curveTightness(float)
+    7332:7333:public void curve(float,float,float,float,float,float,float,float)
+    7340:7341:public void curve(float,float,float,float,float,float,float,float,float,float,float,float)
+    7345:7346:public void smooth()
+    7350:7351:public void noSmooth()
+    7355:7356:public void imageMode(int)
+    7360:7361:public void image(processing.core.PImage,float,float)
+    7365:7366:public void image(processing.core.PImage,float,float,float,float)
+    7372:7373:public void image(processing.core.PImage,float,float,float,float,int,int,int,int)
+    7377:7378:public void shapeMode(int)
+    7382:7383:public void shape(processing.core.PShape)
+    7387:7388:public void shape(processing.core.PShape,float,float)
+    7392:7393:public void shape(processing.core.PShape,float,float,float)
+    7397:7398:public void shape(processing.core.PShape,float,float,float,float)
+    7402:7403:public void shape(processing.core.PShape,float,float,float,float,float,float)
+    7407:7408:public void textAlign(int)
+    7412:7413:public void textAlign(int,int)
+    7417:7417:public float textAscent()
+    7422:7422:public float textDescent()
+    7427:7428:public void textFont(processing.core.PFont)
+    7432:7433:public void textFont(processing.core.PFont,float)
+    7437:7438:public void textLeading(float)
+    7442:7443:public void textMode(int)
+    7447:7448:public void textSize(float)
+    7452:7452:public float textWidth(char)
+    7457:7457:public float textWidth(java.lang.String)
+    7462:7463:public void text(char)
+    7467:7468:public void text(char,float,float)
+    7472:7473:public void text(char,float,float,float)
+    7477:7478:public void text(java.lang.String)
+    7482:7483:public void text(java.lang.String,float,float)
+    7487:7488:public void text(java.lang.String,float,float,float)
+    7492:7493:public void text(java.lang.String,float,float,float,float)
+    7497:7498:public void text(java.lang.String,float,float,float,float,float)
+    7502:7503:public void text(int,float,float)
+    7507:7508:public void text(int,float,float,float)
+    7512:7513:public void text(float,float,float)
+    7517:7518:public void text(float,float,float,float)
+    7522:7523:public void pushMatrix()
+    7527:7528:public void popMatrix()
+    7532:7533:public void translate(float,float)
+    7537:7538:public void translate(float,float,float)
+    7542:7543:public void rotate(float)
+    7547:7548:public void rotateX(float)
+    7552:7553:public void rotateY(float)
+    7557:7558:public void rotateZ(float)
+    7562:7563:public void rotate(float,float,float,float)
+    7567:7568:public void scale(float)
+    7572:7573:public void scale(float,float)
+    7577:7578:public void scale(float,float,float)
+    7582:7583:public void shearX(float)
+    7587:7588:public void shearY(float)
+    7592:7593:public void resetMatrix()
+    7597:7598:public void applyMatrix(processing.core.PMatrix)
+    7602:7603:public void applyMatrix(processing.core.PMatrix2D)
+    7608:7609:public void applyMatrix(float,float,float,float,float,float)
+    7613:7614:public void applyMatrix(processing.core.PMatrix3D)
+    7621:7622:public void applyMatrix(float,float,float,float,float,float,float,float,float,float,float,float,float,float,float,float)
+    7626:7626:public processing.core.PMatrix getMatrix()
+    7631:7631:public processing.core.PMatrix2D getMatrix(processing.core.PMatrix2D)
+    7636:7636:public processing.core.PMatrix3D getMatrix(processing.core.PMatrix3D)
+    7641:7642:public void setMatrix(processing.core.PMatrix)
+    7646:7647:public void setMatrix(processing.core.PMatrix2D)
+    7651:7652:public void setMatrix(processing.core.PMatrix3D)
+    7656:7657:public void printMatrix()
+    7661:7662:public void beginCamera()
+    7666:7667:public void endCamera()
+    7671:7672:public void camera()
+    7678:7679:public void camera(float,float,float,float,float,float,float,float,float)
+    7683:7684:public void printCamera()
+    7688:7689:public void ortho()
+    7693:7694:public void ortho(float,float,float,float)
+    7699:7700:public void ortho(float,float,float,float,float,float)
+    7704:7705:public void perspective()
+    7709:7710:public void perspective(float,float,float,float)
+    7716:7717:public void frustum(float,float,float,float,float,float)
+    7721:7722:public void printProjection()
+    7726:7726:public float screenX(float,float)
+    7731:7731:public float screenY(float,float)
+    7736:7736:public float screenX(float,float,float)
+    7741:7741:public float screenY(float,float,float)
+    7746:7746:public float screenZ(float,float,float)
+    7751:7751:public float modelX(float,float,float)
+    7756:7756:public float modelY(float,float,float)
+    7761:7761:public float modelZ(float,float,float)
+    7766:7767:public void pushStyle()
+    7771:7772:public void popStyle()
+    7776:7777:public void style(processing.core.PStyle)
+    7781:7782:public void strokeWeight(float)
+    7786:7787:public void strokeJoin(int)
+    7791:7792:public void strokeCap(int)
+    7806:7807:public void stroke(int,float)
+    7811:7812:public void stroke(float)
+    7816:7817:public void stroke(float,float)
+    7821:7822:public void stroke(float,float,float)
+    7826:7827:public void stroke(float,float,float,float)
+    7831:7832:public void noTint()
+    7836:7837:public void tint(int)
+    7841:7842:public void tint(int,float)
+    7846:7847:public void tint(float)
+    7851:7852:public void tint(float,float)
+    7856:7857:public void tint(float,float,float)
+    7861:7862:public void tint(float,float,float,float)
+    7866:7867:public void noFill()
+    7881:7882:public void fill(float)
+    7886:7887:public void fill(float,float)
+    7901:7902:public void ambient(int)
+    7906:7907:public void ambient(float)
+    7911:7912:public void ambient(float,float,float)
+    7916:7917:public void specular(int)
+    7921:7922:public void specular(float)
+    7926:7927:public void specular(float,float,float)
+    7931:7932:public void shininess(float)
+    7936:7937:public void emissive(int)
+    7941:7942:public void emissive(float)
+    7946:7947:public void emissive(float,float,float)
+    7951:7952:public void lights()
+    7956:7957:public void noLights()
+    7961:7962:public void ambientLight(float,float,float)
+    7967:7968:public void ambientLight(float,float,float,float,float,float)
+    7973:7974:public void directionalLight(float,float,float,float,float,float)
+    7979:7980:public void pointLight(float,float,float,float,float,float)
+    7987:7988:public void spotLight(float,float,float,float,float,float,float,float,float,float,float)
+    7992:7993:public void lightFalloff(float,float,float)
+    7997:7998:public void lightSpecular(float,float,float)
+    8007:8008:public void background(int,float)
+    8012:8013:public void background(float)
+    8017:8018:public void background(float,float)
+    8022:8023:public void background(float,float,float)
+    8027:8028:public void background(float,float,float,float)
+    8032:8033:public void background(processing.core.PImage)
+    8037:8038:public void colorMode(int)
+    8042:8043:public void colorMode(int,float)
+    8047:8048:public void colorMode(int,float,float,float)
+    8053:8054:public void colorMode(int,float,float,float,float)
+    8058:8058:public final float alpha(int)
+    8063:8063:public final float red(int)
+    8068:8068:public final float green(int)
+    8073:8073:public final float blue(int)
+    8078:8078:public final float hue(int)
+    8083:8083:public final float saturation(int)
+    8088:8088:public final float brightness(int)
+    8093:8093:public int lerpColor(int,int,float)
+    8098:8098:public static int lerpColor(int,int,float,int)
+    8103:8103:public boolean displayable()
+    8108:8109:public void setCache(processing.core.PGraphics,java.lang.Object)
+    8113:8113:public java.lang.Object getCache(processing.core.PGraphics)
+    8118:8119:public void removeCache(processing.core.PGraphics)
+    8123:8124:public void setParams(processing.core.PGraphics,java.lang.Object)
+    8128:8128:public java.lang.Object getParams(processing.core.PGraphics)
+    8133:8134:public void removeParams(processing.core.PGraphics)
+    8138:8138:public int get(int,int)
+    8143:8143:public processing.core.PImage get(int,int,int,int)
+    8148:8148:public processing.core.PImage get()
+    8153:8154:public void set(int,int,int)
+    8158:8159:public void set(int,int,processing.core.PImage)
+    8163:8164:public void mask(int[])
+    8168:8169:public void mask(processing.core.PImage)
+    8173:8174:public void filter(int)
+    8178:8179:public void filter(int,float)
+    8184:8185:public void copy(int,int,int,int,int,int,int,int)
+    8191:8192:public void copy(processing.core.PImage,int,int,int,int,int,int,int,int)
+    8196:8196:public static int blendColor(int,int,int)
+    8202:8203:public void blend(int,int,int,int,int,int,int,int,int)
+    8209:8210:public void blend(processing.core.PImage,int,int,int,int,int,int,int,int,int)
+    8218:8219:public void screenBlend(int)
+    8223:8224:public void textureBlend(int)
+    8228:8228:public processing.core.PShape beginRecord()
+    8233:8234:public void endRecord()
+    8238:8239:public void mergeShapes(boolean)
+    8243:8244:public void shapeName(java.lang.String)
+    8248:8249:public void autoNormal(boolean)
+    8253:8254:public void matrixMode(int)
+    8258:8259:public void beginText()
+    8263:8264:public void endText()
+    8268:8269:public void texture(processing.core.PImage[])
+    8273:8274:public void vertex(float[])
+processing.core.PApplet$1
+processing.core.PApplet$AsyncImageLoader
+processing.core.PApplet$RegisteredMethods:
+    1112:1129:public void add(java.lang.Object,java.lang.reflect.Method)
+    1138:1150:public void remove(java.lang.Object,java.lang.reflect.Method)
+    1153:1162:protected int findIndex(java.lang.Object,java.lang.reflect.Method)
+processing.core.PConstants
+processing.core.PFont:
+    protected boolean typefaceSearched
+    protected static android.graphics.Typeface[] typefaces
+    protected java.util.HashMap cacheMap
+    165:166:public PFont(android.graphics.Typeface,int,boolean)
+    268:325:public PFont(java.io.InputStream)
+    329:351:void delete()
+    364:393:public void save(java.io.OutputStream)
+    401:437:protected void addGlyph(char)
+    441:441:public java.lang.String getName()
+    446:446:public java.lang.String getPostScriptName()
+    454:455:public void setTypeface(android.graphics.Typeface)
+    480:481:public processing.core.PFont$Glyph getGlyph(char)
+    490:506:protected int index(char)
+    515:522:protected int indexActual(char)
+    527:540:protected int indexHunt(int,int,int)
+    549:549:public float kern(char,char)
+    575:580:public float width(char)
+    597:599:public void setCache(processing.core.PGraphics,java.lang.Object)
+    611:612:public java.lang.Object getCache(processing.core.PGraphics)
+    621:624:public void removeCache(processing.core.PGraphics)
+    630:630:public int getGlyphCount()
+    634:634:public processing.core.PFont$Glyph getGlyph(int)
+    707:708:public static java.lang.String[] list()
+processing.core.PFont$Glyph:
+    766:768:protected PFont$Glyph(processing.core.PFont)
+    771:773:protected PFont$Glyph(processing.core.PFont,java.io.DataInputStream)
+    777:796:protected void readHeader(java.io.DataInputStream)
+    800:807:protected void writeHeader(java.io.DataOutputStream)
+    811:830:protected void readBitmap(java.io.DataInputStream)
+    834:840:protected void writeBitmap(java.io.DataOutputStream)
+processing.core.PFontTexture:
+    protected processing.core.PApplet parent
+    protected processing.core.PGraphicsAndroid3D a3d
+    protected processing.core.PFont font
+    protected int maxTexWidth
+    protected int maxTexHeight
+    protected int offsetX
+    protected int offsetY
+    protected int lineHeight
+    protected processing.core.PTexture[] textures
+    protected int currentTex
+    protected int lastTex
+    protected processing.core.PFontTexture$TextureInfo[] glyphTexinfos
+    protected java.util.HashMap texinfoMap
+    53:65:public PFontTexture(processing.core.PApplet,processing.core.PFont,int,int)
+    69:73:public void delete()
+    78:78:public void backup()
+    86:92:public void restore()
+    97:97:protected void allocate()
+    101:116:protected void initTexture(int,int)
+    123:161:public boolean addTexture()
+    166:167:public void setFirstTexture()
+    171:175:public void setTexture(int)
+    181:184:public void addAllGlyphsToTexture()
+    189:196:public void updateGlyphsTexCoords()
+    200:201:public processing.core.PFontTexture$TextureInfo getTexInfo(processing.core.PFont$Glyph)
+    206:211:public processing.core.PFontTexture$TextureInfo addToTexture(processing.core.PFont$Glyph)
+    226:306:protected void addToTexture(int,processing.core.PFont$Glyph)
+processing.core.PFontTexture$TextureInfo
+processing.core.PFramebuffer:
+    65:66:PFramebuffer(processing.core.PApplet)
+    145:145:public void backup()
+    148:149:public void restore()
+    152:157:public void clear()
+    175:176:public void disableDepthTest()
+    239:239:public java.nio.IntBuffer getPixelBuffer()
+    243:243:public boolean hasDepthBuffer()
+    247:247:public boolean hasStencilBuffer()
+    261:262:public void setColorBuffers(processing.core.PTexture[])
+processing.core.PGraphics:
+    public int pixelCount
+    protected processing.core.PGraphics raw
+    protected java.lang.String path
+    protected static final float DEFAULT_STROKE_WEIGHT
+    protected static final int DEFAULT_STROKE_JOIN
+    protected static final int DEFAULT_STROKE_CAP
+    static final int STYLE_STACK_DEPTH
+    static final int MATRIX_STACK_DEPTH
+    int cacheHsbKey
+    static final int DEFAULT_VERTICES
+    protected processing.core.PMatrix3D bezierDrawMatrix
+    protected processing.core.PMatrix3D curveBasisMatrix
+    protected processing.core.PMatrix3D curveDrawMatrix
+    protected processing.core.PMatrix3D bezierBasisInverse
+    protected processing.core.PMatrix3D curveToBezierMatrix
+    protected float[][] curveVertices
+    protected static final float SINCOS_PRECISION
+    protected static final int SINCOS_LENGTH
+    protected float textX
+    protected float textY
+    protected float textZ
+    protected int textBreakCount
+    protected int[] textBreakStart
+    protected int[] textBreakStop
+    float[] sphereX
+    float[] sphereY
+    float[] sphereZ
+    static float[] lerpColorHSB1
+    static float[] lerpColorHSB2
+    static float[] lerpColorHSB3
+    561:562:public void setPath(java.lang.String)
+    648:648:public void flush()
+    821:822:public void beginShape()
+    857:858:public void edge(boolean)
+    873:876:public void normal(float,float,float)
+    895:896:public void texture(processing.core.PImage)
+    990:1094:public void vertex(float,float,float)
+    1103:1108:public void vertexFields(float[])
+    1112:1114:public void vertex(float,float,float,float)
+    1118:1120:public void vertex(float,float,float,float,float)
+    1147:1158:protected void vertexTexture(float,float)
+    1163:1165:public void breakShape()
+    1184:1192:protected void bezierVertexCheck()
+    1198:1219:public void bezierVertex(float,float,float,float,float,float)
+    1225:1252:public void bezierVertex(float,float,float,float,float,float,float,float,float)
+    1257:1265:public void quadraticVertex(float,float,float,float)
+    1270:1279:public void quadraticVertex(float,float,float,float,float,float)
+    1287:1303:protected void curveVertexCheck()
+    1307:1324:public void curveVertex(float,float)
+    1328:1350:public void curveVertex(float,float,float)
+    1361:1384:protected void curveVertexSegment(float,float,float,float,float,float,float,float)
+    1395:1424:protected void curveVertexSegment(float,float,float,float,float,float,float,float,float,float,float,float)
+    1434:1437:public void point(float,float)
+    1441:1444:public void point(float,float,float)
+    1457:1461:public void line(float,float,float,float,float,float)
+    1539:1540:public void rect(float,float,float,float,float)
+    1546:1578:public void rect(float,float,float,float,float,float,float,float)
+    1583:1611:protected void rectImpl(float,float,float,float,float,float,float,float)
+    1626:1657:public void ellipse(float,float,float,float)
+    1661:1661:protected void ellipseImpl(float,float,float,float)
+    1675:1700:public void arc(float,float,float,float,float,float)
+    1711:1711:protected void arcImpl(float,float,float,float,float,float)
+    1721:1722:public void box(float)
+    1728:1777:public void box(float,float,float)
+    1787:1788:public void sphereDetail(int)
+    1799:1837:public void sphereDetail(int,int)
+    1863:1924:public void sphere(float)
+    1961:1962:public float bezierPoint(float,float,float,float,float)
+    1971:1971:public float bezierTangent(float,float,float,float,float)
+    1978:1981:protected void bezierInitCheck()
+    1986:1988:protected void bezierInit()
+    1992:2006:public void bezierDetail(int)
+    2036:2040:public void bezier(float,float,float,float,float,float,float,float)
+    2047:2053:public void bezier(float,float,float,float,float,float,float,float,float,float,float,float)
+    2068:2075:public float curvePoint(float,float,float,float,float)
+    2087:2094:public float curveTangent(float,float,float,float,float)
+    2102:2104:public void curveDetail(int)
+    2108:2110:public void curveTightness(float)
+    2114:2117:protected void curveInitCheck()
+    2133:2163:protected void curveInit()
+    2186:2192:public void curve(float,float,float,float,float,float,float,float)
+    2199:2205:public void curve(float,float,float,float,float,float,float,float,float,float,float,float)
+    2224:2232:protected void splineForward(int,processing.core.PMatrix3D)
+    2283:2300:public void image(processing.core.PImage,float,float)
+    2304:2305:public void image(processing.core.PImage,float,float,float,float)
+    2318:2355:public void image(processing.core.PImage,float,float,float,float,int,int,int,int)
+    2368:2410:protected void imageImpl(processing.core.PImage,float,float,float,float,int,int,int,int)
+    2429:2441:public void shape(processing.core.PShape)
+    2448:2461:public void shape(processing.core.PShape,float,float)
+    2465:2466:public void shape(processing.core.PShape,float,float,float)
+    2470:2494:public void shape(processing.core.PShape,float,float,float,float)
+    2498:2499:public void shape(processing.core.PShape,float,float,float,float,float,float)
+    2512:2513:public void textAlign(int)
+    2669:2670:public float textWidth(char)
+    2679:2703:public float textWidth(java.lang.String)
+    2714:2719:protected float textWidthImpl(char[],int,int)
+    2730:2731:public void text(char)
+    2740:2756:public void text(char,float,float)
+    2768:2774:public void text(char,float,float,float)
+    2781:2782:public void text(java.lang.String)
+    2792:2839:public void text(java.lang.String,float,float)
+    2851:2857:public void text(java.lang.String,float,float,float)
+    2874:2984:public void text(java.lang.String,float,float,float,float)
+    2993:3053:private boolean textSentence(char[],int,int,float,float)
+    3058:3065:private void textSentenceBreak(int,int)
+    3074:3080:public void text(java.lang.String,float,float,float,float,float)
+    3084:3085:public void text(int,float,float)
+    3089:3090:public void text(int,float,float,float)
+    3101:3102:public void text(float,float,float)
+    3106:3107:public void text(float,float,float,float)
+    3123:3131:protected void textLineAlignImpl(char[],int,int,float,float)
+    3141:3150:protected void textLineImpl(char[],int,int,float,float)
+    3154:3172:protected void textCharImpl(char,float,float)
+    3179:3190:protected void textCharModelImpl(processing.core.PImage,float,float,float,float,int,int)
+    3225:3226:public void translate(float,float)
+    3233:3234:public void translate(float,float,float)
+    3247:3248:public void rotate(float)
+    3255:3256:public void rotateX(float)
+    3263:3264:public void rotateY(float)
+    3276:3277:public void rotateZ(float)
+    3284:3285:public void rotate(float,float,float,float)
+    3292:3293:public void scale(float)
+    3303:3304:public void scale(float,float)
+    3311:3312:public void scale(float,float,float)
+    3319:3320:public void shearX(float)
+    3327:3328:public void shearY(float)
+    3345:3350:public void applyMatrix(processing.core.PMatrix)
+    3354:3356:public void applyMatrix(processing.core.PMatrix2D)
+    3364:3365:public void applyMatrix(float,float,float,float,float,float)
+    3369:3373:public void applyMatrix(processing.core.PMatrix3D)
+    3383:3384:public void applyMatrix(float,float,float,float,float,float,float,float,float,float,float,float,float,float,float,float)
+    3394:3395:public processing.core.PMatrix getMatrix()
+    3404:3405:public processing.core.PMatrix2D getMatrix(processing.core.PMatrix2D)
+    3414:3415:public processing.core.PMatrix3D getMatrix(processing.core.PMatrix3D)
+    3423:3428:public void setMatrix(processing.core.PMatrix)
+    3435:3436:public void setMatrix(processing.core.PMatrix2D)
+    3443:3444:public void setMatrix(processing.core.PMatrix3D)
+    3451:3452:public void printMatrix()
+    3461:3462:public void beginCamera()
+    3466:3467:public void endCamera()
+    3483:3484:public void printCamera()
+    3494:3495:public void ortho()
+    3499:3500:public void ortho(float,float,float,float)
+    3505:3506:public void ortho(float,float,float,float,float,float)
+    3527:3528:public void printProjection()
+    3597:3598:public float screenZ(float,float,float)
+    3612:3613:public float modelX(float,float,float)
+    3621:3622:public float modelY(float,float,float)
+    3630:3631:public float modelZ(float,float,float)
+    3738:3738:public processing.core.PStyle getStyle()
+    3847:3849:public void stroke(int,float)
+    3853:3855:public void stroke(float)
+    3859:3861:public void stroke(float,float)
+    3865:3867:public void stroke(float,float,float)
+    3871:3873:public void stroke(float,float,float,float)
+    3925:3927:public void tint(int,float)
+    3930:3932:public void tint(float)
+    3936:3938:public void tint(float,float)
+    3942:3944:public void tint(float,float,float)
+    3948:3950:public void tint(float,float,float,float)
+    4009:4011:public void fill(float)
+    4015:4017:public void fill(float,float)
+    4061:4063:public void ambient(int)
+    4067:4069:public void ambient(float)
+    4093:4095:public void specular(int)
+    4099:4101:public void specular(float)
+    4130:4132:public void emissive(int)
+    4136:4138:public void emissive(float)
+    4188:4189:public void pointLight(float,float,float,float,float,float)
+    4195:4196:public void spotLight(float,float,float,float,float,float,float,float,float,float,float)
+    4257:4259:public void background(int,float)
+    4267:4270:public void background(float)
+    4277:4285:public void background(float,float)
+    4293:4296:public void background(float,float,float)
+    4319:4321:public void background(float,float,float,float)
+    4353:4361:public void background(processing.core.PImage)
+    4370:4371:protected void backgroundImpl(processing.core.PImage)
+    4423:4424:public void colorMode(int)
+    4655:4666:public final int color(int)
+    4671:4672:public final int color(float)
+    4680:4688:public final int color(int,int)
+    4696:4701:public final int color(int,float)
+    4706:4707:public final int color(float,float)
+    4712:4721:public final int color(int,int,int)
+    4726:4727:public final int color(float,float,float)
+    4732:4742:public final int color(int,int,int,int)
+    4747:4748:public final int color(float,float,float,float)
+    4761:4763:public final float alpha(int)
+    4768:4770:public final float red(int)
+    4775:4777:public final float green(int)
+    4782:4784:public final float blue(int)
+    4789:4794:public final float hue(int)
+    4799:4804:public final float saturation(int)
+    4809:4814:public final float brightness(int)
+    4830:4830:public int lerpColor(int,int,float)
+    4842:4910:public static int lerpColor(int,int,float,int)
+    4924:4926:public void beginRaw(processing.core.PGraphics)
+    4930:4941:public void endRaw()
+    4973:4975:protected static void showDepthWarning(java.lang.String)
+    5005:5006:protected static void showVariationWarning(java.lang.String)
+    5026:5026:public static void showException(java.lang.String)
+    5067:5067:public boolean displayable()
+    5075:5075:public boolean is2D()
+    5083:5083:public boolean is3D()
+    5090:5091:protected java.lang.String[] getSupportedShapeFormats()
+    5096:5097:protected processing.core.PShape loadShape(java.lang.String,java.lang.Object)
+    5102:5103:protected processing.core.PShape createShape(int,java.lang.Object)
+    5117:5118:public processing.core.PShape beginRecord()
+    5123:5124:public void endRecord()
+    5129:5129:public boolean isRecordingShape()
+    5134:5135:public void mergeShapes(boolean)
+    5139:5140:public void shapeName(java.lang.String)
+    5144:5145:public void autoNormal(boolean)
+    5149:5150:public void matrixMode(int)
+    5154:5155:public void beginText()
+    5159:5160:public void endText()
+    5164:5165:public void texture(processing.core.PImage[])
+    5169:5170:public void vertex(float[])
+processing.core.PGraphicsAndroid2D:
+    float[] curveCoordX
+    float[] curveCoordY
+    float[] curveDrawX
+    float[] curveDrawY
+    android.graphics.Rect imageImplSrcRect
+    android.graphics.RectF imageImplDstRect
+    281:282:public void texture(processing.core.PImage)
+    409:410:public void vertex(float,float,float)
+    414:415:public void vertex(float,float,float,float)
+    419:420:public void vertex(float,float,float,float,float)
+    424:425:public void breakShape()
+    478:480:public void bezierVertex(float,float,float,float,float,float)
+    486:487:public void bezierVertex(float,float,float,float,float,float,float,float,float)
+    498:500:public void quadraticVertex(float,float,float,float)
+    505:506:public void quadraticVertex(float,float,float,float,float,float)
+    516:524:protected void curveVertexCheck()
+    531:558:protected void curveVertexSegment(float,float,float,float,float,float,float,float)
+    562:563:public void curveVertex(float,float,float)
+    584:598:public void point(float,float)
+    673:680:protected void ellipseImpl(float,float,float,float)
+    698:726:protected void arcImpl(float,float,float,float,float,float)
+    795:796:public void box(float,float,float)
+    812:813:public void sphere(float)
+    836:836:public void bezierDetail(int)
+    865:865:public void curveDetail(int)
+    947:993:protected void imageImpl(processing.core.PImage,float,float,float,float,int,int,int,int)
+    1100:1101:protected void beginTextScreenMode()
+    1104:1105:protected void endTextScreenMode()
+    1115:1123:protected float textWidthImpl(char[],int,int)
+    1147:1201:protected void textLineImpl(char[],int,int,float,float)
+    1239:1240:public void translate(float,float)
+    1247:1248:public void rotate(float)
+    1252:1253:public void rotateX(float)
+    1257:1258:public void rotateY(float)
+    1262:1263:public void rotateZ(float)
+    1267:1268:public void rotate(float,float,float,float)
+    1272:1273:public void scale(float)
+    1277:1278:public void scale(float,float)
+    1282:1283:public void scale(float,float,float)
+    1287:1288:public void shearX(float)
+    1292:1293:public void shearY(float)
+    1315:1322:public void applyMatrix(float,float,float,float,float,float)
+    1332:1333:public void applyMatrix(float,float,float,float,float,float,float,float,float,float,float,float,float,float,float,float)
+    1343:1343:public processing.core.PMatrix getMatrix()
+    1348:1359:public processing.core.PMatrix2D getMatrix(processing.core.PMatrix2D)
+    1364:1365:public processing.core.PMatrix3D getMatrix(processing.core.PMatrix3D)
+    1376:1383:public void setMatrix(processing.core.PMatrix2D)
+    1387:1388:public void setMatrix(processing.core.PMatrix3D)
+    1392:1393:public void printMatrix()
+    1470:1471:public float screenZ(float,float,float)
+    1711:1712:public void beginRaw(processing.core.PGraphics)
+    1716:1717:public void endRaw()
+    1783:1788:public void updatePixels(int,int,int,int)
+    1792:1793:public void resize(int,int)
+    1806:1810:public int get(int,int)
+    1849:1883:public void set(int,int,processing.core.PImage)
+    1935:1936:public void mask(int[])
+    1940:1941:public void mask(processing.core.PImage)
+    1970:1983:public void copy(int,int,int,int,int,int,int,int)
+processing.core.PGraphicsAndroid3D:
+    protected android.view.SurfaceHolder holder
+    protected static final int GL_TEXTURE_OBJECT
+    protected static final int GL_VERTEX_BUFFER
+    protected static final int GL_FRAME_BUFFER
+    protected static final int GL_RENDER_BUFFER
+    public static final int MAX_LIGHTS
+    protected static final int VERTEX1
+    protected static final int VERTEX2
+    protected static final int VERTEX3
+    protected static final int POINT_FIELD_COUNT
+    protected static final int LINE_FIELD_COUNT
+    protected static final int TRIANGLE_FIELD_COUNT
+    public static final int DEFAULT_POINTS
+    public static final int DEFAULT_LINES
+    public static final int DEFAULT_TRIANGLES
+    public static final int DEFAULT_BUFFER_SIZE
+    public static final int DEFAULT_PATHS
+    public static final int DEFAULT_FACES
+    public static final int MAX_TEXTURES
+    processing.core.PFontTexture textTex
+    protected int textBlockTex
+    protected processing.core.PGraphicsAndroid3D$DrawingState drawState
+    protected static final int SIZEOF_SHORT
+    protected static final int SIZEOF_INT
+    protected static final int SIZEOF_FLOAT
+    672:711:protected void allocatePGLObjects()
+    714:745:protected void backupPGLObjects()
+    748:755:protected void clearPGLFramebuffers()
+    758:789:protected void restorePGLObjects()
+    955:956:public void setSurfaceHolder(android.view.SurfaceHolder)
+    960:960:public android.view.SurfaceHolder GetSurfaceHolder()
+    1163:1169:public javax.microedition.khronos.opengles.GL10 beginGL()
+    1174:1175:public void endGL()
+    1179:1180:public void allocateGL()
+    1184:1185:public void backupGL()
+    1189:1191:public void restoreGL()
+    1306:1310:protected void saveDrawingState()
+    1314:1315:protected void restoreDrawingState()
+    1396:1411:public processing.core.PShape3D beginRecord()
+    1416:1431:public void beginRecord(processing.core.PShape3D)
+    1434:1434:public boolean isRecordingShape()
+    1438:1439:protected void beginShapeRecorder()
+    1442:1444:protected void beginShapeRecorder(int)
+    1447:1453:protected void beginShapesRecorder()
+    1457:1507:protected void beginShapeRecorderImpl()
+    1543:1544:public void mergeShapes(boolean)
+    1547:1548:public void shapeName(java.lang.String)
+    1555:1560:public void texture(processing.core.PImage)
+    1563:1576:public void texture(processing.core.PImage[])
+    1586:1594:public void vertex(float,float,float,float)
+    1597:1605:public void vertex(float,float,float,float,float)
+    1608:1632:public void vertex(float[])
+    1693:1711:protected void vertexTexture(float,float,int)
+    1749:1757:protected void setTextureData(int)
+    2011:2026:public void endRecord()
+    2029:2029:protected processing.core.PShape3D endShapeRecorder()
+    2033:2039:protected processing.core.PShape3D endShapeRecorder(int)
+    2043:2052:public processing.core.PShape3D endShapesRecorder()
+    2057:2090:protected void endShapeRecorderImpl(processing.core.PShape3D)
+    2097:2111:public void shape(processing.core.PShape,float,float,float)
+    2115:2140:public void shape(processing.core.PShape,float,float,float,float,float,float)
+    3187:3251:protected void ellipseImpl(float,float,float,float)
+    3377:3378:public void shape(processing.core.PShape3D)
+    3381:3382:public void shape(processing.core.PShape3D,float,float)
+    3385:3389:public void shape(processing.core.PShape3D,float,float,float)
+    3434:3438:public void beginText()
+    3442:3465:public void endText()
+    3478:3536:protected void textLineImpl(char[],int,int,float,float)
+    3539:3563:protected void textCharImpl(char,float,float)
+    3567:3628:protected void textCharModelImpl(processing.core.PFontTexture$TextureInfo,float,float,float,float)
+    3631:3641:protected void allocateTextModel()
+    3644:3662:protected void renderTextModel()
+    3665:3677:protected void expandTextBuffers()
+    3722:3723:public void translate(float,float)
+    3726:3741:public void translate(float,float,float)
+    3750:3751:public void rotate(float)
+    3754:3755:public void rotateX(float)
+    3758:3759:public void rotateY(float)
+    3762:3763:public void rotateZ(float)
+    3770:3785:public void rotate(float,float,float,float)
+    3791:3792:public void scale(float)
+    3798:3799:public void scale(float,float)
+    3805:3823:public void scale(float,float,float)
+    3826:3828:public void shearX(float)
+    3831:3833:public void shearY(float)
+    3840:3849:public void matrixMode(int)
+    3866:3868:public void applyMatrix(processing.core.PMatrix2D)
+    3872:3876:public void applyMatrix(float,float,float,float,float,float)
+    3879:3883:public void applyMatrix(processing.core.PMatrix3D)
+    3895:3926:public void applyMatrix(float,float,float,float,float,float,float,float,float,float,float,float,float,float,float,float)
+    3929:3930:public void updateModelview()
+    3933:3944:public void updateModelview(boolean)
+    3947:3958:public void updateCamera()
+    3965:3984:protected void copyPMatrixToGLArray(processing.core.PMatrix3D,float[])
+    4017:4026:public processing.core.PMatrix getMatrix()
+    4033:4047:public processing.core.PMatrix3D getMatrix(processing.core.PMatrix3D)
+    4054:4056:public void setMatrix(processing.core.PMatrix2D)
+    4063:4065:public void setMatrix(processing.core.PMatrix3D)
+    4071:4082:public void printMatrix()
+    4124:4134:public void updateProjection()
+    4205:4212:public void beginCamera()
+    4223:4248:public void endCamera()
+    4264:4320:protected void calculateModelviewInverse()
+    4574:4577:public void printCamera()
+    4588:4589:public void ortho()
+    4598:4599:public void ortho(float,float,float,float)
+    4613:4656:public void ortho(float,float,float,float,float,float)
+    4744:4748:public void printProjection()
+    4815:4837:public float screenZ(float,float,float)
+    4841:4853:public float modelX(float,float,float)
+    4857:4869:public float modelY(float,float,float)
+    4873:4885:public float modelZ(float,float,float)
+    4978:4979:protected void setFillColor()
+    4982:4983:protected void setTintColor()
+    5283:5317:public void pointLight(float,float,float,float,float,float)
+    5321:5367:public void spotLight(float,float,float,float,float,float,float,float,float,float,float)
+    5391:5394:protected void enableLights()
+    5489:5491:protected void backgroundImpl(processing.core.PImage)
+    5593:5593:public boolean is2D()
+    5601:5601:public boolean is3D()
+    5703:5735:static void nativeToJavaRGB(processing.core.PImage)
+    5743:5778:static void nativeToJavaARGB(processing.core.PImage)
+    5786:5826:static void javaToNativeRGB(processing.core.PImage)
+    5833:5871:static void javaToNativeARGB(processing.core.PImage)
+    5970:5981:public void updateTexture()
+    6003:6004:protected void textureToPixels()
+    6011:6012:public void resize(int,int)
+    6019:6042:public int get(int,int)
+    6124:6143:public void set(int,int,processing.core.PImage)
+    6150:6151:public void mask(int[])
+    6154:6155:public void mask(processing.core.PImage)
+    6168:6171:public void filter(int)
+    6179:6182:public void filter(int,float)
+    6580:6580:protected java.lang.String[] getSupportedShapeFormats()
+    6585:6585:protected processing.core.PShape loadShape(java.lang.String,java.lang.Object)
+    6590:6590:protected processing.core.PShape createShape(int,java.lang.Object)
+    6674:6675:public processing.core.PTexture getTexture()
+    6741:6743:protected void drawTexture(int,int,int,int,int,int,int,int,int,int)
+    6770:6772:protected void drawTexture(int,int,int,int,int,int,int,int)
+    6846:6847:protected void setDefNormals(float,float,float)
+    6943:6943:public static int toFixed16(float)
+    6951:6951:public static float toFloat16(int)
+    8015:8016:public android.opengl.GLSurfaceView$EGLContextFactory getContextFactory()
+    1:1:public processing.core.PShape beginRecord()
+processing.core.PGraphicsAndroid3D$A3DConfigChooser:
+    7981:7992:protected java.lang.String printConfig(javax.microedition.khronos.egl.EGL10,javax.microedition.khronos.egl.EGLDisplay,javax.microedition.khronos.egl.EGLConfig)
+processing.core.PGraphicsAndroid3D$A3DContextFactory
+processing.core.PGraphicsAndroid3D$DrawingState
+processing.core.PGraphicsAndroid3D$GLMatrixStack:
+    7597:7601:public void mult(float[])
+    7607:7631:public void mult(float,float,float,float,float,float,float,float,float,float,float,float,float,float,float,float)
+    7652:7656:public void translate(float,float,float)
+    7659:7667:public void rotate(float,float,float,float)
+    7670:7674:public void scale(float,float,float)
+processing.core.PGraphicsAndroid3D$GeometryBuffer:
+    int mode
+    int size
+processing.core.PImage:
+    private int fracU
+    private int ifU
+    private int fracV
+    private int ifV
+    private int u1
+    private int u2
+    private int v1
+    private int v2
+    private int sX
+    private int sY
+    private int iw
+    private int iw1
+    private int ih1
+    private int ul
+    private int ll
+    private int ur
+    private int lr
+    private int cUL
+    private int cLL
+    private int cUR
+    private int cLR
+    private int srcXOffset
+    private int srcYOffset
+    private int r
+    private int g
+    private int b
+    private int a
+    private int[] srcBuffer
+    static final int PRECISIONB
+    static final int PRECISIONF
+    static final int PREC_MAXVAL
+    static final int PREC_ALPHA_SHIFT
+    static final int PREC_RED_SHIFT
+    private int blurRadius
+    private int blurKernelSize
+    private int[] blurKernel
+    private int[][] blurMult
+    static final java.lang.String TIFF_ERROR
+    protected java.lang.String[] saveImageFormats
+    122:124:public PImage(int,int)
+    178:188:protected void checkAlpha()
+    198:204:public PImage(android.graphics.Bitmap)
+    220:220:public android.graphics.Bitmap getBitmap()
+    261:264:public void removeCache(processing.core.PGraphics)
+    295:298:public void removeParams(processing.core.PGraphics)
+    384:385:public void updatePixels(int,int,int,int)
+    437:463:public void resize(int,int)
+    491:510:public int get(int,int)
+    592:628:public void set(int,int,processing.core.PImage)
+    637:665:protected void setImpl(int,int,int,int,int,int,processing.core.PImage)
+    688:699:public void mask(int[])
+    706:715:public void mask(processing.core.PImage)
+    743:810:public void filter(int)
+    830:895:public void filter(int,float)
+    906:929:protected void buildBlurKernel(float)
+    935:1001:protected void blurAlpha(float)
+    1007:1079:protected void blurRGB(float)
+    1085:1162:protected void blurARGB(float)
+    1170:1290:protected void dilate(boolean)
+    1305:1306:public void copy(int,int,int,int,int,int,int,int)
+    1315:1316:public void copy(processing.core.PImage,int,int,int,int,int,int,int,int)
+    1390:1413:public static int blendColor(int,int,int)
+    1423:1424:public void blend(int,int,int,int,int,int,int,int,int)
+    1452:1475:public void blend(processing.core.PImage,int,int,int,int,int,int,int,int,int)
+    1483:1510:private boolean intersect(int,int,int,int,int,int,int,int)
+    1527:2008:private void blit_resize(processing.core.PImage,int,int,int,int,int[],int,int,int,int,int,int,int)
+    2012:2017:private void filter_new_scanline()
+    2021:2052:private int filter_bilinear()
+    2063:2063:private static int low(int,int)
+    2068:2068:private static int high(int,int)
+    2073:2073:private static int peg(int)
+    2077:2077:private static int mix(int,int,int)
+    2088:2090:private static int blend_blend(int,int)
+    2101:2103:private static int blend_add_pin(int,int)
+    2117:2119:private static int blend_sub_pin(int,int)
+    2132:2134:private static int blend_lightest(int,int)
+    2145:2147:private static int blend_darkest(int,int)
+    2166:2178:private static int blend_difference(int,int)
+    2192:2204:private static int blend_exclusion(int,int)
+    2217:2229:private static int blend_multiply(int,int)
+    2242:2254:private static int blend_screen(int,int)
+    2270:2282:private static int blend_overlay(int,int)
+    2298:2310:private static int blend_hard_light(int,int)
+    2323:2335:private static int blend_soft_light(int,int)
+    2348:2360:private static int blend_dodge(int,int)
+    2373:2385:private static int blend_burn(int,int)
+    2411:2458:protected static processing.core.PImage loadTIFF(byte[])
+processing.core.PMatrix
+processing.core.PMatrix2D
+processing.core.PMatrix3D:
+    protected processing.core.PMatrix3D inverseCopy
+    46:52:public PMatrix3D(float,float,float,float,float,float)
+    66:68:public PMatrix3D(processing.core.PMatrix)
+    83:85:public processing.core.PMatrix3D get()
+    94:117:public float[] get(float[])
+    122:135:public void set(processing.core.PMatrix)
+    139:164:public void set(float[])
+    169:173:public void set(float,float,float,float,float,float)
+    188:189:public void translate(float,float)
+    197:201:public void translate(float,float,float)
+    205:206:public void rotate(float)
+    210:213:public void rotateX(float)
+    217:220:public void rotateY(float)
+    224:227:public void rotateZ(float)
+    233:241:public void rotate(float,float,float,float)
+    246:247:public void scale(float)
+    252:253:public void scale(float,float)
+    258:262:public void scale(float,float,float)
+    266:271:public void shearX(float)
+    275:280:public void shearY(float)
+    284:289:public void apply(processing.core.PMatrix)
+    293:297:public void apply(processing.core.PMatrix2D)
+    301:305:public void apply(processing.core.PMatrix3D)
+    310:314:public void apply(float,float,float,float,float,float)
+    322:346:public void apply(float,float,float,float,float,float,float,float,float,float,float,float,float,float,float,float)
+    350:354:public void preApply(processing.core.PMatrix2D)
+    361:365:public void preApply(processing.core.PMatrix3D)
+    370:374:public void preApply(float,float,float,float,float,float)
+    382:406:public void preApply(float,float,float,float,float,float,float,float,float,float,float,float,float,float,float,float)
+    413:423:public processing.core.PVector mult(processing.core.PVector,processing.core.PVector)
+    449:470:public float[] mult(float[],float[])
+    475:475:public float multX(float,float)
+    480:480:public float multY(float,float)
+    485:485:public float multX(float,float,float)
+    490:490:public float multY(float,float,float)
+    495:495:public float multZ(float,float,float)
+    500:500:public float multW(float,float,float)
+    505:505:public float multX(float,float,float,float)
+    510:510:public float multY(float,float,float,float)
+    515:515:public float multZ(float,float,float,float)
+    520:520:public float multW(float,float,float,float)
+    529:535:public void transpose()
+    543:593:public boolean invert()
+    604:604:private float determinant3x3(float,float,float,float,float,float,float,float,float)
+    615:635:public float determinant()
+    647:651:protected void invTranslate(float,float,float)
+    655:658:protected void invRotateX(float)
+    662:665:protected void invRotateY(float)
+    669:672:protected void invRotateZ(float)
+    678:686:protected void invRotate(float,float,float,float)
+    690:691:protected void invScale(float,float,float)
+    698:709:protected boolean invApply(float,float,float,float,float,float,float,float,float,float,float,float,float,float,float,float)
+    723:760:public void print()
+    767:767:private final float max(float,float)
+    771:771:private final float abs(float)
+    775:775:private final float sin(float)
+    779:779:private final float cos(float)
+    1:1:public processing.core.PMatrix get()
+processing.core.PShape:
+    protected java.util.HashMap nameTable
+    public static final int GROUP
+    public static final int PRIMITIVE
+    public static final int PATH
+    public static final int GEOMETRY
+    protected int primitive
+    protected processing.core.PMatrix matrix
+    protected processing.core.PImage image
+    public float width
+    public float height
+    public float depth
+    protected boolean stroke
+    protected int strokeColor
+    protected int strokeCap
+    protected int strokeJoin
+    protected boolean fill
+    protected int fillColor
+    protected float[] params
+    protected int vertexCount
+    protected float[][] vertices
+    public static final int VERTEX
+    public static final int BEZIER_VERTEX
+    public static final int QUAD_BEZIER_VERTEX
+    public static final int CURVE_VERTEX
+    public static final int BREAK
+    protected int vertexCodeCount
+    protected int[] vertexCodes
+    protected boolean close
+    protected processing.core.PShape parent
+    protected int childCount
+    protected processing.core.PShape[] children
+    178:180:public PShape(int)
+    184:185:public void setName(java.lang.String)
+    189:189:public java.lang.String getName()
+    201:201:public boolean isVisible()
+    213:214:public void setVisible(boolean)
+    227:232:public void disableStyle()
+    241:246:public void enableStyle()
+    266:266:public float getWidth()
+    275:275:public float getHeight()
+    285:285:public float getDepth()
+    293:293:public boolean is3D()
+    316:339:protected void pre(processing.core.PGraphics)
+    346:361:protected void styles(processing.core.PGraphics)
+    383:390:public void post(processing.core.PGraphics)
+    399:404:public void draw(processing.core.PGraphics)
+    412:421:public void drawImpl(processing.core.PGraphics)
+    425:428:protected void drawGroup(processing.core.PGraphics)
+    432:482:protected void drawPrimitive(processing.core.PGraphics)
+    486:502:protected void drawGeometry(processing.core.PGraphics)
+    563:661:protected void drawPath(processing.core.PGraphics)
+    668:668:public processing.core.PShape getParent()
+    673:673:public int getChildCount()
+    678:678:public processing.core.PShape[] getChildren()
+    687:687:public processing.core.PShape getChild(int)
+    699:710:public processing.core.PShape getChild(java.lang.String)
+    719:723:public processing.core.PShape findChild(java.lang.String)
+    730:742:public void addChild(processing.core.PShape)
+    747:766:public void addChild(processing.core.PShape,int)
+    773:786:public void removeChild(int)
+    793:801:public void addName(java.lang.String,processing.core.PShape)
+    808:813:public int getChildIndex(processing.core.PShape)
+    830:830:public int getFamily()
+    835:835:public int getPrimitive()
+    840:840:public float[] getParams()
+    845:849:public float[] getParams(float[])
+    854:854:public float getParam(int)
+    859:859:public int getVertexCount()
+    864:869:public float[] getVertex(int)
+    874:874:public float getVertexX(int)
+    879:879:public float getVertexY(int)
+    884:884:public float getVertexZ(int)
+    889:895:public int[] getVertexCodes()
+    900:900:public int getVertexCodeCount()
+    908:908:public int getVertexCode(int)
+    913:913:public boolean isClosed()
+    922:936:public boolean contains(float,float)
+    950:952:public void translate(float,float)
+    964:966:public void translate(float,float,float)
+    979:980:public void rotateX(float)
+    993:994:public void rotateY(float)
+    1008:1009:public void rotateZ(float)
+    1022:1024:public void rotate(float)
+    1028:1030:public void rotate(float,float,float,float)
+    1039:1041:public void scale(float)
+    1045:1047:public void scale(float,float)
+    1063:1065:public void scale(float,float,float)
+    1070:1070:public void centerAt(float,float,float)
+    1077:1079:public void resetMatrix()
+    1083:1088:public void applyMatrix(processing.core.PMatrix)
+    1092:1096:public void applyMatrix(processing.core.PMatrix2D)
+    1101:1106:public void applyMatrix(float,float,float,float,float,float)
+    1110:1114:public void apply(processing.core.PMatrix3D)
+    1121:1126:public void applyMatrix(float,float,float,float,float,float,float,float,float,float,float,float,float,float,float,float)
+    1137:1147:protected void checkMatrix(int)
+processing.core.PShape3D:
+    protected static final int VERTICES
+    protected static final int NORMALS
+    protected static final int COLORS
+    protected static final int TEXCOORDS
+    protected int numTexBuffers
+    protected int glUsage
+    protected java.nio.FloatBuffer vertexBuffer
+    protected java.nio.FloatBuffer colorBuffer
+    protected java.nio.FloatBuffer normalBuffer
+    protected java.nio.FloatBuffer texCoordBuffer
+    public float[] vertices
+    public float[] colors
+    public float[] normals
+    public float[] texcoords
+    protected short[] indices
+    protected boolean useIndices
+    protected float[] convTexcoords
+    protected float[][] allTexcoords
+    protected processing.core.PShape3D[] vertexChild
+    protected boolean[] texCoordSet
+    java.util.ArrayList objVertices
+    java.util.ArrayList objNormal
+    java.util.ArrayList objTexCoords
+    java.util.ArrayList objFaces
+    java.util.ArrayList objMaterials
+    protected processing.core.PShape3D root
+    protected int updateElement
+    protected int updateTexunit
+    protected int firstUpdateIdx
+    protected int lastUpdateIdx
+    public float xmin
+    public float xmax
+    public float ymin
+    public float ymax
+    public float zmin
+    public float zmax
+    170:176:public PShape3D(processing.core.PApplet)
+    179:180:public PShape3D(processing.core.PApplet,int)
+    182:197:public PShape3D(processing.core.PApplet,java.lang.String,processing.core.PShape3D$Parameters)
+    200:215:public PShape3D(processing.core.PApplet,int,processing.core.PShape3D$Parameters)
+    219:228:public void delete()
+    232:232:public void backup()
+    235:253:public void restore()
+    260:261:public void beginRecord()
+    264:265:public void endRecord()
+    268:269:public void beginShape(int)
+    272:273:public void endShape()
+    276:277:public void endShape(int)
+    280:281:public void shapeName(java.lang.String)
+    284:285:public void mergeShapes(boolean)
+    288:289:public void vertex(float,float,float,float)
+    292:293:public void vertex(float,float,float,float,float)
+    296:297:public void vertex(float[])
+    300:301:public void normal(float,float,float)
+    304:305:public void texture(processing.core.PImage)
+    308:309:public void texture(processing.core.PImage[])
+    312:313:public void sphereDetail(int)
+    316:317:public void sphereDetail(int,int)
+    320:321:public void sphere(float)
+    324:325:public void box(float)
+    328:329:public void box(float,float,float)
+    332:335:public void noFill()
+    338:341:public void fill(int)
+    344:347:public void fill(int,float)
+    350:353:public void fill(float)
+    356:359:public void fill(float,float)
+    362:365:public void fill(float,float,float)
+    368:371:public void fill(float,float,float,float)
+    374:377:public void noStroke()
+    380:383:public void stroke(int)
+    386:389:public void stroke(int,float)
+    392:395:public void stroke(float)
+    398:401:public void stroke(float,float)
+    404:407:public void stroke(float,float,float)
+    410:413:public void stroke(float,float,float,float)
+    421:422:public void loadVertices()
+    426:442:public void loadVertices(int,int)
+    446:466:public void updateVertices()
+    470:471:public void loadColors()
+    475:491:public void loadColors(int,int)
+    495:511:public void updateColors()
+    515:516:public void loadNormals()
+    520:536:public void loadNormals(int,int)
+    540:556:public void updateNormals()
+    560:561:public void loadTexcoords()
+    565:566:public void loadTexcoords(int)
+    570:598:protected void loadTexcoords(int,int,int)
+    602:622:public void updateTexcoords()
+    626:640:public float[] get(int)
+    645:654:public void set(int,float[])
+    658:659:public void set(int,int)
+    663:668:public void set(int,float,float)
+    672:679:public void set(int,float,float,float)
+    683:686:public void set(int,float,float,float,float)
+    690:695:public static int color(float[])
+    700:711:public static float[] rgba(int)
+    715:716:public void autoBounds(boolean)
+    719:720:public void updateBounds()
+    723:762:protected void updateBounds(int,int)
+    765:773:protected void resetBounds()
+    776:788:protected void updateBounds(float,float,float)
+    798:845:protected void convertTexcoords()
+    853:853:public static processing.core.PShape createChild(int,int)
+    858:858:public static processing.core.PShape createChild(java.lang.String,int,int)
+    863:863:public static processing.core.PShape createChild(java.lang.String,int,int,int)
+    868:868:public static processing.core.PShape createChild(java.lang.String,int,int,int,float)
+    899:901:public void addChild(java.lang.String,int,int)
+    905:907:public void addChild(java.lang.String,int,int,int)
+    911:913:public void addChild(java.lang.String,int,int,int,float)
+    917:919:public void addChild(java.lang.String,int,int,int,float,processing.core.PImage[])
+    923:924:public void addChild(processing.core.PShape)
+    928:983:protected void addChildImpl(processing.core.PShape,boolean)
+    989:993:public void addName(java.lang.String,processing.core.PShape)
+    996:998:protected void addDefaultChild()
+    1002:1003:public processing.core.PShape groupChildren(int,int,java.lang.String)
+    1008:1009:public processing.core.PShape groupChildren(int,int,int,java.lang.String)
+    1014:1029:public processing.core.PShape groupChildren(int[],java.lang.String)
+    1034:1035:public processing.core.PShape groupChildren(java.lang.String,java.lang.String,java.lang.String)
+    1040:1041:public processing.core.PShape groupChildren(java.lang.String,java.lang.String,java.lang.String,java.lang.String)
+    1046:1062:public processing.core.PShape groupChildren(java.lang.String[],java.lang.String)
+    1067:1118:public processing.core.PShape groupChildren(processing.core.PShape[],java.lang.String)
+    1123:1123:public int getFirstVertex()
+    1128:1131:public int getFirstVertex(int)
+    1136:1137:public void setFirstVertex(int)
+    1141:1144:public void setFirstVertex(int,int)
+    1148:1148:public int getLastVertex()
+    1153:1156:public int getLastVertex(int)
+    1161:1162:public void setLastVertex(int)
+    1166:1169:public void setLastVertex(int,int)
+    1173:1182:public void setDrawMode(int)
+    1186:1189:public void setDrawMode(int,int)
+    1212:1212:protected boolean isTexturable()
+    1220:1224:public int getDrawMode()
+    1230:1233:public int getDrawMode(int)
+    1238:1247:protected int getDrawModeImpl()
+    1252:1260:public void setTexture(processing.core.PImage)
+    1264:1273:public void setTexture(processing.core.PImage,processing.core.PImage)
+    1277:1287:public void setTexture(processing.core.PImage,processing.core.PImage,processing.core.PImage)
+    1291:1302:public void setTexture(processing.core.PImage,processing.core.PImage,processing.core.PImage,processing.core.PImage)
+    1306:1316:public void setTexture(processing.core.PImage[])
+    1320:1323:public void setTexture(int,processing.core.PImage)
+    1327:1330:public void setTexture(int,processing.core.PImage,processing.core.PImage)
+    1334:1337:public void setTexture(int,processing.core.PImage,processing.core.PImage,processing.core.PImage)
+    1341:1344:public void setTexture(int,processing.core.PImage,processing.core.PImage,processing.core.PImage,processing.core.PImage)
+    1348:1351:public void setTexture(int,processing.core.PImage[])
+    1355:1383:protected void setTextureImpl(processing.core.PImage,int)
+    1387:1391:public processing.core.PImage[] getTexture()
+    1397:1400:public processing.core.PImage[] getTexture(int)
+    1405:1409:public float getStrokeWeight()
+    1415:1418:public float getStrokeWeight(int)
+    1423:1431:public void setStrokeWeight(float)
+    1435:1438:public void setStrokeWeight(int,float)
+    1442:1446:public float getMaxSpriteSize()
+    1452:1455:public float getMaxSpriteSize(int)
+    1460:1468:public void setMaxSpriteSize(float)
+    1472:1475:public void setMaxSpriteSize(int,float)
+    1479:1480:protected void setMaxSpriteSizeImpl(float)
+    1484:1492:public void setSpriteSize(float)
+    1496:1504:public void setSpriteSize(float,float,int)
+    1508:1511:public void setSpriteSize(int,float)
+    1515:1518:public void setSpriteSize(int,float,float,int)
+    1524:1534:protected void setSpriteSizeImpl(float,float,int)
+    1539:1542:protected void setSpriteSizeImpl(float)
+    1546:1547:public void setColor(int)
+    1551:1552:public void setColor(float,float,float,float)
+    1556:1564:public void setColor(float[])
+    1568:1569:public void setColor(int,int)
+    1573:1574:public void setColor(int,float,float,float,float)
+    1578:1581:public void setColor(int,float[])
+    1585:1591:protected void setColorImpl(float[])
+    1595:1596:public void setNormal(float,float,float)
+    1600:1608:public void setNormal(float[])
+    1612:1613:public void setNormal(int,float,float,float)
+    1617:1620:public void setNormal(int,float[])
+    1624:1630:protected void setNormalImpl(float[])
+    1640:1689:protected void optimizeChildren(java.util.ArrayList)
+    1693:1703:protected boolean equalTo(processing.core.PShape3D,boolean)
+    1712:1714:public void resetMatrix()
+    1717:1719:public void translate(float,float)
+    1722:1724:public void rotate(float)
+    1727:1729:public void scale(float)
+    1732:1734:public void scale(float,float)
+    1737:1748:public void centerAt(float,float,float)
+    1756:1757:public void setVertices(java.util.ArrayList)
+    1760:1766:public void setVertices(java.util.ArrayList,int)
+    1769:1770:public void setColors(java.util.ArrayList)
+    1773:1779:public void setColors(java.util.ArrayList,int)
+    1783:1784:public void setNormals(java.util.ArrayList)
+    1787:1793:public void setNormals(java.util.ArrayList,int)
+    1797:1798:public void setTexcoords(java.util.ArrayList)
+    1801:1802:public void setTexcoords(java.util.ArrayList,int)
+    1805:1806:public void setTexcoords(int,java.util.ArrayList)
+    1809:1815:public void setTexcoords(int,java.util.ArrayList,int)
+    1819:1826:public void setChildren(java.util.ArrayList)
+    1829:1889:public void mergeChildren()
+    1892:1893:public void translateVertices(float,float)
+    1897:1905:public void translateVertices(float,float,float)
+    1909:1910:public void rotateVerticesX(float)
+    1914:1915:public void rotateVerticesY(float)
+    1919:1920:public void rotateVerticesZ(float)
+    1924:1925:public void rotateVertices(float)
+    1929:1993:public void rotateVertices(float,float,float,float)
+    1997:1998:public void scaleVertices(float)
+    2002:2003:public void scaleVertices(float,float)
+    2007:2015:public void scaleVertices(float,float,float)
+    2023:2032:public processing.core.PShape3D$Parameters getParameters()
+    2037:2046:protected void setParameters(processing.core.PShape3D$Parameters)
+    2053:2067:public void initIndices(int)
+    2070:2083:public void setIndices(java.util.ArrayList)
+    2086:2097:public void setIndices(int[])
+    2100:2108:public void useIndices(boolean)
+    2111:2120:public void useIndices(int,boolean)
+    2128:2137:public void init()
+    2141:2142:protected void initShape(int)
+    2147:2161:protected void initShape(int,processing.core.PShape3D$Parameters)
+    2166:2197:protected void initShapeOBJ(java.lang.String,processing.core.PShape3D$Parameters)
+    2204:2214:protected void setSize(int)
+    2217:2223:protected void allocate()
+    2226:2231:protected void release()
+    2240:2247:protected void initVertexData()
+    2251:2256:protected void createVertexBuffer()
+    2260:2271:protected void initColorData()
+    2275:2280:protected void createColorBuffer()
+    2284:2291:protected void initNormalData()
+    2295:2300:protected void createNormalBuffer()
+    2304:2315:protected void initTexCoordData()
+    2319:2329:protected void createTexCoordBuffer()
+    2333:2358:protected void addTexBuffers(int)
+    2361:2370:protected void updateTexBuffers()
+    2373:2377:protected void deleteVertexBuffer()
+    2381:2385:protected void deleteColorBuffer()
+    2389:2393:protected void deleteNormalBuffer()
+    2397:2401:protected void deleteIndexBuffer()
+    2405:2410:protected void deleteTexCoordBuffer()
+    2414:2418:protected void deleteTexCoordBuffer(int)
+    2422:2424:protected void initChildrenData()
+    2432:2433:public float[] getVertex(int)
+    2438:2439:public float getVertexX(int)
+    2444:2445:public float getVertexY(int)
+    2450:2451:public float getVertexZ(int)
+    2456:2457:public int[] getVertexCodes()
+    2462:2463:public int getVertexCodeCount()
+    2468:2469:public int getVertexCode(int)
+    2477:2484:public void disableStyle()
+    2488:2495:public void enableStyle()
+    2500:2500:protected void styles(processing.core.PGraphics)
+    2504:2504:public boolean is3D()
+    2515:2516:public void draw()
+    2520:2542:public void draw(processing.core.PGraphics)
+    2546:2551:protected void pre(processing.core.PGraphics)
+    2555:2558:public void post(processing.core.PGraphics)
+    2562:2567:public void drawImpl(processing.core.PGraphics)
+    2571:2575:protected void drawGroup(processing.core.PGraphics)
+    2584:2723:protected void drawGeometry(processing.core.PGraphics)
+    2731:2731:protected javax.microedition.khronos.opengles.GL11 getGl()
+    2740:2740:public static processing.core.PShape3D$Parameters newParameters()
+    2745:2745:public static processing.core.PShape3D$Parameters newParameters(int)
+    2750:2750:public static processing.core.PShape3D$Parameters newParameters(int,int)
+    2786:2791:protected java.io.BufferedReader getBufferedReader(java.lang.String)
+    2797:2933:protected void parseOBJ(java.io.BufferedReader,java.util.ArrayList,java.util.ArrayList,java.util.ArrayList,java.util.ArrayList,java.util.ArrayList)
+    2939:2987:protected void parseMTL(java.io.BufferedReader,java.util.ArrayList,java.util.Hashtable)
+    2990:2998:protected void recordOBJ()
+    3001:3123:protected void recordOBJ(java.util.ArrayList,java.util.ArrayList,java.util.ArrayList,java.util.ArrayList,java.util.ArrayList)
+processing.core.PShape3D$OBJFace
+processing.core.PShape3D$OBJMaterial
+processing.core.PShape3D$Parameters
+processing.core.PShapeSVG
+processing.core.PShapeSVG$Font
+processing.core.PShapeSVG$FontFace
+processing.core.PShapeSVG$FontGlyph
+processing.core.PShapeSVG$Gradient
+processing.core.PShapeSVG$LinearGradient
+processing.core.PShapeSVG$RadialGradient
+processing.core.PTexture:
+    protected processing.core.PImage img
+    84:85:public PTexture(processing.core.PApplet,int,int)
+    111:114:public void delete()
+    118:127:public void backup()
+    131:134:public void restore()
+    150:159:public void init(int,int)
+    179:194:public void resize(int,int)
+    202:202:public boolean available()
+    212:214:public void set(processing.core.PImage)
+    218:220:public void set(processing.core.PImage,int,int,int,int)
+    224:225:public void set(processing.core.PTexture)
+    229:230:public void set(processing.core.PTexture,int,int,int,int)
+    239:240:public void set(int[],int)
+    244:245:public void set(int[],int,int,int,int)
+    387:388:public void put(processing.core.PTexture)
+    392:393:public void put(processing.core.PTexture,int,int,int,int)
+    406:406:public boolean usingMipmaps()
+    442:443:public void setFlippedX(boolean)
+    468:470:public void bind()
+    473:475:public void unbind()
+    895:921:protected void copyTexels(processing.core.PTexture,int,int,int,int,boolean)
+    934:957:protected void copyObject(processing.core.PTexture)
+    965:999:public processing.core.PTexture$Parameters getParameters()
+    1081:1081:public static processing.core.PTexture$Parameters newParameters(int)
+    1091:1091:public static processing.core.PTexture$Parameters newParameters(processing.core.PTexture$Parameters)
+processing.core.PTexture$Parameters:
+    1136:1142:public PTexture$Parameters(int)
+    1152:1158:public PTexture$Parameters(processing.core.PTexture$Parameters)
+    1161:1162:public void set(int)
+    1165:1167:public void set(int,int)
+    1170:1175:public void set(processing.core.PTexture$Parameters)
+processing.core.PVector:
+    private static final long serialVersionUID
+    protected transient float[] array
+    103:106:public void set(float,float,float)
+    115:118:public void set(processing.core.PVector)
+    126:133:public void set(float[])
+    140:140:public processing.core.PVector get()
+    145:155:public float[] get(float[])
+    164:164:public float mag()
+    173:176:public void add(processing.core.PVector)
+    180:183:public void add(float,float,float)
+    193:193:public static processing.core.PVector add(processing.core.PVector,processing.core.PVector)
+    205:210:public static processing.core.PVector add(processing.core.PVector,processing.core.PVector,processing.core.PVector)
+    219:222:public void sub(processing.core.PVector)
+    226:229:public void sub(float,float,float)
+    239:239:public static processing.core.PVector sub(processing.core.PVector,processing.core.PVector)
+    244:249:public static processing.core.PVector sub(processing.core.PVector,processing.core.PVector,processing.core.PVector)
+    258:261:public void mult(float)
+    271:271:public static processing.core.PVector mult(processing.core.PVector,float)
+    283:288:public static processing.core.PVector mult(processing.core.PVector,float,processing.core.PVector)
+    297:300:public void mult(processing.core.PVector)
+    308:308:public static processing.core.PVector mult(processing.core.PVector,processing.core.PVector)
+    320:325:public static processing.core.PVector mult(processing.core.PVector,processing.core.PVector,processing.core.PVector)
+    334:337:public void div(float)
+    347:347:public static processing.core.PVector div(processing.core.PVector,float)
+    352:357:public static processing.core.PVector div(processing.core.PVector,float,processing.core.PVector)
+    365:368:public void div(processing.core.PVector)
+    376:376:public static processing.core.PVector div(processing.core.PVector,processing.core.PVector)
+    388:393:public static processing.core.PVector div(processing.core.PVector,processing.core.PVector,processing.core.PVector)
+    403:406:public float dist(processing.core.PVector)
+    417:420:public static float dist(processing.core.PVector,processing.core.PVector)
+    429:429:public float dot(processing.core.PVector)
+    434:434:public float dot(float,float,float)
+    439:439:public static float dot(processing.core.PVector,processing.core.PVector)
+    447:447:public processing.core.PVector cross(processing.core.PVector)
+    456:465:public processing.core.PVector cross(processing.core.PVector,processing.core.PVector)
+    470:479:public static processing.core.PVector cross(processing.core.PVector,processing.core.PVector,processing.core.PVector)
+    487:491:public void normalize()
+    500:509:public processing.core.PVector normalize(processing.core.PVector)
+    518:522:public void limit(float)
+    530:531:public float heading2D()
+    542:557:public static float angleBetween(processing.core.PVector,processing.core.PVector)
+    572:578:public float[] array()
+processing.core.R
+processing.core.R$attr
+processing.core.R$color
+processing.core.R$drawable
+processing.core.R$id
+processing.core.R$layout
+processing.core.R$menu
+processing.core.R$string
+processing.core.R$style
+processing.core.XML

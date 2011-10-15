@@ -1,0 +1,1410 @@
+
+
+----- pid 289 at 2011-10-10 17:41:10 -----
+Cmd line: com.rj.pixelesque
+
+DALVIK THREADS:
+"main" prio=5 tid=1 RUNNABLE
+  | group="main" sCount=1 dsCount=0 s=Y obj=0x4001d8e0 self=0xccb0
+  | sysTid=289 nice=0 sched=0/0 cgrp=default handle=-1345026008
+  | schedstat=( 11038016328 24242575191 2059 )
+  at java.util.ArrayList.contains(ArrayList.java:~341)
+  at com.rj.pixelesque.shapes.Bucket.updatePointArea(Bucket.java:41)
+  at com.rj.pixelesque.shapes.SuperShape.<init>(SuperShape.java:22)
+  at com.rj.pixelesque.shapes.Bucket.<init>(Bucket.java:15)
+  at com.rj.pixelesque.PixelArtEditor$7.makeShape(PixelArtEditor.java:329)
+  at com.rj.pixelesque.shapes.ShapeEditor.addCursor(ShapeEditor.java:22)
+  at com.rj.pixelesque.PixelArtEditor.touchDown(PixelArtEditor.java:240)
+  at com.rj.processing.mt.MTManager.fireTouchDown(MTManager.java:143)
+  at com.rj.processing.mt.MTManager.fireTouchEvent(MTManager.java:122)
+  at com.rj.processing.mt.MTManager.touchEvent(MTManager.java:100)
+  at com.rj.processing.mt.MTManager.surfaceTouchEvent(MTManager.java:40)
+  at com.rj.pixelesque.PixelArtEditor.surfaceTouchEvent(PixelArtEditor.java:204)
+  at processing.core.PApplet$SketchSurfaceView2D.onTouchEvent(PApplet.java:731)
+  at android.view.View.dispatchTouchEvent(View.java:3766)
+  at android.view.ViewGroup.dispatchTouchEvent(ViewGroup.java:863)
+  at android.view.ViewGroup.dispatchTouchEvent(ViewGroup.java:863)
+  at android.view.ViewGroup.dispatchTouchEvent(ViewGroup.java:863)
+  at android.view.ViewGroup.dispatchTouchEvent(ViewGroup.java:863)
+  at com.android.internal.policy.impl.PhoneWindow$DecorView.superDispatchTouchEvent(PhoneWindow.java:1671)
+  at com.android.internal.policy.impl.PhoneWindow.superDispatchTouchEvent(PhoneWindow.java:1107)
+  at android.app.Activity.dispatchTouchEvent(Activity.java:2086)
+  at com.android.internal.policy.impl.PhoneWindow$DecorView.dispatchTouchEvent(PhoneWindow.java:1655)
+  at android.view.ViewRoot.handleMessage(ViewRoot.java:1785)
+  at android.os.Handler.dispatchMessage(Handler.java:99)
+  at android.os.Looper.loop(Looper.java:123)
+  at android.app.ActivityThread.main(ActivityThread.java:4627)
+  at java.lang.reflect.Method.invokeNative(Native Method)
+  at java.lang.reflect.Method.invoke(Method.java:521)
+  at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:868)
+  at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:626)
+  at dalvik.system.NativeStart.main(Native Method)
+
+"AsyncTask #1" prio=5 tid=8 WAIT
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44efee08 self=0x31c838
+  | sysTid=297 nice=10 sched=0/0 cgrp=bg_non_interactive handle=3261816
+  | schedstat=( 138154018 1112363107 30 )
+  at java.lang.Object.wait(Native Method)
+  - waiting on <0x44eff018> (a java.lang.VMThread)
+  at java.lang.Thread.parkFor(Thread.java:1535)
+  at java.lang.LangAccessImpl.parkFor(LangAccessImpl.java:48)
+  at sun.misc.Unsafe.park(Unsafe.java:317)
+  at java.util.concurrent.locks.LockSupport.park(LockSupport.java:131)
+  at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:1996)
+  at java.util.concurrent.LinkedBlockingQueue.take(LinkedBlockingQueue.java:359)
+  at java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1001)
+  at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1061)
+  at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:561)
+  at java.lang.Thread.run(Thread.java:1096)
+
+"Animation Thread" prio=5 tid=7 NATIVE
+  | group="main" sCount=1 dsCount=0 s=Y obj=0x44ead980 self=0x11cfe0
+  | sysTid=295 nice=0 sched=0/0 cgrp=default handle=1262440
+  | schedstat=( 30852988993 43008870478 17733 )
+  at android.view.Surface.lockCanvasNative(Native Method)
+  at android.view.Surface.lockCanvas(Surface.java:314)
+  at android.view.SurfaceView$3.internalLockCanvas(SurfaceView.java:773)
+  at android.view.SurfaceView$3.lockCanvas(SurfaceView.java:756)
+  at processing.core.PGraphicsAndroid2D.endDraw(PGraphicsAndroid2D.java:198)
+  at processing.core.PApplet.handleDraw(PApplet.java:1893)
+  at processing.core.PGraphicsAndroid2D.requestDraw(PGraphicsAndroid2D.java:161)
+  at processing.core.PApplet.run(PApplet.java:1740)
+  at java.lang.Thread.run(Thread.java:1096)
+
+"Binder Thread #2" prio=5 tid=6 NATIVE
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44e76ce8 self=0x136b18
+  | sysTid=294 nice=0 sched=0/0 cgrp=default handle=1234984
+  | schedstat=( 136285011 10694000 148 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"Binder Thread #1" prio=5 tid=5 NATIVE
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44e76c28 self=0x132868
+  | sysTid=293 nice=0 sched=0/0 cgrp=default handle=1203688
+  | schedstat=( 148640008 33253004 145 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"JDWP" daemon prio=5 tid=4 VMWAIT
+  | group="system" sCount=1 dsCount=0 s=N obj=0x44e752a0 self=0x1245a0
+  | sysTid=292 nice=0 sched=0/0 cgrp=default handle=1204448
+  | schedstat=( 1701000 16980002 7 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"Signal Catcher" daemon prio=5 tid=3 RUNNABLE
+  | group="system" sCount=0 dsCount=0 s=N obj=0x44e751e8 self=0x120298
+  | sysTid=291 nice=0 sched=0/0 cgrp=default handle=1158056
+  | schedstat=( 64751007 208715021 19 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"HeapWorker" daemon prio=5 tid=2 VMWAIT
+  | group="system" sCount=1 dsCount=0 s=N obj=0x438b97c0 self=0x12efc0
+  | sysTid=290 nice=0 sched=0/0 cgrp=default handle=1293680
+  | schedstat=( 1378239174 6880366654 221 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+----- end 289 -----
+
+
+----- pid 62 at 2011-10-10 17:41:10 -----
+Cmd line: system_server
+
+DALVIK THREADS:
+"main" prio=5 tid=1 NATIVE
+  | group="main" sCount=1 dsCount=0 s=N obj=0x4001d8e0 self=0xccb0
+  | sysTid=62 nice=0 sched=0/0 cgrp=default handle=-1345026008
+  | schedstat=( 1454407145 1108816109 1043 )
+  at com.android.server.SystemServer.init1(Native Method)
+  at com.android.server.SystemServer.main(SystemServer.java:575)
+  at java.lang.reflect.Method.invokeNative(Native Method)
+  at java.lang.reflect.Method.invoke(Method.java:521)
+  at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:868)
+  at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:626)
+  at dalvik.system.NativeStart.main(Native Method)
+
+"Binder Thread #7" prio=5 tid=41 NATIVE
+  | group="main" sCount=1 dsCount=0 s=N obj=0x4503acb8 self=0x12a4c0
+  | sysTid=168 nice=0 sched=0/0 cgrp=default handle=969336
+  | schedstat=( 673541070 1184721118 844 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"Binder Thread #6" prio=5 tid=40 NATIVE
+  | group="main" sCount=1 dsCount=0 s=N obj=0x4502a078 self=0x318768
+  | sysTid=167 nice=0 sched=0/0 cgrp=default handle=981312
+  | schedstat=( 641427064 491053052 878 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"Binder Thread #5" prio=5 tid=39 NATIVE
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44ff8480 self=0x297320
+  | sysTid=166 nice=0 sched=0/0 cgrp=default handle=2332584
+  | schedstat=( 604737061 369340043 874 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"GpsEventThread" prio=5 tid=38 NATIVE
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44ecf830 self=0x337a40
+  | sysTid=146 nice=0 sched=0/0 cgrp=default handle=3376728
+  | schedstat=( 1197000 786479078 5 )
+  at com.android.internal.location.GpsLocationProvider.native_wait_for_event(Native Method)
+  at com.android.internal.location.GpsLocationProvider.access$500(GpsLocationProvider.java:73)
+  at com.android.internal.location.GpsLocationProvider$GpsEventThread.run(GpsLocationProvider.java:1358)
+
+"Binder Thread #4" prio=5 tid=37 NATIVE
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44ffbc58 self=0x2eb518
+  | sysTid=141 nice=0 sched=0/0 cgrp=default handle=1131696
+  | schedstat=( 981904090 997928101 980 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"GpsLocationProvider" prio=5 tid=36 TIMED_WAIT
+  | group="main" sCount=1 dsCount=0 s=N obj=0x4503f048 self=0x34fcc8
+  | sysTid=124 nice=10 sched=0/0 cgrp=bg_non_interactive handle=3472904
+  | schedstat=( 37460003 3973497400 27 )
+  at java.lang.Object.wait(Native Method)
+  - waiting on <0x45042498> (a android.os.MessageQueue)
+  at java.lang.Object.wait(Object.java:326)
+  at android.os.MessageQueue.next(MessageQueue.java:142)
+  at android.os.Looper.loop(Looper.java:110)
+  at com.android.internal.location.GpsLocationProvider$GpsLocationProviderThread.run(GpsLocationProvider.java:1416)
+
+"ThrottleService" prio=5 tid=35 WAIT
+  | group="main" sCount=1 dsCount=0 s=N obj=0x450342e0 self=0x346a70
+  | sysTid=114 nice=0 sched=0/0 cgrp=default handle=3435440
+  | schedstat=( 162798011 863681093 47 )
+  at java.lang.Object.wait(Native Method)
+  - waiting on <0x45034578> (a android.os.MessageQueue)
+  at java.lang.Object.wait(Object.java:288)
+  at android.os.MessageQueue.next(MessageQueue.java:146)
+  at android.os.Looper.loop(Looper.java:110)
+  at android.os.HandlerThread.run(HandlerThread.java:60)
+
+"LocationManagerService" prio=5 tid=34 WAIT
+  | group="main" sCount=1 dsCount=0 s=N obj=0x45032420 self=0x345bf0
+  | sysTid=112 nice=10 sched=0/0 cgrp=bg_non_interactive handle=3431728
+  | schedstat=( 61975004 5760463577 34 )
+  at java.lang.Object.wait(Native Method)
+  - waiting on <0x45032798> (a android.os.MessageQueue)
+  at java.lang.Object.wait(Object.java:288)
+  at android.os.MessageQueue.next(MessageQueue.java:146)
+  at android.os.Looper.loop(Looper.java:110)
+  at com.android.server.LocationManagerService.run(LocationManagerService.java:536)
+  at java.lang.Thread.run(Thread.java:1096)
+
+"Binder Thread #3" prio=5 tid=33 NATIVE
+  | group="main" sCount=1 dsCount=0 s=N obj=0x450208b8 self=0x31a2b0
+  | sysTid=110 nice=0 sched=0/0 cgrp=default handle=3235776
+  | schedstat=( 739545069 229503030 879 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"watchdog" prio=5 tid=32 TIMED_WAIT
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44e816c8 self=0x318aa0
+  | sysTid=109 nice=0 sched=0/0 cgrp=default handle=3222496
+  | schedstat=( 8463000 20993003 19 )
+  at java.lang.Object.wait(Native Method)
+  - waiting on <0x44e816c8> (a com.android.server.Watchdog)
+  at java.lang.Object.wait(Object.java:326)
+  at com.android.server.Watchdog.run(Watchdog.java:816)
+
+"android.hardware.SensorManager$SensorThread" prio=5 tid=31 NATIVE
+  | group="main" sCount=1 dsCount=0 s=N obj=0x4500dce8 self=0xed110
+  | sysTid=108 nice=-8 sched=0/0 cgrp=default handle=2715368
+  | schedstat=( 2442495021 2450251106 9430 )
+  at android.hardware.SensorManager.sensors_data_poll(Native Method)
+  at android.hardware.SensorManager$SensorThread$SensorThreadRunnable.run(SensorManager.java:389)
+  at java.lang.Thread.run(Thread.java:1096)
+
+"backup" prio=5 tid=30 WAIT
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44fa61f8 self=0x2ac268
+  | sysTid=100 nice=10 sched=0/0 cgrp=bg_non_interactive handle=953008
+  | schedstat=( 1615000 7562001 6 )
+  at java.lang.Object.wait(Native Method)
+  - waiting on <0x44fdd830> (a android.os.MessageQueue)
+  at java.lang.Object.wait(Object.java:288)
+  at android.os.MessageQueue.next(MessageQueue.java:146)
+  at android.os.Looper.loop(Looper.java:110)
+  at android.os.HandlerThread.run(HandlerThread.java:60)
+
+"SoundPool" prio=5 tid=29 NATIVE
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44ff4bc8 self=0x20b020
+  | sysTid=98 nice=0 sched=0/0 cgrp=default handle=1153696
+  | schedstat=( 619000 10649001 1 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"SoundPoolThread" prio=5 tid=28 NATIVE
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44ff52c0 self=0x2acf28
+  | sysTid=99 nice=0 sched=0/0 cgrp=default handle=3064312
+  | schedstat=( 773000 9497001 1 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"AudioService" prio=5 tid=27 WAIT
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44ff32b0 self=0x2f3dd8
+  | sysTid=97 nice=0 sched=0/0 cgrp=default handle=3093872
+  | schedstat=( 14623001 12246003 22 )
+  at java.lang.Object.wait(Native Method)
+  - waiting on <0x44ff3590> (a android.os.MessageQueue)
+  at java.lang.Object.wait(Object.java:288)
+  at android.os.MessageQueue.next(MessageQueue.java:146)
+  at android.os.Looper.loop(Looper.java:110)
+  at android.media.AudioService$AudioSystemThread.run(AudioService.java:1484)
+
+"com.android.server.NativeDaemonConnector" prio=5 tid=26 NATIVE
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44fe0578 self=0xe8cf8
+  | sysTid=95 nice=0 sched=0/0 cgrp=default handle=956784
+  | schedstat=( 36347004 121678013 27 )
+  at android.net.LocalSocketImpl.readba_native(Native Method)
+  at android.net.LocalSocketImpl.access$400(LocalSocketImpl.java:29)
+  at android.net.LocalSocketImpl$SocketInputStream.read(LocalSocketImpl.java:92)
+  at com.android.server.NativeDaemonConnector.listenToSocket(NativeDaemonConnector.java:109)
+  at com.android.server.NativeDaemonConnector.run(NativeDaemonConnector.java:83)
+  at java.lang.Thread.run(Thread.java:1096)
+
+"MountService" prio=5 tid=25 WAIT
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44fe00d0 self=0xe8510
+  | sysTid=94 nice=0 sched=0/0 cgrp=default handle=954456
+  | schedstat=( 1324000 2030000 6 )
+  at java.lang.Object.wait(Native Method)
+  - waiting on <0x44fe0370> (a android.os.MessageQueue)
+  at java.lang.Object.wait(Object.java:288)
+  at android.os.MessageQueue.next(MessageQueue.java:146)
+  at android.os.Looper.loop(Looper.java:110)
+  at android.os.HandlerThread.run(HandlerThread.java:60)
+
+"Tethering" prio=5 tid=24 WAIT
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44fdb3b0 self=0x2ee8d0
+  | sysTid=93 nice=0 sched=0/0 cgrp=default handle=3074576
+  | schedstat=( 6189001 8810001 9 )
+  at java.lang.Object.wait(Native Method)
+  - waiting on <0x44fdb580> (a android.os.MessageQueue)
+  at java.lang.Object.wait(Object.java:288)
+  at android.os.MessageQueue.next(MessageQueue.java:146)
+  at android.os.Looper.loop(Looper.java:110)
+  at android.os.HandlerThread.run(HandlerThread.java:60)
+
+"WifiService" prio=5 tid=23 WAIT
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44fd7848 self=0x2ed958
+  | sysTid=92 nice=0 sched=0/0 cgrp=default handle=3070616
+  | schedstat=( 39234003 284605030 18 )
+  at java.lang.Object.wait(Native Method)
+  - waiting on <0x44fd7ae0> (a android.os.MessageQueue)
+  at java.lang.Object.wait(Object.java:288)
+  at android.os.MessageQueue.next(MessageQueue.java:146)
+  at android.os.Looper.loop(Looper.java:110)
+  at android.os.HandlerThread.run(HandlerThread.java:60)
+
+"ConnectivityThread" prio=5 tid=22 WAIT
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44fce778 self=0x2e8dd0
+  | sysTid=90 nice=0 sched=0/0 cgrp=default handle=3051280
+  | schedstat=( 146475012 249587027 62 )
+  at java.lang.Object.wait(Native Method)
+  - waiting on <0x44fcecc8> (a android.os.MessageQueue)
+  at java.lang.Object.wait(Object.java:288)
+  at android.os.MessageQueue.next(MessageQueue.java:146)
+  at android.os.Looper.loop(Looper.java:110)
+  at com.android.server.ConnectivityService$ConnectivityThread.run(ConnectivityService.java:157)
+
+"com.android.server.NativeDaemonConnector" prio=5 tid=21 NATIVE
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44fce390 self=0x2e8308
+  | sysTid=89 nice=0 sched=0/0 cgrp=default handle=3048520
+  | schedstat=( 39568005 23838003 20 )
+  at android.net.LocalSocketImpl.readba_native(Native Method)
+  at android.net.LocalSocketImpl.access$400(LocalSocketImpl.java:29)
+  at android.net.LocalSocketImpl$SocketInputStream.read(LocalSocketImpl.java:92)
+  at com.android.server.NativeDaemonConnector.listenToSocket(NativeDaemonConnector.java:109)
+  at com.android.server.NativeDaemonConnector.run(NativeDaemonConnector.java:83)
+  at java.lang.Thread.run(Thread.java:1096)
+
+"InputDispatcher" prio=5 tid=20 NATIVE
+  | group="main" sCount=1 dsCount=0 s=Y obj=0x44f98ae0 self=0x2c4950
+  | sysTid=88 nice=-8 sched=0/0 cgrp=default handle=2907208
+  | schedstat=( 915444078 3291143331 1565 )
+  at android.os.Process.sendSignal(Native Method)
+  at com.android.server.am.ActivityManagerService.dumpStackTraces(ActivityManagerService.java:4819)
+  at com.android.server.am.ActivityManagerService.appNotResponding(ActivityManagerService.java:4875)
+  at com.android.server.am.HistoryRecord.keyDispatchingTimedOut(HistoryRecord.java:489)
+  at com.android.server.WindowManagerService$KeyWaiter.waitForNextEventTarget(WindowManagerService.java:5825)
+  at com.android.server.WindowManagerService.dispatchPointer(WindowManagerService.java:5056)
+  at com.android.server.WindowManagerService.access$1400(WindowManagerService.java:137)
+  at com.android.server.WindowManagerService$InputDispatcherThread.process(WindowManagerService.java:6602)
+  at com.android.server.WindowManagerService$InputDispatcherThread.run(WindowManagerService.java:6482)
+
+"WindowManagerPolicy" prio=5 tid=19 WAIT
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44ee40f8 self=0x2ba268
+  | sysTid=87 nice=-2 sched=0/0 cgrp=default handle=2859944
+  | schedstat=( 2248455255 6333303609 1831 )
+  at java.lang.Object.wait(Native Method)
+  - waiting on <0x44f02cf0> (a android.os.MessageQueue)
+  at java.lang.Object.wait(Object.java:288)
+  at android.os.MessageQueue.next(MessageQueue.java:146)
+  at android.os.Looper.loop(Looper.java:110)
+  at com.android.server.WindowManagerService$PolicyThread.run(WindowManagerService.java:606)
+
+"InputDeviceReader" prio=5 tid=18 NATIVE
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44f05498 self=0x2b9138
+  | sysTid=86 nice=-8 sched=0/0 cgrp=default handle=2857280
+  | schedstat=( 1313146110 2645294271 925 )
+  at com.android.server.KeyInputQueue.readEvent(Native Method)
+  at com.android.server.KeyInputQueue.access$000(KeyInputQueue.java:51)
+  at com.android.server.KeyInputQueue$1.run(KeyInputQueue.java:515)
+
+"WindowManager" prio=5 tid=17 WAIT
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44f7d210 self=0x2be2d8
+  | sysTid=85 nice=-4 sched=0/0 cgrp=default handle=2869312
+  | schedstat=( 1280191111 986682118 1574 )
+  at java.lang.Object.wait(Native Method)
+  - waiting on <0x44e9b558> (a android.os.MessageQueue)
+  at java.lang.Object.wait(Object.java:288)
+  at android.os.MessageQueue.next(MessageQueue.java:146)
+  at android.os.Looper.loop(Looper.java:110)
+  at com.android.server.WindowManagerService$WMThread.run(WindowManagerService.java:570)
+
+"AlarmManager" prio=5 tid=16 NATIVE
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44f00e48 self=0x2bcae8
+  | sysTid=84 nice=0 sched=0/0 cgrp=default handle=2869216
+  | schedstat=( 138464018 270051025 34 )
+  at com.android.server.AlarmManagerService.waitForAlarm(Native Method)
+  at com.android.server.AlarmManagerService.access$100(AlarmManagerService.java:54)
+  at com.android.server.AlarmManagerService$AlarmThread.run(AlarmManagerService.java:643)
+
+"PowerManagerService" prio=5 tid=15 TIMED_WAIT
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44f93418 self=0x2c19e8
+  | sysTid=83 nice=0 sched=0/0 cgrp=default handle=2840976
+  | schedstat=( 245214017 284019031 686 )
+  at java.lang.Object.wait(Native Method)
+  - waiting on <0x44f92a08> (a android.os.MessageQueue)
+  at java.lang.Object.wait(Object.java:326)
+  at android.os.MessageQueue.next(MessageQueue.java:142)
+  at android.os.Looper.loop(Looper.java:110)
+  at android.os.HandlerThread.run(HandlerThread.java:60)
+
+"UEventObserver" prio=5 tid=14 NATIVE
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44fabc00 self=0x29df48
+  | sysTid=82 nice=0 sched=0/0 cgrp=default handle=2731504
+  | schedstat=( 1901000 16371002 3 )
+  at android.os.UEventObserver.next_event(Native Method)
+  at android.os.UEventObserver.access$100(UEventObserver.java:39)
+  at android.os.UEventObserver$UEventThread.run(UEventObserver.java:102)
+
+"SyncHandlerThread" prio=5 tid=13 WAIT
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44f12b80 self=0x2c06c8
+  | sysTid=81 nice=10 sched=0/0 cgrp=bg_non_interactive handle=2233672
+  | schedstat=( 10709000 1407748142 11 )
+  at java.lang.Object.wait(Native Method)
+  - waiting on <0x44f04428> (a android.os.MessageQueue)
+  at java.lang.Object.wait(Object.java:288)
+  at android.os.MessageQueue.next(MessageQueue.java:146)
+  at android.os.Looper.loop(Looper.java:110)
+  at android.os.HandlerThread.run(HandlerThread.java:60)
+
+"AccountManagerService" prio=5 tid=12 WAIT
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44f81ba0 self=0x116218
+  | sysTid=79 nice=0 sched=0/0 cgrp=default handle=2168696
+  | schedstat=( 1645000 3716000 5 )
+  at java.lang.Object.wait(Native Method)
+  - waiting on <0x44f24e80> (a android.os.MessageQueue)
+  at java.lang.Object.wait(Object.java:288)
+  at android.os.MessageQueue.next(MessageQueue.java:146)
+  at android.os.Looper.loop(Looper.java:110)
+  at android.os.HandlerThread.run(HandlerThread.java:60)
+
+"FileObserver" prio=5 tid=11 NATIVE
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44f033a0 self=0x293388
+  | sysTid=78 nice=0 sched=0/0 cgrp=default handle=2700488
+  | schedstat=( 22476004 25706003 31 )
+  at android.os.FileObserver$ObserverThread.observe(Native Method)
+  at android.os.FileObserver$ObserverThread.run(FileObserver.java:88)
+
+"PackageManager" prio=5 tid=10 WAIT
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44ec1ab0 self=0x2b5f28
+  | sysTid=77 nice=10 sched=0/0 cgrp=bg_non_interactive handle=1194784
+  | schedstat=( 4029300391 4579477453 248 )
+  at java.lang.Object.wait(Native Method)
+  - waiting on <0x44ec5720> (a android.os.MessageQueue)
+  at java.lang.Object.wait(Object.java:288)
+  at android.os.MessageQueue.next(MessageQueue.java:146)
+  at android.os.Looper.loop(Looper.java:110)
+  at android.os.HandlerThread.run(HandlerThread.java:60)
+
+"ProcessStats" prio=5 tid=9 TIMED_WAIT
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44ebd288 self=0x2ad750
+  | sysTid=76 nice=0 sched=0/0 cgrp=default handle=1243128
+  | schedstat=( 554753063 1301834118 97 )
+  at java.lang.Object.wait(Native Method)
+  - waiting on <0x44ebd288> (a com.android.server.am.ActivityManagerService$3)
+  at java.lang.Object.wait(Object.java:326)
+  at com.android.server.am.ActivityManagerService$3.run(ActivityManagerService.java:1461)
+
+"ActivityManager" prio=5 tid=8 WAIT
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44e84bf0 self=0x11df68
+  | sysTid=73 nice=-2 sched=0/0 cgrp=default handle=1209992
+  | schedstat=( 1076262114 2804487293 552 )
+  at java.lang.Object.wait(Native Method)
+  - waiting on <0x44e84db8> (a android.os.MessageQueue)
+  at java.lang.Object.wait(Object.java:288)
+  at android.os.MessageQueue.next(MessageQueue.java:146)
+  at android.os.Looper.loop(Looper.java:110)
+  at com.android.server.am.ActivityManagerService$AThread.run(ActivityManagerService.java:1354)
+
+"android.server.ServerThread" prio=5 tid=7 TIMED_WAIT
+  | group="main" sCount=1 dsCount=0 s=Y obj=0x44e78da0 self=0x140ec8
+  | sysTid=71 nice=-2 sched=0/0 cgrp=default handle=1197032
+  | schedstat=( 11611993981 8991535889 6687 )
+  at java.lang.Object.wait(Native Method)
+  at java.lang.Object.wait(Object.java:326)
+  at android.os.MessageQueue.next(MessageQueue.java:142)
+  at android.os.Looper.loop(Looper.java:110)
+  at com.android.server.ServerThread.run(SystemServer.java:506)
+
+"Binder Thread #2" prio=5 tid=6 NATIVE
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44e77390 self=0x136b18
+  | sysTid=67 nice=0 sched=0/0 cgrp=default handle=1231024
+  | schedstat=( 912140095 1160578114 1005 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"Binder Thread #1" prio=5 tid=5 NATIVE
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44e76560 self=0x132868
+  | sysTid=66 nice=0 sched=0/0 cgrp=default handle=1226608
+  | schedstat=( 1196768109 1466100149 1088 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"JDWP" daemon prio=5 tid=4 VMWAIT
+  | group="system" sCount=1 dsCount=0 s=N obj=0x44e752a0 self=0x1245a0
+  | sysTid=65 nice=0 sched=0/0 cgrp=default handle=1171224
+  | schedstat=( 2340000 13863002 7 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"Signal Catcher" daemon prio=5 tid=3 RUNNABLE
+  | group="system" sCount=0 dsCount=0 s=N obj=0x44e751e8 self=0x120298
+  | sysTid=64 nice=0 sched=0/0 cgrp=default handle=1180920
+  | schedstat=( 199554025 795157075 33 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"HeapWorker" daemon prio=5 tid=2 VMWAIT
+  | group="system" sCount=1 dsCount=0 s=N obj=0x438b51e8 self=0x12efc0
+  | sysTid=63 nice=0 sched=0/0 cgrp=default handle=1267496
+  | schedstat=( 1137985128 3342540321 224 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+----- end 62 -----
+
+
+----- pid 280 at 2011-10-10 17:41:10 -----
+Cmd line: com.svox.pico
+
+DALVIK THREADS:
+"main" prio=5 tid=1 WAIT
+  | group="main" sCount=1 dsCount=0 s=N obj=0x4001d8e0 self=0xccb0
+  | sysTid=280 nice=0 sched=0/0 cgrp=bg_non_interactive handle=-1345026008
+  | schedstat=( 225004021 1729421174 44 )
+  at java.lang.Object.wait(Native Method)
+  - waiting on <0x44e7b840> (a android.os.MessageQueue)
+  at java.lang.Object.wait(Object.java:288)
+  at android.os.MessageQueue.next(MessageQueue.java:146)
+  at android.os.Looper.loop(Looper.java:110)
+  at android.app.ActivityThread.main(ActivityThread.java:4627)
+  at java.lang.reflect.Method.invokeNative(Native Method)
+  at java.lang.reflect.Method.invoke(Method.java:521)
+  at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:868)
+  at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:626)
+  at dalvik.system.NativeStart.main(Native Method)
+
+"Binder Thread #2" prio=5 tid=6 NATIVE
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44e766d8 self=0x136b18
+  | sysTid=285 nice=0 sched=0/0 cgrp=bg_non_interactive handle=1158024
+  | schedstat=( 5968000 7075001 2 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"Binder Thread #1" prio=5 tid=5 NATIVE
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44e763b8 self=0x132868
+  | sysTid=284 nice=0 sched=0/0 cgrp=bg_non_interactive handle=1271632
+  | schedstat=( 19084002 60493006 4 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"JDWP" daemon prio=5 tid=4 VMWAIT
+  | group="system" sCount=1 dsCount=0 s=N obj=0x44e752a0 self=0x1245a0
+  | sysTid=283 nice=0 sched=0/0 cgrp=bg_non_interactive handle=1238352
+  | schedstat=( 1827000 24555003 7 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"Signal Catcher" daemon prio=5 tid=3 RUNNABLE
+  | group="system" sCount=0 dsCount=0 s=N obj=0x44e751e8 self=0x120298
+  | sysTid=282 nice=0 sched=0/0 cgrp=bg_non_interactive handle=1247120
+  | schedstat=( 34148003 15372827526 7 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"HeapWorker" daemon prio=5 tid=2 VMWAIT
+  | group="system" sCount=1 dsCount=0 s=N obj=0x438b9338 self=0x12efc0
+  | sysTid=281 nice=0 sched=0/0 cgrp=bg_non_interactive handle=1249312
+  | schedstat=( 49119004 124978014 10 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+----- end 280 -----
+
+
+----- pid 111 at 2011-10-10 17:41:10 -----
+Cmd line: jp.co.omronsoft.openwnn
+
+DALVIK THREADS:
+"main" prio=5 tid=1 WAIT
+  | group="main" sCount=1 dsCount=0 s=N obj=0x4001d8e0 self=0xccb0
+  | sysTid=111 nice=0 sched=0/0 cgrp=default handle=-1345026008
+  | schedstat=( 3950880430 14220241354 579 )
+  at java.lang.Object.wait(Native Method)
+  - waiting on <0x44e7b840> (a android.os.MessageQueue)
+  at java.lang.Object.wait(Object.java:288)
+  at android.os.MessageQueue.next(MessageQueue.java:146)
+  at android.os.Looper.loop(Looper.java:110)
+  at android.app.ActivityThread.main(ActivityThread.java:4627)
+  at java.lang.reflect.Method.invokeNative(Native Method)
+  at java.lang.reflect.Method.invoke(Method.java:521)
+  at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:868)
+  at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:626)
+  at dalvik.system.NativeStart.main(Native Method)
+
+"Binder Thread #2" prio=5 tid=6 NATIVE
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44e768d8 self=0x136b18
+  | sysTid=130 nice=0 sched=0/0 cgrp=default handle=1275872
+  | schedstat=( 66508004 142817016 49 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"Binder Thread #1" prio=5 tid=5 NATIVE
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44e76670 self=0x132868
+  | sysTid=129 nice=0 sched=0/0 cgrp=default handle=1335608
+  | schedstat=( 94801008 103512013 65 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"JDWP" daemon prio=5 tid=4 VMWAIT
+  | group="system" sCount=1 dsCount=0 s=N obj=0x44e752a0 self=0x1245a0
+  | sysTid=121 nice=0 sched=0/0 cgrp=default handle=1208504
+  | schedstat=( 1744000 40456005 7 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"Signal Catcher" daemon prio=5 tid=3 RUNNABLE
+  | group="system" sCount=0 dsCount=0 s=N obj=0x44e751e8 self=0x120298
+  | sysTid=115 nice=0 sched=0/0 cgrp=default handle=1267064
+  | schedstat=( 34006004 61147006 8 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"HeapWorker" daemon prio=5 tid=2 VMWAIT
+  | group="system" sCount=1 dsCount=0 s=N obj=0x438b8168 self=0x12efc0
+  | sysTid=113 nice=0 sched=0/0 cgrp=default handle=1180920
+  | schedstat=( 206641024 755079071 58 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+----- end 111 -----
+
+
+----- pid 116 at 2011-10-10 17:41:11 -----
+Cmd line: com.android.phone
+
+DALVIK THREADS:
+"main" prio=5 tid=1 TIMED_WAIT
+  | group="main" sCount=1 dsCount=0 s=N obj=0x4001d8e0 self=0xccb0
+  | sysTid=116 nice=0 sched=0/0 cgrp=default handle=-1345026008
+  | schedstat=( 1976692178 7080954718 1238 )
+  at java.lang.Object.wait(Native Method)
+  - waiting on <0x44e7b840> (a android.os.MessageQueue)
+  at java.lang.Object.wait(Object.java:326)
+  at android.os.MessageQueue.next(MessageQueue.java:142)
+  at android.os.Looper.loop(Looper.java:110)
+  at android.app.ActivityThread.main(ActivityThread.java:4627)
+  at java.lang.reflect.Method.invokeNative(Native Method)
+  at java.lang.reflect.Method.invoke(Method.java:521)
+  at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:868)
+  at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:626)
+  at dalvik.system.NativeStart.main(Native Method)
+
+"Binder Thread #6" prio=5 tid=17 NATIVE
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44efb890 self=0x2a76c8
+  | sysTid=223 nice=0 sched=0/0 cgrp=default handle=44080
+  | schedstat=( 20216001 101190012 20 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"Binder Thread #5" prio=5 tid=16 NATIVE
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44efb7d0 self=0x2aabf0
+  | sysTid=222 nice=0 sched=0/0 cgrp=default handle=2796464
+  | schedstat=( 29203002 151035015 23 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"Binder Thread #4" prio=5 tid=15 NATIVE
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44efb4c0 self=0x2a9e98
+  | sysTid=221 nice=0 sched=0/0 cgrp=default handle=2791968
+  | schedstat=( 45214004 239764025 34 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"Binder Thread #3" prio=5 tid=14 NATIVE
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44efae90 self=0x2a8770
+  | sysTid=220 nice=0 sched=0/0 cgrp=default handle=1141488
+  | schedstat=( 40076004 236705024 33 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"AsyncQueryWorker" prio=5 tid=13 WAIT
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44ed75c0 self=0x2b1f08
+  | sysTid=151 nice=0 sched=0/0 cgrp=default handle=2825728
+  | schedstat=( 15050000 98580011 12 )
+  at java.lang.Object.wait(Native Method)
+  - waiting on <0x44ed7850> (a android.os.MessageQueue)
+  at java.lang.Object.wait(Object.java:288)
+  at android.os.MessageQueue.next(MessageQueue.java:146)
+  at android.os.Looper.loop(Looper.java:110)
+  at android.os.HandlerThread.run(HandlerThread.java:60)
+
+"Stk Icon Loader" prio=5 tid=12 WAIT
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44ed4c50 self=0x2b0780
+  | sysTid=150 nice=0 sched=0/0 cgrp=default handle=2820288
+  | schedstat=( 1518000 65160007 6 )
+  at java.lang.Object.wait(Native Method)
+  - waiting on <0x44ed4ec0> (a android.os.MessageQueue)
+  at java.lang.Object.wait(Object.java:288)
+  at android.os.MessageQueue.next(MessageQueue.java:146)
+  at android.os.Looper.loop(Looper.java:110)
+  at android.os.HandlerThread.run(HandlerThread.java:60)
+
+"RilMessageDecoder" prio=5 tid=11 WAIT
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44ed43d0 self=0x2af858
+  | sysTid=149 nice=0 sched=0/0 cgrp=default handle=2816408
+  | schedstat=( 1810000 21134002 6 )
+  at java.lang.Object.wait(Native Method)
+  - waiting on <0x44ed46b8> (a android.os.MessageQueue)
+  at java.lang.Object.wait(Object.java:288)
+  at android.os.MessageQueue.next(MessageQueue.java:146)
+  at android.os.Looper.loop(Looper.java:110)
+  at android.os.HandlerThread.run(HandlerThread.java:60)
+
+"Stk Telephony service" prio=5 tid=10 WAIT
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44ed4120 self=0x2aedf8
+  | sysTid=148 nice=0 sched=0/0 cgrp=default handle=2813752
+  | schedstat=( 1252000 57385006 3 )
+  at java.lang.Object.wait(Native Method)
+  - waiting on <0x44ed45a0> (a android.os.MessageQueue)
+  at java.lang.Object.wait(Object.java:288)
+  at android.os.MessageQueue.next(MessageQueue.java:146)
+  at android.os.Looper.loop(Looper.java:110)
+  at android.os.HandlerThread.run(HandlerThread.java:60)
+
+"GsmDataConnection-1" prio=5 tid=9 WAIT
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44ecc638 self=0x2a3278
+  | sysTid=147 nice=0 sched=0/0 cgrp=default handle=2765752
+  | schedstat=( 15150000 136297014 20 )
+  at java.lang.Object.wait(Native Method)
+  - waiting on <0x44ecc808> (a android.os.MessageQueue)
+  at java.lang.Object.wait(Object.java:288)
+  at android.os.MessageQueue.next(MessageQueue.java:146)
+  at android.os.Looper.loop(Looper.java:110)
+  at android.os.HandlerThread.run(HandlerThread.java:60)
+
+"RILReceiver" prio=5 tid=8 NATIVE
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44ebf600 self=0x211590
+  | sysTid=144 nice=0 sched=0/0 cgrp=default handle=2168528
+  | schedstat=( 281687018 1213757119 211 )
+  at android.net.LocalSocketImpl.readba_native(Native Method)
+  at android.net.LocalSocketImpl.access$400(LocalSocketImpl.java:29)
+  at android.net.LocalSocketImpl$SocketInputStream.read(LocalSocketImpl.java:92)
+  at com.android.internal.telephony.RIL.readRilMessage(RIL.java:424)
+  at com.android.internal.telephony.RIL.access$200(RIL.java:206)
+  at com.android.internal.telephony.RIL$RILReceiver.run(RIL.java:523)
+  at java.lang.Thread.run(Thread.java:1096)
+
+"RILSender" prio=5 tid=7 TIMED_WAIT
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44ebd1f0 self=0x211380
+  | sysTid=143 nice=0 sched=0/0 cgrp=default handle=1211416
+  | schedstat=( 125688009 92205012 408 )
+  at java.lang.Object.wait(Native Method)
+  - waiting on <0x44ebd408> (a android.os.MessageQueue)
+  at java.lang.Object.wait(Object.java:326)
+  at android.os.MessageQueue.next(MessageQueue.java:142)
+  at android.os.Looper.loop(Looper.java:110)
+  at android.os.HandlerThread.run(HandlerThread.java:60)
+
+"Binder Thread #2" prio=5 tid=6 NATIVE
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44e76c40 self=0x136b18
+  | sysTid=133 nice=0 sched=0/0 cgrp=default handle=1190872
+  | schedstat=( 228589030 817696078 84 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"Binder Thread #1" prio=5 tid=5 NATIVE
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44e76618 self=0x132868
+  | sysTid=132 nice=0 sched=0/0 cgrp=default handle=1271608
+  | schedstat=( 85600005 316935032 68 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"JDWP" daemon prio=5 tid=4 VMWAIT
+  | group="system" sCount=1 dsCount=0 s=N obj=0x44e752a0 self=0x1245a0
+  | sysTid=127 nice=0 sched=0/0 cgrp=default handle=1293720
+  | schedstat=( 1928001 31544003 7 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"Signal Catcher" daemon prio=5 tid=3 RUNNABLE
+  | group="system" sCount=0 dsCount=0 s=N obj=0x44e751e8 self=0x120298
+  | sysTid=118 nice=0 sched=0/0 cgrp=default handle=1178336
+  | schedstat=( 126838015 527285051 21 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"HeapWorker" daemon prio=5 tid=2 VMWAIT
+  | group="system" sCount=1 dsCount=0 s=N obj=0x438b86b0 self=0x12efc0
+  | sysTid=117 nice=0 sched=0/0 cgrp=default handle=1247120
+  | schedstat=( 111364016 600688055 22 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+----- end 116 -----
+
+
+----- pid 158 at 2011-10-10 17:41:12 -----
+Cmd line: com.android.alarmclock
+
+DALVIK THREADS:
+"main" prio=5 tid=1 WAIT
+  | group="main" sCount=1 dsCount=0 s=N obj=0x4001d8e0 self=0xccb0
+  | sysTid=158 nice=0 sched=0/0 cgrp=bg_non_interactive handle=-1345026008
+  | schedstat=( 458154052 2653869260 95 )
+  at java.lang.Object.wait(Native Method)
+  - waiting on <0x44e7b840> (a android.os.MessageQueue)
+  at java.lang.Object.wait(Object.java:288)
+  at android.os.MessageQueue.next(MessageQueue.java:146)
+  at android.os.Looper.loop(Looper.java:110)
+  at android.app.ActivityThread.main(ActivityThread.java:4627)
+  at java.lang.reflect.Method.invokeNative(Native Method)
+  at java.lang.reflect.Method.invoke(Method.java:521)
+  at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:868)
+  at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:626)
+  at dalvik.system.NativeStart.main(Native Method)
+
+"Binder Thread #2" prio=5 tid=6 NATIVE
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44e768d8 self=0x136b18
+  | sysTid=164 nice=0 sched=0/0 cgrp=bg_non_interactive handle=1240424
+  | schedstat=( 5657001 646152066 4 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"Binder Thread #1" prio=5 tid=5 NATIVE
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44e76818 self=0x132868
+  | sysTid=163 nice=0 sched=0/0 cgrp=default handle=1294184
+  | schedstat=( 39001003 83738009 10 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"JDWP" daemon prio=5 tid=4 VMWAIT
+  | group="system" sCount=1 dsCount=0 s=N obj=0x44e752a0 self=0x1245a0
+  | sysTid=161 nice=0 sched=0/0 cgrp=bg_non_interactive handle=1195688
+  | schedstat=( 1715000 87311009 7 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"Signal Catcher" daemon prio=5 tid=3 RUNNABLE
+  | group="system" sCount=0 dsCount=0 s=N obj=0x44e751e8 self=0x120298
+  | sysTid=160 nice=0 sched=0/0 cgrp=bg_non_interactive handle=1202656
+  | schedstat=( 40643006 15315805530 12 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"HeapWorker" daemon prio=5 tid=2 VMWAIT
+  | group="system" sCount=1 dsCount=0 s=N obj=0x438b9698 self=0x12efc0
+  | sysTid=159 nice=0 sched=0/0 cgrp=bg_non_interactive handle=1235040
+  | schedstat=( 57794007 652451064 11 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+----- end 158 -----
+
+
+----- pid 183 at 2011-10-10 17:41:11 -----
+Cmd line: com.android.quicksearchbox
+
+DALVIK THREADS:
+"main" prio=5 tid=1 WAIT
+  | group="main" sCount=1 dsCount=0 s=N obj=0x4001d8e0 self=0xccb0
+  | sysTid=183 nice=0 sched=0/0 cgrp=bg_non_interactive handle=-1345026008
+  | schedstat=( 341121032 816785082 71 )
+  at java.lang.Object.wait(Native Method)
+  - waiting on <0x44e7b840> (a android.os.MessageQueue)
+  at java.lang.Object.wait(Object.java:288)
+  at android.os.MessageQueue.next(MessageQueue.java:146)
+  at android.os.Looper.loop(Looper.java:110)
+  at android.app.ActivityThread.main(ActivityThread.java:4627)
+  at java.lang.reflect.Method.invokeNative(Native Method)
+  at java.lang.reflect.Method.invoke(Method.java:521)
+  at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:868)
+  at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:626)
+  at dalvik.system.NativeStart.main(Native Method)
+
+"RefQueueWorker@org.apache.http.impl.conn.tsccm.ConnPoolByRoute@44e8dba8" daemon prio=5 tid=7 WAIT
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44e90d90 self=0x1341f8
+  | sysTid=191 nice=0 sched=0/0 cgrp=bg_non_interactive handle=1196376
+  | schedstat=( 727000 8136001 3 )
+  at java.lang.Object.wait(Native Method)
+  - waiting on <0x44e8fce0> (a java.lang.ref.ReferenceQueue)
+  at java.lang.Object.wait(Object.java:326)
+  at java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:107)
+  at java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:80)
+  at org.apache.http.impl.conn.tsccm.RefQueueWorker.run(RefQueueWorker.java:102)
+  at java.lang.Thread.run(Thread.java:1096)
+
+"Binder Thread #2" prio=5 tid=6 NATIVE
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44e7b780 self=0x136b18
+  | sysTid=188 nice=0 sched=0/0 cgrp=default handle=2373824
+  | schedstat=( 13669001 59888005 4 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"Binder Thread #1" prio=5 tid=5 NATIVE
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44e77810 self=0x132868
+  | sysTid=187 nice=0 sched=0/0 cgrp=bg_non_interactive handle=1155096
+  | schedstat=( 27509001 96122011 10 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"JDWP" daemon prio=5 tid=4 VMWAIT
+  | group="system" sCount=1 dsCount=0 s=N obj=0x44e752a0 self=0x1245a0
+  | sysTid=186 nice=0 sched=0/0 cgrp=bg_non_interactive handle=1273376
+  | schedstat=( 2506000 54677006 7 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"Signal Catcher" daemon prio=5 tid=3 RUNNABLE
+  | group="system" sCount=0 dsCount=0 s=N obj=0x44e751e8 self=0x120298
+  | sysTid=185 nice=0 sched=0/0 cgrp=bg_non_interactive handle=1134944
+  | schedstat=( 49647006 20051956001 15 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"HeapWorker" daemon prio=5 tid=2 VMWAIT
+  | group="system" sCount=1 dsCount=0 s=N obj=0x438ba000 self=0x12efc0
+  | sysTid=184 nice=0 sched=0/0 cgrp=bg_non_interactive handle=1246696
+  | schedstat=( 49088004 324324034 11 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+----- end 183 -----
+
+
+----- pid 119 at 2011-10-10 17:41:12 -----
+Cmd line: com.android.launcher
+
+DALVIK THREADS:
+"main" prio=5 tid=1 WAIT
+  | group="main" sCount=1 dsCount=0 s=N obj=0x4001d8e0 self=0xccb0
+  | sysTid=119 nice=0 sched=0/0 cgrp=bg_non_interactive handle=-1345026008
+  | schedstat=( 7438481783 19243321850 1076 )
+  at java.lang.Object.wait(Native Method)
+  - waiting on <0x44e7b840> (a android.os.MessageQueue)
+  at java.lang.Object.wait(Object.java:288)
+  at android.os.MessageQueue.next(MessageQueue.java:146)
+  at android.os.Looper.loop(Looper.java:110)
+  at android.app.ActivityThread.main(ActivityThread.java:4627)
+  at java.lang.reflect.Method.invokeNative(Native Method)
+  at java.lang.reflect.Method.invoke(Method.java:521)
+  at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:868)
+  at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:626)
+  at dalvik.system.NativeStart.main(Native Method)
+
+"Binder Thread #2" prio=5 tid=6 NATIVE
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44e768d8 self=0x136b18
+  | sysTid=135 nice=0 sched=0/0 cgrp=default handle=1190872
+  | schedstat=( 92633010 142265015 87 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"Binder Thread #1" prio=5 tid=5 NATIVE
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44e76818 self=0x132868
+  | sysTid=134 nice=0 sched=0/0 cgrp=default handle=1271608
+  | schedstat=( 103237010 111140011 92 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"JDWP" daemon prio=5 tid=4 VMWAIT
+  | group="system" sCount=1 dsCount=0 s=N obj=0x44e752a0 self=0x1245a0
+  | sysTid=128 nice=0 sched=0/0 cgrp=bg_non_interactive handle=1293720
+  | schedstat=( 2097000 39524004 7 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"Signal Catcher" daemon prio=5 tid=3 RUNNABLE
+  | group="system" sCount=0 dsCount=0 s=N obj=0x44e751e8 self=0x120298
+  | sysTid=123 nice=0 sched=0/0 cgrp=bg_non_interactive handle=1178336
+  | schedstat=( 35373005 16074815598 13 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"HeapWorker" daemon prio=5 tid=2 VMWAIT
+  | group="system" sCount=1 dsCount=0 s=N obj=0x438b89b0 self=0x12efc0
+  | sysTid=120 nice=0 sched=0/0 cgrp=bg_non_interactive handle=1247120
+  | schedstat=( 346135039 771091070 66 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+----- end 119 -----
+
+
+----- pid 192 at 2011-10-10 17:41:11 -----
+Cmd line: com.android.protips
+
+DALVIK THREADS:
+"main" prio=5 tid=1 WAIT
+  | group="main" sCount=1 dsCount=0 s=N obj=0x4001d8e0 self=0xccb0
+  | sysTid=192 nice=0 sched=0/0 cgrp=bg_non_interactive handle=-1345026008
+  | schedstat=( 361496034 314251030 64 )
+  at java.lang.Object.wait(Native Method)
+  - waiting on <0x44e7b840> (a android.os.MessageQueue)
+  at java.lang.Object.wait(Object.java:288)
+  at android.os.MessageQueue.next(MessageQueue.java:146)
+  at android.os.Looper.loop(Looper.java:110)
+  at android.app.ActivityThread.main(ActivityThread.java:4627)
+  at java.lang.reflect.Method.invokeNative(Native Method)
+  at java.lang.reflect.Method.invoke(Method.java:521)
+  at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:868)
+  at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:626)
+  at dalvik.system.NativeStart.main(Native Method)
+
+"Binder Thread #2" prio=5 tid=6 NATIVE
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44e76ce8 self=0x136b18
+  | sysTid=197 nice=0 sched=0/0 cgrp=bg_non_interactive handle=1274872
+  | schedstat=( 7909001 232000 3 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"Binder Thread #1" prio=5 tid=5 NATIVE
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44e76c28 self=0x132868
+  | sysTid=196 nice=0 sched=0/0 cgrp=default handle=1317640
+  | schedstat=( 25357003 85466009 8 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"JDWP" daemon prio=5 tid=4 VMWAIT
+  | group="system" sCount=1 dsCount=0 s=N obj=0x44e752a0 self=0x1245a0
+  | sysTid=195 nice=0 sched=0/0 cgrp=bg_non_interactive handle=1171224
+  | schedstat=( 3139001 21183002 7 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"Signal Catcher" daemon prio=5 tid=3 RUNNABLE
+  | group="system" sCount=0 dsCount=0 s=N obj=0x44e751e8 self=0x120298
+  | sysTid=194 nice=0 sched=0/0 cgrp=bg_non_interactive handle=1180920
+  | schedstat=( 45651006 19643375952 17 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"HeapWorker" daemon prio=5 tid=2 VMWAIT
+  | group="system" sCount=1 dsCount=0 s=N obj=0x438b7c00 self=0x12efc0
+  | sysTid=193 nice=0 sched=0/0 cgrp=bg_non_interactive handle=1267496
+  | schedstat=( 40557005 993812098 9 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+----- end 192 -----
+
+
+----- pid 173 at 2011-10-10 17:41:11 -----
+Cmd line: com.android.music
+
+DALVIK THREADS:
+"main" prio=5 tid=1 WAIT
+  | group="main" sCount=1 dsCount=0 s=N obj=0x4001d8e0 self=0xccb0
+  | sysTid=173 nice=0 sched=0/0 cgrp=bg_non_interactive handle=-1345026008
+  | schedstat=( 288583026 1231065127 62 )
+  at java.lang.Object.wait(Native Method)
+  - waiting on <0x44e7b840> (a android.os.MessageQueue)
+  at java.lang.Object.wait(Object.java:288)
+  at android.os.MessageQueue.next(MessageQueue.java:146)
+  at android.os.Looper.loop(Looper.java:110)
+  at android.app.ActivityThread.main(ActivityThread.java:4627)
+  at java.lang.reflect.Method.invokeNative(Native Method)
+  at java.lang.reflect.Method.invoke(Method.java:521)
+  at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:868)
+  at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:626)
+  at dalvik.system.NativeStart.main(Native Method)
+
+"Binder Thread #2" prio=5 tid=6 NATIVE
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44e768d8 self=0x136b18
+  | sysTid=179 nice=0 sched=0/0 cgrp=bg_non_interactive handle=1270592
+  | schedstat=( 7633001 16268002 3 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"Binder Thread #1" prio=5 tid=5 NATIVE
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44e763b8 self=0x132868
+  | sysTid=178 nice=0 sched=0/0 cgrp=default handle=1159408
+  | schedstat=( 26636001 58338006 8 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"JDWP" daemon prio=5 tid=4 VMWAIT
+  | group="system" sCount=1 dsCount=0 s=N obj=0x44e752a0 self=0x1245a0
+  | sysTid=177 nice=0 sched=0/0 cgrp=bg_non_interactive handle=1203280
+  | schedstat=( 2017000 70559008 7 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"Signal Catcher" daemon prio=5 tid=3 RUNNABLE
+  | group="system" sCount=0 dsCount=0 s=N obj=0x44e751e8 self=0x120298
+  | sysTid=175 nice=0 sched=0/0 cgrp=bg_non_interactive handle=1243128
+  | schedstat=( 42457005 20021868988 11 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"HeapWorker" daemon prio=5 tid=2 VMWAIT
+  | group="system" sCount=1 dsCount=0 s=N obj=0x438b9b78 self=0x12efc0
+  | sysTid=174 nice=0 sched=0/0 cgrp=bg_non_interactive handle=1284960
+  | schedstat=( 48198005 464774047 11 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+----- end 173 -----
+
+
+----- pid 122 at 2011-10-10 17:41:13 -----
+Cmd line: com.android.settings
+
+DALVIK THREADS:
+"main" prio=5 tid=1 WAIT
+  | group="main" sCount=1 dsCount=0 s=N obj=0x4001d8e0 self=0xccb0
+  | sysTid=122 nice=0 sched=0/0 cgrp=bg_non_interactive handle=-1345026008
+  | schedstat=( 334227032 3255394325 59 )
+  at java.lang.Object.wait(Native Method)
+  - waiting on <0x44e7b840> (a android.os.MessageQueue)
+  at java.lang.Object.wait(Object.java:288)
+  at android.os.MessageQueue.next(MessageQueue.java:146)
+  at android.os.Looper.loop(Looper.java:110)
+  at android.app.ActivityThread.main(ActivityThread.java:4627)
+  at java.lang.reflect.Method.invokeNative(Native Method)
+  at java.lang.reflect.Method.invoke(Method.java:521)
+  at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:868)
+  at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:626)
+  at dalvik.system.NativeStart.main(Native Method)
+
+"Binder Thread #2" prio=5 tid=6 NATIVE
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44e768d8 self=0x136b18
+  | sysTid=137 nice=0 sched=0/0 cgrp=default handle=1194032
+  | schedstat=( 17213002 152167015 5 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"Binder Thread #1" prio=5 tid=5 NATIVE
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44e76818 self=0x132868
+  | sysTid=136 nice=0 sched=0/0 cgrp=default handle=1203664
+  | schedstat=( 24802003 3568673358 5 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"JDWP" daemon prio=5 tid=4 VMWAIT
+  | group="system" sCount=1 dsCount=0 s=N obj=0x44e752a0 self=0x1245a0
+  | sysTid=131 nice=0 sched=0/0 cgrp=bg_non_interactive handle=1341200
+  | schedstat=( 1755000 36183004 7 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"Signal Catcher" daemon prio=5 tid=3 RUNNABLE
+  | group="system" sCount=0 dsCount=0 s=N obj=0x44e751e8 self=0x120298
+  | sysTid=126 nice=0 sched=0/0 cgrp=bg_non_interactive handle=1226376
+  | schedstat=( 44995005 14808876470 15 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"HeapWorker" daemon prio=5 tid=2 VMWAIT
+  | group="system" sCount=1 dsCount=0 s=N obj=0x438b8eb8 self=0x12efc0
+  | sysTid=125 nice=0 sched=0/0 cgrp=bg_non_interactive handle=1158064
+  | schedstat=( 48668006 265406026 13 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+----- end 122 -----
+
+
+----- pid 225 at 2011-10-10 17:41:12 -----
+Cmd line: com.android.email
+
+DALVIK THREADS:
+"main" prio=5 tid=1 WAIT
+  | group="main" sCount=1 dsCount=0 s=N obj=0x4001d8e0 self=0xccb0
+  | sysTid=225 nice=0 sched=0/0 cgrp=bg_non_interactive handle=-1345026008
+  | schedstat=( 447401043 378283040 75 )
+  at java.lang.Object.wait(Native Method)
+  - waiting on <0x44e7b840> (a android.os.MessageQueue)
+  at java.lang.Object.wait(Object.java:288)
+  at android.os.MessageQueue.next(MessageQueue.java:146)
+  at android.os.Looper.loop(Looper.java:110)
+  at android.app.ActivityThread.main(ActivityThread.java:4627)
+  at java.lang.reflect.Method.invokeNative(Native Method)
+  at java.lang.reflect.Method.invoke(Method.java:521)
+  at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:868)
+  at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:626)
+  at dalvik.system.NativeStart.main(Native Method)
+
+"Thread-8" prio=5 tid=7 WAIT
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44ea4698 self=0x121540
+  | sysTid=232 nice=10 sched=0/0 cgrp=bg_non_interactive handle=1315016
+  | schedstat=( 2760000 406253041 4 )
+  at java.lang.Object.wait(Native Method)
+  - waiting on <0x44ea47d0> (a java.lang.VMThread)
+  at java.lang.Thread.parkFor(Thread.java:1535)
+  at java.lang.LangAccessImpl.parkFor(LangAccessImpl.java:48)
+  at sun.misc.Unsafe.park(Unsafe.java:317)
+  at java.util.concurrent.locks.LockSupport.park(LockSupport.java:131)
+  at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:1996)
+  at java.util.concurrent.LinkedBlockingQueue.take(LinkedBlockingQueue.java:359)
+  at com.android.email.MessagingController.run(MessagingController.java:165)
+  at java.lang.Thread.run(Thread.java:1096)
+
+"Binder Thread #2" prio=5 tid=6 NATIVE
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44e7a560 self=0x136b18
+  | sysTid=231 nice=0 sched=0/0 cgrp=default handle=1208504
+  | schedstat=( 16915003 72965007 7 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"Binder Thread #1" prio=5 tid=5 NATIVE
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44e76ac0 self=0x132868
+  | sysTid=230 nice=0 sched=0/0 cgrp=bg_non_interactive handle=1284592
+  | schedstat=( 25879002 79856008 7 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"JDWP" daemon prio=5 tid=4 VMWAIT
+  | group="system" sCount=1 dsCount=0 s=N obj=0x44e752a0 self=0x1245a0
+  | sysTid=229 nice=0 sched=0/0 cgrp=bg_non_interactive handle=1267064
+  | schedstat=( 1851000 16454002 7 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"Signal Catcher" daemon prio=5 tid=3 RUNNABLE
+  | group="system" sCount=0 dsCount=0 s=N obj=0x44e751e8 self=0x120298
+  | sysTid=228 nice=0 sched=0/0 cgrp=bg_non_interactive handle=1171224
+  | schedstat=( 55702008 15827177579 13 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"HeapWorker" daemon prio=5 tid=2 VMWAIT
+  | group="system" sCount=1 dsCount=0 s=N obj=0x438b8b58 self=0x12efc0
+  | sysTid=227 nice=0 sched=0/0 cgrp=bg_non_interactive handle=1267496
+  | schedstat=( 50340006 10432000 9 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+----- end 225 -----
+
+
+----- pid 247 at 2011-10-10 17:41:10 -----
+Cmd line: com.android.defcontainer
+
+DALVIK THREADS:
+"main" prio=5 tid=1 WAIT
+  | group="main" sCount=1 dsCount=0 s=N obj=0x4001d8e0 self=0xccb0
+  | sysTid=247 nice=0 sched=0/0 cgrp=bg_non_interactive handle=-1345026008
+  | schedstat=( 213912025 122799012 59 )
+  at java.lang.Object.wait(Native Method)
+  - waiting on <0x44e7b840> (a android.os.MessageQueue)
+  at java.lang.Object.wait(Object.java:288)
+  at android.os.MessageQueue.next(MessageQueue.java:146)
+  at android.os.Looper.loop(Looper.java:110)
+  at android.app.ActivityThread.main(ActivityThread.java:4627)
+  at java.lang.reflect.Method.invokeNative(Native Method)
+  at java.lang.reflect.Method.invoke(Method.java:521)
+  at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:868)
+  at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:626)
+  at dalvik.system.NativeStart.main(Native Method)
+
+"Binder Thread #4" prio=5 tid=9 NATIVE
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44e82c80 self=0x139528
+  | sysTid=278 nice=0 sched=0/0 cgrp=bg_non_interactive handle=1178904
+  | schedstat=( 1835000 196000 2 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"Binder Thread #3" prio=5 tid=8 NATIVE
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44e84070 self=0x11f848
+  | sysTid=277 nice=0 sched=0/0 cgrp=bg_non_interactive handle=1178160
+  | schedstat=( 2962000 6015001 2 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"Binder Thread #2" prio=5 tid=6 NATIVE
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44e77100 self=0x136b18
+  | sysTid=252 nice=0 sched=0/0 cgrp=default handle=1158024
+  | schedstat=( 361827031 297156022 37 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"Binder Thread #1" prio=5 tid=5 NATIVE
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44e77040 self=0x132868
+  | sysTid=251 nice=0 sched=0/0 cgrp=bg_non_interactive handle=1271632
+  | schedstat=( 556262042 74027007 26 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"JDWP" daemon prio=5 tid=4 VMWAIT
+  | group="system" sCount=1 dsCount=0 s=N obj=0x44e752a0 self=0x1245a0
+  | sysTid=250 nice=0 sched=0/0 cgrp=bg_non_interactive handle=1238352
+  | schedstat=( 1546000 6920001 7 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"Signal Catcher" daemon prio=5 tid=3 RUNNABLE
+  | group="system" sCount=0 dsCount=0 s=N obj=0x44e751e8 self=0x120298
+  | sysTid=249 nice=0 sched=0/0 cgrp=bg_non_interactive handle=1247120
+  | schedstat=( 60733006 23900994371 12 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"HeapWorker" daemon prio=5 tid=2 VMWAIT
+  | group="system" sCount=1 dsCount=0 s=N obj=0x438b9038 self=0x12efc0
+  | sysTid=248 nice=0 sched=0/0 cgrp=bg_non_interactive handle=1249312
+  | schedstat=( 79032008 40412005 22 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+----- end 247 -----
+
+
+----- pid 209 at 2011-10-10 17:41:12 -----
+Cmd line: com.android.mms
+
+DALVIK THREADS:
+"main" prio=5 tid=1 WAIT
+  | group="main" sCount=1 dsCount=0 s=N obj=0x4001d8e0 self=0xccb0
+  | sysTid=209 nice=0 sched=0/0 cgrp=bg_non_interactive handle=-1345026008
+  | schedstat=( 458180048 399323039 84 )
+  at java.lang.Object.wait(Native Method)
+  - waiting on <0x44e7b840> (a android.os.MessageQueue)
+  at java.lang.Object.wait(Object.java:288)
+  at android.os.MessageQueue.next(MessageQueue.java:146)
+  at android.os.Looper.loop(Looper.java:110)
+  at android.app.ActivityThread.main(ActivityThread.java:4627)
+  at java.lang.reflect.Method.invokeNative(Native Method)
+  at java.lang.reflect.Method.invoke(Method.java:521)
+  at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:868)
+  at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:626)
+  at dalvik.system.NativeStart.main(Native Method)
+
+"Thread-8" prio=5 tid=7 WAIT
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44e9dda8 self=0x12fbb8
+  | sysTid=216 nice=0 sched=0/0 cgrp=bg_non_interactive handle=1140880
+  | schedstat=( 758000 3822000 3 )
+  at java.lang.Object.wait(Native Method)
+  - waiting on <0x44e9dd38> (a java.util.ArrayList)
+  at java.lang.Object.wait(Object.java:288)
+  at com.android.mms.data.Contact$ContactsCache$TaskStack$1.run(Contact.java:374)
+  at java.lang.Thread.run(Thread.java:1096)
+
+"Binder Thread #2" prio=5 tid=6 NATIVE
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44e77498 self=0x136b18
+  | sysTid=215 nice=0 sched=0/0 cgrp=default handle=1215928
+  | schedstat=( 21542002 17465002 20 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"Binder Thread #1" prio=5 tid=5 NATIVE
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44e773d8 self=0x132868
+  | sysTid=214 nice=0 sched=0/0 cgrp=default handle=1226608
+  | schedstat=( 24007003 109019011 14 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"JDWP" daemon prio=5 tid=4 VMWAIT
+  | group="system" sCount=1 dsCount=0 s=N obj=0x44e752a0 self=0x1245a0
+  | sysTid=213 nice=0 sched=0/0 cgrp=bg_non_interactive handle=1171224
+  | schedstat=( 2533000 22914003 7 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"Signal Catcher" daemon prio=5 tid=3 RUNNABLE
+  | group="system" sCount=0 dsCount=0 s=N obj=0x44e751e8 self=0x120298
+  | sysTid=212 nice=0 sched=0/0 cgrp=bg_non_interactive handle=1180920
+  | schedstat=( 61081007 17825646771 14 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"HeapWorker" daemon prio=5 tid=2 VMWAIT
+  | group="system" sCount=1 dsCount=0 s=N obj=0x438b8678 self=0x12efc0
+  | sysTid=210 nice=0 sched=0/0 cgrp=bg_non_interactive handle=1267496
+  | schedstat=( 32516003 32754004 9 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+----- end 209 -----
+
+
+----- pid 152 at 2011-10-10 17:41:12 -----
+Cmd line: android.process.acore
+
+DALVIK THREADS:
+"main" prio=5 tid=1 WAIT
+  | group="main" sCount=1 dsCount=0 s=N obj=0x4001d8e0 self=0xccb0
+  | sysTid=152 nice=0 sched=0/0 cgrp=bg_non_interactive handle=-1345026008
+  | schedstat=( 1121123134 6419924619 167 )
+  at java.lang.Object.wait(Native Method)
+  - waiting on <0x44e7b840> (a android.os.MessageQueue)
+  at java.lang.Object.wait(Object.java:288)
+  at android.os.MessageQueue.next(MessageQueue.java:146)
+  at android.os.Looper.loop(Looper.java:110)
+  at android.app.ActivityThread.main(ActivityThread.java:4627)
+  at java.lang.reflect.Method.invokeNative(Native Method)
+  at java.lang.reflect.Method.invoke(Method.java:521)
+  at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:868)
+  at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:626)
+  at dalvik.system.NativeStart.main(Native Method)
+
+"Binder Thread #3" prio=5 tid=8 NATIVE
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44edc498 self=0x328a50
+  | sysTid=190 nice=0 sched=0/0 cgrp=default handle=3306704
+  | schedstat=( 9545000 81463009 5 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"ApplicationsProviderUpdater" prio=5 tid=7 WAIT
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44e8fb00 self=0x11c198
+  | sysTid=169 nice=10 sched=0/0 cgrp=bg_non_interactive handle=2711088
+  | schedstat=( 684807073 12150948203 64 )
+  at java.lang.Object.wait(Native Method)
+  - waiting on <0x44e90110> (a android.os.MessageQueue)
+  at java.lang.Object.wait(Object.java:288)
+  at android.os.MessageQueue.next(MessageQueue.java:146)
+  at android.os.Looper.loop(Looper.java:110)
+  at android.os.HandlerThread.run(HandlerThread.java:60)
+
+"Binder Thread #2" prio=5 tid=6 NATIVE
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44e76a90 self=0x136b18
+  | sysTid=157 nice=0 sched=0/0 cgrp=default handle=1240424
+  | schedstat=( 15984003 69917007 8 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"Binder Thread #1" prio=5 tid=5 NATIVE
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44e766c8 self=0x132868
+  | sysTid=156 nice=0 sched=0/0 cgrp=default handle=1294184
+  | schedstat=( 59795006 1072948106 21 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"JDWP" daemon prio=5 tid=4 VMWAIT
+  | group="system" sCount=1 dsCount=0 s=N obj=0x44e752a0 self=0x1245a0
+  | sysTid=155 nice=0 sched=0/0 cgrp=bg_non_interactive handle=1195688
+  | schedstat=( 2484000 47766005 7 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"Signal Catcher" daemon prio=5 tid=3 RUNNABLE
+  | group="system" sCount=0 dsCount=0 s=N obj=0x44e751e8 self=0x120298
+  | sysTid=154 nice=0 sched=0/0 cgrp=bg_non_interactive handle=1202656
+  | schedstat=( 47145005 16199354610 12 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"HeapWorker" daemon prio=5 tid=2 VMWAIT
+  | group="system" sCount=1 dsCount=0 s=N obj=0x438b9398 self=0x12efc0
+  | sysTid=153 nice=0 sched=0/0 cgrp=bg_non_interactive handle=1235040
+  | schedstat=( 127705013 505729051 20 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+----- end 152 -----
+
+
+----- pid 198 at 2011-10-10 17:41:13 -----
+Cmd line: android.process.media
+
+DALVIK THREADS:
+"main" prio=5 tid=1 WAIT
+  | group="main" sCount=1 dsCount=0 s=N obj=0x4001d8e0 self=0xccb0
+  | sysTid=198 nice=0 sched=0/0 cgrp=bg_non_interactive handle=-1345026008
+  | schedstat=( 487854044 496344049 110 )
+  at java.lang.Object.wait(Native Method)
+  - waiting on <0x44e7b840> (a android.os.MessageQueue)
+  at java.lang.Object.wait(Object.java:288)
+  at android.os.MessageQueue.next(MessageQueue.java:146)
+  at android.os.Looper.loop(Looper.java:110)
+  at android.app.ActivityThread.main(ActivityThread.java:4627)
+  at java.lang.reflect.Method.invokeNative(Native Method)
+  at java.lang.reflect.Method.invoke(Method.java:521)
+  at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:868)
+  at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:626)
+  at dalvik.system.NativeStart.main(Native Method)
+
+"Binder Thread #3" prio=5 tid=8 NATIVE
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44ea77c8 self=0x29b990
+  | sysTid=207 nice=0 sched=0/0 cgrp=default handle=2713704
+  | schedstat=( 19927003 208421021 8 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"thumbs thread" prio=5 tid=7 WAIT
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44e94aa8 self=0x90d08
+  | sysTid=204 nice=10 sched=0/0 cgrp=bg_non_interactive handle=593480
+  | schedstat=( 1866000 411470040 7 )
+  at java.lang.Object.wait(Native Method)
+  - waiting on <0x44e95038> (a android.os.MessageQueue)
+  at java.lang.Object.wait(Object.java:288)
+  at android.os.MessageQueue.next(MessageQueue.java:146)
+  at android.os.Looper.loop(Looper.java:110)
+  at android.os.HandlerThread.run(HandlerThread.java:60)
+
+"Binder Thread #2" prio=5 tid=6 NATIVE
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44e76ce8 self=0x136b18
+  | sysTid=203 nice=0 sched=0/0 cgrp=bg_non_interactive handle=1297464
+  | schedstat=( 12889003 98869010 10 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"Binder Thread #1" prio=5 tid=5 NATIVE
+  | group="main" sCount=1 dsCount=0 s=N obj=0x44e76618 self=0x132868
+  | sysTid=202 nice=0 sched=0/0 cgrp=bg_non_interactive handle=1270416
+  | schedstat=( 75548007 170306016 23 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"JDWP" daemon prio=5 tid=4 VMWAIT
+  | group="system" sCount=1 dsCount=0 s=N obj=0x44e752a0 self=0x1245a0
+  | sysTid=201 nice=0 sched=0/0 cgrp=bg_non_interactive handle=1171224
+  | schedstat=( 1610000 16036002 7 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"Signal Catcher" daemon prio=5 tid=3 RUNNABLE
+  | group="system" sCount=0 dsCount=0 s=N obj=0x44e751e8 self=0x120298
+  | sysTid=200 nice=0 sched=0/0 cgrp=bg_non_interactive handle=1180920
+  | schedstat=( 54347006 22108235196 14 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+"HeapWorker" daemon prio=5 tid=2 VMWAIT
+  | group="system" sCount=1 dsCount=0 s=N obj=0x438b8198 self=0x12efc0
+  | sysTid=199 nice=0 sched=0/0 cgrp=bg_non_interactive handle=1267496
+  | schedstat=( 30926005 983251096 10 )
+  at dalvik.system.NativeStart.run(Native Method)
+
+----- end 198 -----

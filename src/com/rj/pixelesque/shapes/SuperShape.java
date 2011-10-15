@@ -29,7 +29,7 @@ public abstract class SuperShape extends Shape {
 	
 	public void update() {
 		Point newCoord = getPointFromCurrent(cursor);
-		Log.d("SuperShape", "New coordinate: "+newCoord);
+		//Log.d("SuperShape", "New coordinate: "+newCoord);
 		if (newCoord.equals(endCoord)) {
 			
 		} else {
@@ -44,12 +44,13 @@ public abstract class SuperShape extends Shape {
 		super.cancel();
 	}
 	
-	public void commit() {
-		super.commit();
+	public boolean commit() {
+		if (!super.commit()) return false;
 		if (fill) 
 			fillShape();
 		else
 			setAllPoints();
+		return true;
 	}
 	
 	public abstract void fillShape();	

@@ -18,7 +18,7 @@ import com.rj.pixelesque.shapes.ShapeEditor;
 public class PixelArt {
 	public static final int MAX_BACKSTACK = 3;
 	public ColorStack[][] data;
-	int width; int height;
+	public int width; public int height;
 	public History history;
 	public float scale;
 	public float topx, topy;
@@ -27,6 +27,7 @@ public class PixelArt {
 	public String name;
 	public Drawer drawer;
 	public ShapeEditor shapeeditor = new ShapeEditor();
+	public boolean canvasLock = false;
 	
 	public boolean preview = true;
 	
@@ -222,6 +223,11 @@ public class PixelArt {
 				s.getValue().draw(p, this, topx, topy, boxsize);
 			}
 		}
+		if (canvasLock) {
+			p.noStroke();
+			p.fill(255,50);
+			p.rect(0, 0, p.width, p.height);
+		}
 	}
 	
 	public String dumpBoard() {
@@ -361,7 +367,26 @@ public class PixelArt {
 		return isValid(coords[0], coords[1]);
 	}
 	
+
+	public void startCalculatingBrush() {
+		
+	}
 	
+	public void stopCalculatingBrush() {
+		
+	}
+	
+	public void canvasLock() {
+		canvasLock = true;
+		if (drawer != null) drawer.scheduleRedraw();
+	}
+	
+	public void canvasUnlock() {
+		canvasLock = false;
+		if (drawer != null) {
+			drawer.scheduleRedraw();
+		}
+	}
 	
 	public void setName(String name) {
 		this.name = name;

@@ -16,6 +16,8 @@ public abstract class Shape {
 	public int color;
 	public PApplet p;
 	public boolean done = false;
+	public boolean isCalculating = false;
+	public boolean commitOnFinish = false;
 	
 	boolean highlightCursorStart = false;
 	boolean highlightCursorEnd = true;
@@ -52,11 +54,31 @@ public abstract class Shape {
 		}
 			
 	}
-	public void commit() {
+	public boolean commit() {
 		done = true;
+		if (!isCalculating) {
+			commitOnFinish = false;
+			return true;
+		} else {
+			commitOnFinish = true;
+			art.canvasLock();
+			return false;
+		}
 	}
 	public void cancel() {
 		done = true;
+	}
+	
+	public void lockCalculatingBrush() {
+		isCalculating = true;
+	}
+	
+	public void unlockCalculatingBrush() {
+		isCalculating = false;
+		if (commitOnFinish) {
+			art.canvasUnlock();
+			commit();
+		}
 	}
 	
 	

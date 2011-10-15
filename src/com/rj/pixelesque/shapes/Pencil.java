@@ -23,11 +23,12 @@ public class Pencil extends Shape {
 		super.cancel();
 	}
 	
-	public void commit() {
-		super.commit();
-		if (cursor == null || art == null) return;
+	public boolean commit() {
+		if (!super.commit()) return false;
+		if (cursor == null || art == null) return false;
 		int[] coords = art.getDataCoordsFromXY(p, cursor.firstPoint.x, cursor.firstPoint.y);
 		art.flipColor(coords[0], coords[1], this.color);
+		return true;
 	}
 	
 }

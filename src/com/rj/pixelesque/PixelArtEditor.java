@@ -326,7 +326,7 @@ public class PixelArtEditor extends PApplet implements TouchListener, Drawer {
 	};
 	public ShapeFactory bucketFactory = new ShapeFactory() {
 		public Shape makeShape(PApplet p, PixelArt pix, Cursor cursor) {
-			return new Bucket(p, pix, cursor, state.selectedColor, false);
+			return new Bucket(PixelArtEditor.this, pix, cursor, state.selectedColor, false);
 		}
 	};
 
@@ -445,6 +445,11 @@ public class PixelArtEditor extends PApplet implements TouchListener, Drawer {
 	
 	public void scheduleRedraw() {
 		scheduleRedraw = true;
+	}
+	
+	public void scheduleUIRedraw() {
+		runOnUiThread(new Runnable() { public void run() {
+		buttonbar.updateFromState(); }});
 	}
 	
 	@Override
