@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 
 public class History  {
-
+	public final static int MAX_HISTORY = 200;
 	private int position = 0;
 	private PixelArt art;
 	
@@ -32,7 +32,11 @@ public class History  {
 			history.remove(history.size()-1);
 		}
 		history.add(curdata);
+		while (history.size() > MAX_HISTORY) {
+			history.remove(0);
+		}
 		position = history.size() - 1;
+
 	}
 	
 	public void undo() {

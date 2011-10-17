@@ -44,7 +44,7 @@ public class PixelArt {
 		for (int i = 0; i < width; i++) {
 			for (int j = 0; j < height; j++) {
 				int color = image.get(i, j);
-				workingdata[i*width+j] = color;
+				workingdata[i*height+j] = color;
 			}
 		}
 		history.add();
@@ -56,7 +56,7 @@ public class PixelArt {
 		for (int i = 0; i < width; i++) {
 			for (int j = 0; j < height; j++) {
 				int color = image.getPixel(i, j);
-				workingdata[i*width+j] = color;
+				workingdata[i*height+j] = color;
 			}
 		}
 		history.add();
@@ -68,11 +68,12 @@ public class PixelArt {
 		this.width = width;
 		this.height = height;
 		workingdata = new int[width*height];
-		for (int i = 0; i < width; i++) {
-			for (int j = 0; j < height; j++) {
-				workingdata[i*width+j] = Color.TRANSPARENT;
-			}
-		}
+		Arrays.fill(workingdata, Color.TRANSPARENT);
+//		for (int i = 0; i < width; i++) {
+//			for (int j = 0; j < height; j++) {
+//				workingdata[i*width+j] = Color.TRANSPARENT;
+//			}
+//		}
 		historydata = new ArrayList<int[]>();
 		history = new History(this);
 		if (canWeAddToHistoryYet) history.add();
@@ -125,7 +126,7 @@ public class PixelArt {
 		
 		for (int x = 0; x < width; x++) {
 			for (int y = 0; y < height; y++) {
-				int color = workingdata[x*width+y];
+				int color = workingdata[x*height+y];
 				image.setPixel(x, y, color);
 			}
 		}
@@ -144,23 +145,23 @@ public class PixelArt {
 		outline = false;
 		if (boxsize > outlineThresh) outline = true;
 
-		if (!outline && workingdata.length * boxsize < p.height) {
+		if (!outline && height * boxsize < p.height) {
 			p.stroke(127);
 			p.fill(0, 40, 40);
-			p.rect(-1, workingdata.length * boxsize, p.width+1, p.height+1);
+			p.rect(-1, height * boxsize, p.width+1, p.height+1);
 		}
 		
-		for (int x = 0; x < width; x++) {
-			for (int y = 0; y < height; y++) {
+		if (outline) p.stroke(127);
+		else p.noStroke();
+		for (int y = 0; y < height; y++) {
+			for (int x = 0; x < width; x++) {
 				float left = topx + boxsize * x + 1;
 				float top = topy + boxsize * y + 1;
-				if (top + boxsize > 0 && left + boxsize > 0 && top < p.height && left < p.width) { 
-					if (outline) p.stroke(127);
-					else p.noStroke();
-					int color = workingdata[x*width+y];
+				//if (top + boxsize > 0 && left + boxsize > 0 && top < p.height && left < p.width) { 
+					int color = workingdata[x*height+y];
 					p.fill(Color.red(color), Color.green(color), Color.blue(color), Color.alpha(color));
 					p.rect(left, top, boxsize, boxsize);
-				}
+				//}
 			}
 		}
 		if (preview) {
@@ -169,9 +170,9 @@ public class PixelArt {
 			p.rect(p.width - width - 1, p.height - height - 1, width+1, height+1);
 			p.rect(p.width - width*3 - 2, p.height - height*2 - 1, width*2+1, height*2+1);
 			p.noStroke();
-			for (int x = 0; x < width; x++) {
-				for (int y = 0; y < height; y++) {
-					int color = workingdata[x*width+y];
+			for (int y = 0; y < height; y++) {
+				for (int x = 0; x < width; x++) {
+					int color = workingdata[x*height+y];
 					p.fill(Color.red(color), Color.green(color), Color.blue(color), Color.alpha(color));
 					p.rect(p.width - width + x, p.height - height + y,1,1);
 					p.rect(p.width - width-width-width - 1 + x+x, p.height - height-height + y+y,2,2);
@@ -193,12 +194,9 @@ public class PixelArt {
 	public String dumpBoard() {
 		StringBuilder b = new StringBuilder();
 		
-		for (int x = 0; x < width; x++) {
-			for (int y = 0; y < height; y++) {
-				b.append(workingdata[x*width+y]+"");
+		for (int x = 0; x < workingdata.length; x++) {
+				b.append(workingdata[x]+"");
 				b.append("|");
-			}
-			b.append("\n");
 		}
 		return b.toString();
 	}
@@ -286,12 +284,12 @@ public class PixelArt {
 
 //	public void flipColor(int x, int y, int tocolor) {
 //		if (isValid(x,y)) {
-//			int c = workingdata[x*width+y];
+//			int c = workingdata[x*height+y];
 //			if (c == tocolor) {
-//				int color = workingdata[x*width+y].pushUnderneathColor();
+//				int color = workingdata[x*height+y].pushUnderneathColor();
 //				history.add(new History.HistoryAction(x,y,color));
 //			} else {
-//				data[x*width+y].pushColor(tocolor);
+//				data[x*height+y].pushColor(tocolor);
 //				history.add(new History.HistoryAction(x,y,tocolor));
 //			}
 //		} else {
@@ -300,12 +298,12 @@ public class PixelArt {
 //	}
 	
 	
-	public void eraseColor(int x, int y) {
-		setColor(x,y,Color.TRANSPARENT, false);
-	}
+//	public void eraseColor(int x, int y) {
+//		setColor(x,y,Color.TRANSPARENT, false);
+//	}
 	public void setColor(int x, int y, int color, boolean addToHistory) {
 		if (isValid(x,y)) {
-			workingdata[x*width+y] = color;
+			workingdata[x*height+y] = color;
 			if (addToHistory == true) history.add();
 		}
 		if (drawer != null) drawer.scheduleRedraw();
@@ -317,7 +315,7 @@ public class PixelArt {
 			Log.d("PixelData", "Rectangle Valid : x"+x+" y:"+y+" width:"+width+" height:"+height+" color:"+color+" ");
 			for (int i=x; i<=x+width; i++) {
 				for (int j=y; j<=y+height; j++) {
-					workingdata[i*width+j] = color;
+					workingdata[i*height+j] = color;
 				}
 			}
 			history.add();

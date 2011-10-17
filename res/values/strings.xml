@@ -2,4 +2,48 @@
 <resources>
     <string name="hello">Hello World, PixelArt!</string>
     <string name="app_name">Pixelesque</string>
+    
+    <string name="new_art_title">New Pixel Art</string>
+    
+    <string name="menu_new">New</string>
+    <string name="menu_save">Save</string>
+    <string name="menu_open">Open</string>
+    <string name="menu_clear">Clear</string>
+    <string name="menu_share">Share</string>
+    <string name="menu_export">Export</string>
+    <string name="menu_saveas">Save As</string>
+    <string name="menu_togglepreview">Toggle Preview</string>
+    <string name="menu_about">About</string>
+    
+    <string name="loading_title">Loading...</string>
+    <string name="loading_text">Just a moment</string>
+    
+    <string name="saving_title">Saving...</string>
+    <string name="saving_text">Just a moment</string>
+    
+    <string name="share_image">Share Image</string>
+    
+    <string name="new_title">Pick a size</string>
+    <string name="new_button_new">New</string>
+    <string name="new_button_cancel">Cancel</string>
+    
+    <string name="saveas_title">Save as</string>
+    <string name="saveas_button_new">Save</string>
+    <string name="saveas_button_cancel">Cancel</string>
+    
+    <string name="export_title">Export</string>
+    <string name="export_button_other">Other</string>
+    <string name="export_button_cancel">Cancel</string>
+    <string formatted="false" name="export_size_low">Low (%dx%d)</string>
+    <string formatted="false" name="export_size_medium">Medium (%dx%d)</string>
+    <string formatted="false" name="export_size_high">High (%dx%d)</string>
+    
+    <string name="exportcustom_title">Pick a size to export to</string>
+    <string name="exportcustom_button_export">Export</string>
+    <string name="exportcustom_button_cancel">Cancel</string>
+    
+    <string name="about_title">About Pixelesque</string>
+    <string name="about_button_market">Market</string>
+    <string name="about_button_ok">Ok</string>
+    <string name="about">Pixelesque is made by &lt;a href=&quot;http://rjmarsan.com&quot;&gt;RJ Marsan&lt;/a&gt;.  It\'s 100% ad &amp; cost free, and &lt;a href=&quot;http://github.com/rjmarsan/Pixelesque&quot;&gt;open source&lt;/a&gt;.  Show your support by leaving a comment in the market, and stay tuned for Pixelesque++\!</string>
 </resources>

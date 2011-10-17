@@ -2,13 +2,18 @@ package com.rj.pixelesque;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.DialogInterface.OnClickListener;
+import android.graphics.Color;
+import android.net.Uri;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.Gravity;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.RelativeLayout.LayoutParams;
+import android.widget.TextView;
 
 import com.rj.pixelesque.NumberPicker.OnChangedListener;
 
@@ -18,7 +23,7 @@ public class Dialogs {
 		Log.d("PixelArt", "alertz shownew");
 		
 		AlertDialog.Builder builder = new AlertDialog.Builder(p);
-		builder.setTitle("Pick a size");
+		builder.setTitle(R.string.new_title);
 		LinearLayout layout = new LinearLayout(p);
 		layout.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 		layout.setGravity(Gravity.CENTER);
@@ -37,14 +42,14 @@ public class Dialogs {
 		
 		builder.setView(layout);
 		
-		builder.setPositiveButton("New", new DialogInterface.OnClickListener() {  
+		builder.setPositiveButton(R.string.new_button_new, new DialogInterface.OnClickListener() {  
 			public void onClick(DialogInterface dialog, int whichButton) {  
 				int x = pickerx.getCurrent();
 				int y = pickery.getCurrent();
 				p.newArt(x, y);
 			}
 			}); 
-		builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {  
+		builder.setNegativeButton(R.string.new_button_cancel, new DialogInterface.OnClickListener() {  
 			public void onClick(DialogInterface dialog, int whichButton) {  
 				dialog.dismiss();
 			}
@@ -61,16 +66,16 @@ public class Dialogs {
 		Log.d("PixelArt", "alertz showsaveas");
 		
 		AlertDialog.Builder builder = new AlertDialog.Builder(p);
-		builder.setTitle("Save as");
+		builder.setTitle(R.string.saveas_title);
 		final EditText edit = new EditText(p);
 		edit.setHint("Pick a name");
 		builder.setView(edit);
-		builder.setPositiveButton("Save", new DialogInterface.OnClickListener() {  
+		builder.setPositiveButton(R.string.saveas_button_new, new DialogInterface.OnClickListener() {  
 			public void onClick(DialogInterface dialog, int whichButton) {  
 				p.save(edit.getText().toString());
 			}
 			}); 
-		builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {  
+		builder.setNegativeButton(R.string.saveas_button_cancel, new DialogInterface.OnClickListener() {  
 			public void onClick(DialogInterface dialog, int whichButton) {  
 				dialog.dismiss();
 			}
@@ -89,13 +94,13 @@ public class Dialogs {
 		int[] medxy = getResize(p.art.width, p.art.height, PixelArtEditor.EXPORT_MEDIUM_LONGSIDE);
 		int[] highxy = getResize(p.art.width, p.art.height, PixelArtEditor.EXPORT_LARGE_LONGSIDE);
 		final String[] qualities = { 
-				"Low ("+lowxy[0]+"x"+lowxy[1]+")", //Low (320x240) 
-				"Medium ("+medxy[0]+"x"+medxy[1]+")", 
-				"High ("+highxy[0]+"x"+highxy[1]+")",
+				String.format(p.getResources().getString(R.string.export_size_low),lowxy[0],lowxy[1]), //Low (320x240) 
+				String.format(p.getResources().getString(R.string.export_size_medium),medxy[0],medxy[1]), //Low (320x240) 
+				String.format(p.getResources().getString(R.string.export_size_high),highxy[0],highxy[1]), //Low (320x240) 
 				};
 		
 		AlertDialog.Builder builder = new AlertDialog.Builder(p);
-		builder.setTitle("Export");
+		builder.setTitle(R.string.export_title);
 		builder.setItems(qualities, new OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) {
 				if (which == 0)
@@ -106,12 +111,12 @@ public class Dialogs {
 					p.export(PixelArtEditor.EXPORT_LARGE_LONGSIDE, "large");
 			}
 		});
-		builder.setPositiveButton("Other", new DialogInterface.OnClickListener() {  
+		builder.setPositiveButton(R.string.export_button_other, new DialogInterface.OnClickListener() {  
 			public void onClick(DialogInterface dialog, int whichButton) {  
 				showExportCustom(p);
 			}
 			}); 
-		builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {  
+		builder.setNegativeButton(R.string.export_button_cancel, new DialogInterface.OnClickListener() {  
 			public void onClick(DialogInterface dialog, int whichButton) {  
 				dialog.dismiss();
 			}
@@ -140,7 +145,7 @@ public class Dialogs {
 	
 	public static void showExportCustom(final PixelArtEditor p) {		
 		AlertDialog.Builder builder = new AlertDialog.Builder(p);
-		builder.setTitle("Pick a size to export to");
+		builder.setTitle(R.string.exportcustom_title);
 		LinearLayout layout = new LinearLayout(p);
 		layout.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 		layout.setGravity(Gravity.CENTER);
@@ -173,7 +178,7 @@ public class Dialogs {
 		
 		builder.setView(layout);
 		
-		builder.setPositiveButton("Export", new DialogInterface.OnClickListener() {  
+		builder.setPositiveButton(R.string.exportcustom_button_export, new DialogInterface.OnClickListener() {  
 			public void onClick(DialogInterface dialog, int whichButton) {
 				int x = pickerx.getCurrent();
 				int y = pickery.getCurrent();
@@ -181,7 +186,7 @@ public class Dialogs {
 				p.export(max, ""+x+"x"+y );
 			}
 			}); 
-		builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {  
+		builder.setNegativeButton(R.string.exportcustom_button_cancel, new DialogInterface.OnClickListener() {  
 			public void onClick(DialogInterface dialog, int whichButton) {  
 				dialog.dismiss();
 			}
@@ -190,6 +195,42 @@ public class Dialogs {
 		AlertDialog alert = builder.create();
 		alert.show();
 		
+	}
+
+	
+	
+	
+	
+	public static void showAboutDialog(final PixelArtEditor p) {
+		Log.d("PixelArt", "alertz showabout");
+		
+		AlertDialog.Builder builder = new AlertDialog.Builder(p);
+		builder.setTitle(R.string.about_title);
+		TextView textcontent = new TextView(p);
+		textcontent.setMovementMethod(LinkMovementMethod.getInstance());
+		textcontent.setText(Html.fromHtml(p.getResources().getString(R.string.about)));
+		textcontent.setLinkTextColor(Color.GREEN);
+		textcontent.setPadding(5,5,5,5);
+		textcontent.setTextSize(15);
+		builder.setView(textcontent);
+		builder.setPositiveButton(R.string.about_button_market, new DialogInterface.OnClickListener() {  
+			public void onClick(DialogInterface dialog, int whichButton) { 
+				Intent intent = new Intent(Intent.ACTION_VIEW);
+				intent.setData(Uri.parse("market://details?id="+p.getApplication().getPackageName()));
+				p.startActivity(intent);
+				dialog.dismiss();
+			}
+			}); 
+		builder.setNegativeButton(R.string.about_button_ok, new DialogInterface.OnClickListener() {  
+			public void onClick(DialogInterface dialog, int whichButton) {  
+				dialog.dismiss();
+			}
+			}); 
+
+		AlertDialog alert = builder.create();
+		alert.show();
+		
+		Log.d("PixelArt", "alertz shownew");
 	}
 
 

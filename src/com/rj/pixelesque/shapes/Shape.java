@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import processing.core.PApplet;
 import android.graphics.Point;
+import android.util.Log;
 
 import com.rj.pixelesque.PixelArt;
 import com.rj.processing.mt.Cursor;
@@ -84,11 +85,10 @@ public abstract class Shape {
 	public void setAllPoints() {
 		if (cursor == null || art == null) return;
 		for (Point point : selectedPoints) {
-			if (art.isValid(point.x, point.y)) {
-				art.setColor(point.x, point.y, this.color, false);
-			}
+			art.setColor(point.x, point.y, this.color, false);
 		}
 		art.history.add();
+		Log.d("SHAPE", art.dumpBoard());
 	}
 	
 	public ArrayList<Point> getSelectedPoints() {

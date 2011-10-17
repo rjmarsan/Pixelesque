@@ -290,6 +290,8 @@ com.rj.pixelesque.ColorPickerDialog$ColorPickerView
 com.rj.pixelesque.ColorPickerDialog$OnColorChangedListener
 com.rj.pixelesque.Drawer:
     public abstract void scheduleUIRedraw()
+com.rj.pixelesque.History:
+    public static final int MAX_HISTORY
 com.rj.pixelesque.IntArrayList
 com.rj.pixelesque.NumberPicker:
     private static final java.lang.String TAG
@@ -300,13 +302,9 @@ com.rj.pixelesque.NumberPicker:
     209:210:public void setSpeed(long)
 com.rj.pixelesque.PixelArt:
     public static final int MAX_BACKSTACK
-    84:93:public PixelArt(processing.core.PImage,java.lang.String)
-    234:243:public java.lang.String dumpBoard()
-    336:337:public void eraseColor(int,int,com.rj.pixelesque.History$HistoryAction)
-    373:373:public void startCalculatingBrush()
-    377:377:public void stopCalculatingBrush()
-com.rj.pixelesque.PixelArt$ColorStack:
-    65:67:public void clearStack(int)
+    42:52:public PixelArt(processing.core.PImage,java.lang.String)
+    336:336:public void startCalculatingBrush()
+    340:340:public void stopCalculatingBrush()
 com.rj.pixelesque.PixelArtEditor:
     private static final boolean DEBUG
     public static final int EXPORT_SMALL_LONGSIDE
@@ -315,7 +313,7 @@ com.rj.pixelesque.PixelArtEditor:
     public static final int SHARE_MEDIUM_LONGSIDE
     public static final int LOAD_ACTIVITY
     public static final int COLOR_ACTIVITY
-    616:617:public void export(int)
+    624:625:public void export(int)
 com.rj.pixelesque.PixelArtState:
     public static final int PENCIL
     public static final int ERASER

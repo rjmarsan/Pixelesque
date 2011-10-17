@@ -43,8 +43,8 @@ import de.devmil.common.ui.color.ColorSelectorActivity;
 
 public class PixelArtEditor extends PApplet implements TouchListener, Drawer {
 	private final static boolean DEBUG = false;
-
 	
+	//int x = R;
 	
 	public final static int EXPORT_SMALL_LONGSIDE = 320;
 	public final static int EXPORT_MEDIUM_LONGSIDE = 640;
@@ -380,7 +380,9 @@ public class PixelArtEditor extends PApplet implements TouchListener, Drawer {
 		Dialog d;
 		@Override
 		protected void onPreExecute() {
-			d  = ProgressDialog.show(PixelArtEditor.this, "Loading...", "Just a moment");
+			String title = getResources().getString(com.rj.pixelesque.R.string.loading_title);
+			String text = getResources().getString(com.rj.pixelesque.R.string.loading_text);
+			d  = ProgressDialog.show(PixelArtEditor.this, title, text);
 			super.onPreExecute();
 		}
 		@Override
@@ -417,7 +419,9 @@ public class PixelArtEditor extends PApplet implements TouchListener, Drawer {
 		Dialog d;
 		@Override
 		protected void onPreExecute() {
-			d  = ProgressDialog.show(PixelArtEditor.this, "Loading...", "");
+			String title = getResources().getString(com.rj.pixelesque.R.string.loading_title);
+			String text = getResources().getString(com.rj.pixelesque.R.string.loading_text);
+			d  = ProgressDialog.show(PixelArtEditor.this, title, text);
 			super.onPreExecute();
 		}
 		@Override
@@ -505,8 +509,9 @@ public class PixelArtEditor extends PApplet implements TouchListener, Drawer {
 				if (view != null) view.setText(art.name);
 				setTitle("Pixelesque - "+art.name);
 			} else {
-				if (view != null) view.setText("New Pixel Art");
-				setTitle("Pixelesque - "+"New Pixel Art");
+				String title = getResources().getString(com.rj.pixelesque.R.string.new_art_title);
+				if (view != null) view.setText(title);
+				setTitle("Pixelesque - "+title);
 			}
 			scheduleRedraw();
 		}
@@ -549,6 +554,9 @@ public class PixelArtEditor extends PApplet implements TouchListener, Drawer {
 		    case com.rj.pixelesque.R.id.main_menu_preview:
 		        togglePreview();
 		        return true;
+		    case com.rj.pixelesque.R.id.main_menu_about:
+		    	about();
+		    	return true;
 
 		    default:
 		        return super.onOptionsItemSelected(item);
@@ -652,6 +660,11 @@ public class PixelArtEditor extends PApplet implements TouchListener, Drawer {
 	public void share(String name, int width, int height) {
 		File exportloc = StorageUtils.getExportDirectory(this);
 		new SaveTask(name, width, height, art, this, exportloc, false, true).execute(null, null);
+	}
+	
+	
+	public void about() {
+		Dialogs.showAboutDialog(this);
 	}
 	
 

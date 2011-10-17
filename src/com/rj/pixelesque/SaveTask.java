@@ -51,7 +51,9 @@ public class SaveTask extends AsyncTask<Void, Void, Void> {
 	@Override
 	protected void onPreExecute() {
 		super.onPreExecute();
-		dialog = ProgressDialog.show(context, "Saving...", "Just a moment");
+		String title = context.getResources().getString(com.rj.pixelesque.R.string.saving_title);
+		String text = context.getResources().getString(com.rj.pixelesque.R.string.saving_text);
+		dialog = ProgressDialog.show(context, title, text);
 	}
 	
 	@Override
@@ -119,7 +121,8 @@ public class SaveTask extends AsyncTask<Void, Void, Void> {
 
 			share.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://" + file.getAbsolutePath()));
 
-			context.startActivity(Intent.createChooser(share, "Share Image"));
+			String shareimage = context.getResources().getString(R.string.share_image);
+			context.startActivity(Intent.createChooser(share, shareimage));
 
 		} else {
 			context.artChangedName();

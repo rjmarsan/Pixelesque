@@ -493,7 +493,7 @@ android.support.v4.view.ViewPager$SavedState$1 -> android.support.v4.view.k:
 com.rj.pixelesque.ArtListActivity -> com.rj.pixelesque.ArtListActivity:
     void onCreate(android.os.Bundle) -> onCreate
     void onArtItemSelected(com.rj.pixelesque.ArtListFragment$ArtElement) -> a
-com.rj.pixelesque.ArtListFragment -> com.rj.pixelesque.y:
+com.rj.pixelesque.ArtListFragment -> com.rj.pixelesque.w:
     android.widget.GridView gridview -> J
     com.rj.pixelesque.ArtListFragment$ArtAdapter adapter -> a
     com.rj.pixelesque.ArtListFragment$ArtItemSelectedListener listener -> b
@@ -506,7 +506,7 @@ com.rj.pixelesque.ArtListFragment$ArtAdapter -> com.rj.pixelesque.h:
     com.rj.pixelesque.ArtListFragment this$0 -> a
     void addAll(java.util.Collection) -> addAll
     android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
-com.rj.pixelesque.ArtListFragment$ArtElement -> com.rj.pixelesque.ai:
+com.rj.pixelesque.ArtListFragment$ArtElement -> com.rj.pixelesque.ag:
     java.io.File image -> a
     java.lang.String name -> b
 com.rj.pixelesque.ArtListFragment$ArtItemSelectedListener -> com.rj.pixelesque.ao:
@@ -516,21 +516,26 @@ com.rj.pixelesque.ArtListFragment$ImageListLoader -> com.rj.pixelesque.av:
     java.util.ArrayList doInBackground$6b117e64() -> a
     void onPostExecute(java.lang.Object) -> onPostExecute
     java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
-com.rj.pixelesque.Dialogs -> com.rj.pixelesque.o:
+com.rj.pixelesque.Dialogs -> com.rj.pixelesque.n:
     int[] getResize(int,int,int) -> a
-com.rj.pixelesque.Dialogs$1 -> com.rj.pixelesque.af:
+com.rj.pixelesque.Dialogs$1 -> com.rj.pixelesque.ad:
     com.rj.pixelesque.NumberPicker val$pickerx -> a
     com.rj.pixelesque.NumberPicker val$pickery -> b
     com.rj.pixelesque.PixelArtEditor val$p -> c
     void onClick(android.content.DialogInterface,int) -> onClick
-com.rj.pixelesque.Dialogs$10 -> com.rj.pixelesque.ak:
+com.rj.pixelesque.Dialogs$10 -> com.rj.pixelesque.ai:
     com.rj.pixelesque.NumberPicker val$pickerx -> a
     com.rj.pixelesque.NumberPicker val$pickery -> b
     com.rj.pixelesque.PixelArtEditor val$p -> c
     void onClick(android.content.DialogInterface,int) -> onClick
-com.rj.pixelesque.Dialogs$11 -> com.rj.pixelesque.ag:
+com.rj.pixelesque.Dialogs$11 -> com.rj.pixelesque.ae:
     void onClick(android.content.DialogInterface,int) -> onClick
-com.rj.pixelesque.Dialogs$2 -> com.rj.pixelesque.w:
+com.rj.pixelesque.Dialogs$12 -> com.rj.pixelesque.al:
+    com.rj.pixelesque.PixelArtEditor val$p -> a
+    void onClick(android.content.DialogInterface,int) -> onClick
+com.rj.pixelesque.Dialogs$13 -> com.rj.pixelesque.am:
+    void onClick(android.content.DialogInterface,int) -> onClick
+com.rj.pixelesque.Dialogs$2 -> com.rj.pixelesque.u:
     void onClick(android.content.DialogInterface,int) -> onClick
 com.rj.pixelesque.Dialogs$3 -> com.rj.pixelesque.bd:
     com.rj.pixelesque.PixelArtEditor val$p -> a
@@ -557,22 +562,14 @@ com.rj.pixelesque.Dialogs$9 -> com.rj.pixelesque.m:
 com.rj.pixelesque.Drawer -> com.rj.pixelesque.bh:
     void scheduleRedraw() -> i
 com.rj.pixelesque.History -> com.rj.pixelesque.an:
-    java.util.Vector history -> a
-    int position -> b
-    com.rj.pixelesque.PixelArt data -> c
-    void add(com.rj.pixelesque.History$HistoryAction) -> a
-    void undo() -> a
-    void redo() -> b
-    boolean canUndo() -> c
-    boolean canRedo() -> d
-com.rj.pixelesque.History$HistoryAction -> com.rj.pixelesque.n:
-    java.util.ArrayList points -> a
-    void addPoint(int,int,int) -> a
-    void undo(com.rj.pixelesque.PixelArt) -> a
-com.rj.pixelesque.History$PointAndColor -> com.rj.pixelesque.bj:
-    int x -> a
-    int y -> b
-    int color -> c
+    int position -> a
+    com.rj.pixelesque.PixelArt art -> b
+    void cancel() -> a
+    void add() -> b
+    void undo() -> c
+    void redo() -> d
+    boolean canUndo() -> e
+    boolean canRedo() -> f
 com.rj.pixelesque.NumberPicker -> com.rj.pixelesque.NumberPicker:
     com.rj.pixelesque.NumberPicker$Formatter TWO_DIGIT_FORMATTER -> c
     android.os.Handler mHandler -> d
@@ -626,12 +623,12 @@ com.rj.pixelesque.NumberPicker$2 -> com.rj.pixelesque.f:
 com.rj.pixelesque.NumberPicker$3 -> com.rj.pixelesque.k:
     com.rj.pixelesque.NumberPicker this$0 -> a
     boolean onKey(android.view.View,int,android.view.KeyEvent) -> onKey
-com.rj.pixelesque.NumberPicker$Formatter -> com.rj.pixelesque.aj:
+com.rj.pixelesque.NumberPicker$Formatter -> com.rj.pixelesque.ah:
     java.lang.String toString(int) -> a
 com.rj.pixelesque.NumberPicker$NumberPickerInputFilter -> com.rj.pixelesque.bg:
     com.rj.pixelesque.NumberPicker this$0 -> a
     java.lang.CharSequence filter(java.lang.CharSequence,int,int,android.text.Spanned,int,int) -> filter
-com.rj.pixelesque.NumberPicker$NumberRangeKeyListener -> com.rj.pixelesque.u:
+com.rj.pixelesque.NumberPicker$NumberRangeKeyListener -> com.rj.pixelesque.s:
     com.rj.pixelesque.NumberPicker this$0 -> a
     int getInputType() -> getInputType
     char[] getAcceptedChars() -> getAcceptedChars
@@ -646,39 +643,34 @@ com.rj.pixelesque.NumberPickerButton -> com.rj.pixelesque.NumberPickerButton:
     boolean onKeyUp(int,android.view.KeyEvent) -> onKeyUp
     void cancelLongpressIfRequired(android.view.MotionEvent) -> a
     void cancelLongpress() -> a
-com.rj.pixelesque.PixelArt -> com.rj.pixelesque.ac:
-    com.rj.pixelesque.PixelArt$ColorStack[][] data -> a
-    int width -> b
-    int height -> c
-    com.rj.pixelesque.History history -> d
-    float scale -> e
-    float topx -> f
-    float topy -> g
-    boolean outline -> h
-    float outlineThresh -> i
-    java.lang.String name -> j
-    com.rj.pixelesque.Drawer drawer -> k
-    com.rj.pixelesque.shapes.ShapeEditor shapeeditor -> l
-    boolean canvasLock -> m
-    boolean preview -> n
-    int[] coords -> o
+com.rj.pixelesque.PixelArt -> com.rj.pixelesque.aa:
+    int[] workingdata -> a
+    java.util.ArrayList historydata -> b
+    int width -> c
+    int height -> d
+    com.rj.pixelesque.History history -> e
+    float scale -> f
+    float topx -> g
+    float topy -> h
+    boolean outline -> i
+    float outlineThresh -> j
+    java.lang.String name -> k
+    com.rj.pixelesque.Drawer drawer -> l
+    com.rj.pixelesque.shapes.ShapeEditor shapeeditor -> m
+    boolean canvasLock -> n
+    boolean preview -> o
+    int[] coords -> p
     android.graphics.Bitmap renderInternal$477d34ec(int,int) -> a
+    void setData(int[]) -> a
     float getBoxsize(float,float) -> a
     float getBoxsize(float,float,float) -> a
     float getWidth(processing.core.PApplet) -> a
     float getHeight(processing.core.PApplet) -> b
     int[] getDataCoordsFromXY(processing.core.PApplet,float,float) -> a
-    void setColor(int,int,int,com.rj.pixelesque.History$HistoryAction) -> a
+    void setColor$3b4dbe7a(int,int,int) -> a
     void rectangle$2e715812(int,int) -> b
     boolean isValid(int,int) -> c
-    boolean isValid(int[]) -> a
-com.rj.pixelesque.PixelArt$ColorStack -> com.rj.pixelesque.t:
-    java.util.ArrayList ints -> a
-    void pushColor(int) -> a
-    int pushUnderneathColor() -> a
-    void popColor() -> b
-    int getLastColor() -> c
-    java.lang.String toString() -> toString
+    boolean isValid(int[]) -> b
 com.rj.pixelesque.PixelArtEditor -> com.rj.pixelesque.PixelArtEditor:
     com.rj.processing.mt.MTManager mtManager -> m
     com.rj.pixelesque.PixelArt art -> a
@@ -726,16 +718,16 @@ com.rj.pixelesque.PixelArtEditor -> com.rj.pixelesque.PixelArtEditor:
     void export(java.lang.String,int,int) -> a
     void share(java.lang.String,int,int) -> b
     com.rj.pixelesque.PixelArtState access$0(com.rj.pixelesque.PixelArtEditor) -> a
-com.rj.pixelesque.PixelArtEditor$1 -> com.rj.pixelesque.v:
+com.rj.pixelesque.PixelArtEditor$1 -> com.rj.pixelesque.t:
     com.rj.pixelesque.PixelArtEditor this$0 -> a
     com.rj.pixelesque.shapes.Shape makeShape(processing.core.PApplet,com.rj.pixelesque.PixelArt,com.rj.processing.mt.Cursor) -> a
-com.rj.pixelesque.PixelArtEditor$2 -> com.rj.pixelesque.r:
+com.rj.pixelesque.PixelArtEditor$2 -> com.rj.pixelesque.q:
     com.rj.pixelesque.PixelArtEditor this$0 -> a
     com.rj.pixelesque.shapes.Shape makeShape(processing.core.PApplet,com.rj.pixelesque.PixelArt,com.rj.processing.mt.Cursor) -> a
-com.rj.pixelesque.PixelArtEditor$3 -> com.rj.pixelesque.q:
+com.rj.pixelesque.PixelArtEditor$3 -> com.rj.pixelesque.p:
     com.rj.pixelesque.PixelArtEditor this$0 -> a
     com.rj.pixelesque.shapes.Shape makeShape(processing.core.PApplet,com.rj.pixelesque.PixelArt,com.rj.processing.mt.Cursor) -> a
-com.rj.pixelesque.PixelArtEditor$4 -> com.rj.pixelesque.ah:
+com.rj.pixelesque.PixelArtEditor$4 -> com.rj.pixelesque.af:
     com.rj.pixelesque.PixelArtEditor this$0 -> a
     com.rj.pixelesque.shapes.Shape makeShape(processing.core.PApplet,com.rj.pixelesque.PixelArt,com.rj.processing.mt.Cursor) -> a
 com.rj.pixelesque.PixelArtEditor$5 -> com.rj.pixelesque.az:
@@ -747,17 +739,17 @@ com.rj.pixelesque.PixelArtEditor$6 -> com.rj.pixelesque.ar:
 com.rj.pixelesque.PixelArtEditor$7 -> com.rj.pixelesque.aw:
     com.rj.pixelesque.PixelArtEditor this$0 -> a
     com.rj.pixelesque.shapes.Shape makeShape(processing.core.PApplet,com.rj.pixelesque.PixelArt,com.rj.processing.mt.Cursor) -> a
-com.rj.pixelesque.PixelArtEditor$8 -> com.rj.pixelesque.ab:
+com.rj.pixelesque.PixelArtEditor$8 -> com.rj.pixelesque.z:
     com.rj.pixelesque.PixelArtEditor this$0 -> a
     java.lang.String val$lastopenedpath -> b
     void run() -> run
-com.rj.pixelesque.PixelArtEditor$9 -> com.rj.pixelesque.al:
+com.rj.pixelesque.PixelArtEditor$9 -> com.rj.pixelesque.aj:
     com.rj.pixelesque.PixelArtEditor this$0 -> a
     void run() -> run
 com.rj.pixelesque.PixelArtEditor$ChangeName -> com.rj.pixelesque.be:
     com.rj.pixelesque.PixelArtEditor this$0 -> a
     void run() -> run
-com.rj.pixelesque.PixelArtEditor$NewArtTask -> com.rj.pixelesque.s:
+com.rj.pixelesque.PixelArtEditor$NewArtTask -> com.rj.pixelesque.r:
     int width -> a
     int height -> b
     android.app.Dialog d -> c
@@ -785,7 +777,7 @@ com.rj.pixelesque.PixelArtEditor$ScaleListener -> com.rj.pixelesque.j:
     com.rj.pixelesque.PixelArtEditor this$0 -> i
     boolean onScale(android.view.ScaleGestureDetector) -> onScale
     boolean onScaleBegin(android.view.ScaleGestureDetector) -> onScaleBegin
-com.rj.pixelesque.PixelArtState -> com.rj.pixelesque.am:
+com.rj.pixelesque.PixelArtState -> com.rj.pixelesque.ak:
     int mode -> a
     int selectedColor -> b
 com.rj.pixelesque.PixelArtStateView -> com.rj.pixelesque.PixelArtStateView:
@@ -821,7 +813,7 @@ com.rj.pixelesque.PixelArtStateView$10 -> com.rj.pixelesque.ba:
 com.rj.pixelesque.PixelArtStateView$11 -> com.rj.pixelesque.at:
     com.rj.pixelesque.PixelArtStateView this$0 -> a
     void onClick(android.view.View) -> onClick
-com.rj.pixelesque.PixelArtStateView$12 -> com.rj.pixelesque.ad:
+com.rj.pixelesque.PixelArtStateView$12 -> com.rj.pixelesque.ab:
     com.rj.pixelesque.PixelArtStateView this$0 -> a
     void run() -> run
 com.rj.pixelesque.PixelArtStateView$2 -> com.rj.pixelesque.as:
@@ -836,16 +828,16 @@ com.rj.pixelesque.PixelArtStateView$4 -> com.rj.pixelesque.au:
 com.rj.pixelesque.PixelArtStateView$5 -> com.rj.pixelesque.d:
     com.rj.pixelesque.PixelArtStateView this$0 -> a
     void onClick(android.view.View) -> onClick
-com.rj.pixelesque.PixelArtStateView$6 -> com.rj.pixelesque.aa:
+com.rj.pixelesque.PixelArtStateView$6 -> com.rj.pixelesque.y:
     com.rj.pixelesque.PixelArtStateView this$0 -> a
     void onClick(android.view.View) -> onClick
-com.rj.pixelesque.PixelArtStateView$7 -> com.rj.pixelesque.ae:
+com.rj.pixelesque.PixelArtStateView$7 -> com.rj.pixelesque.ac:
     com.rj.pixelesque.PixelArtStateView this$0 -> a
     void onClick(android.view.View) -> onClick
-com.rj.pixelesque.PixelArtStateView$8 -> com.rj.pixelesque.z:
+com.rj.pixelesque.PixelArtStateView$8 -> com.rj.pixelesque.x:
     com.rj.pixelesque.PixelArtStateView this$0 -> a
     boolean onTouch(android.view.View,android.view.MotionEvent) -> onTouch
-com.rj.pixelesque.PixelArtStateView$9 -> com.rj.pixelesque.p:
+com.rj.pixelesque.PixelArtStateView$9 -> com.rj.pixelesque.o:
     com.rj.pixelesque.PixelArtStateView this$0 -> a
     void onClick(android.view.View) -> onClick
 com.rj.pixelesque.SaveTask -> com.rj.pixelesque.bc:
@@ -866,7 +858,7 @@ com.rj.pixelesque.SaveTask -> com.rj.pixelesque.bc:
 com.rj.pixelesque.SaveTask$MediaScanTask -> com.rj.pixelesque.l:
     com.rj.pixelesque.SaveTask this$0 -> a
     java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
-com.rj.pixelesque.SaveTask$MediaScanTask$1 -> com.rj.pixelesque.x:
+com.rj.pixelesque.SaveTask$MediaScanTask$1 -> com.rj.pixelesque.v:
     com.rj.pixelesque.SaveTask$MediaScanTask this$1 -> a
     void onScanCompleted(java.lang.String,android.net.Uri) -> onScanCompleted
 com.rj.pixelesque.StorageUtils -> com.rj.pixelesque.bb:
@@ -893,7 +885,6 @@ com.rj.pixelesque.shapes.Line -> com.rj.pixelesque.a.d:
     void updatePointArea() -> b
     void fillShape() -> e
 com.rj.pixelesque.shapes.Pen -> com.rj.pixelesque.a.k:
-    com.rj.pixelesque.History$HistoryAction action -> a
     void update() -> a
     void cancel() -> c
     boolean commit() -> d
