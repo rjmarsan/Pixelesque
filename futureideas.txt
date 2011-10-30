@@ -6,3 +6,13 @@ bigger sizes?
 	infinite history until memory complaint?
 social/sharing site
 
+
+
+background to show transparency/black
+	adding an image to that to sketch over
+auto save on app destroy
+long-touch on grid selects color
+touching preview toggles from small-large-both
+nondestructive resize/move
+export to facebook
+
