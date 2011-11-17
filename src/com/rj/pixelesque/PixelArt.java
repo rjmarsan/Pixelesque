@@ -1,14 +1,22 @@
 package com.rj.pixelesque;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map.Entry;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import processing.core.PApplet;
+import processing.core.PConstants;
 import processing.core.PImage;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.net.Uri;
 import android.util.Log;
 
 import com.rj.pixelesque.shapes.Shape;
@@ -30,7 +38,9 @@ public class PixelArt {
 	public boolean canvasLock = false;
 	
 	public boolean preview = true;
-	
+	public boolean showGrid = true;
+	public Uri backgroundUri;
+	public PImage background;
 
 	
 
@@ -81,6 +91,63 @@ public class PixelArt {
 		topy = 0;
 		scale = 1;
 		outline = false;
+		setBackground();
+	}
+	
+	public void setBackground() {
+		int w = width*2;
+		int h = height*2;
+		int lightgrey = Color.argb(100, 100, 100, 100);
+		int darkgrey = Color.argb(100, 30, 30, 30);
+		background = new PImage(w, h, PConstants.ARGB);
+		background.loadPixels();
+		for (int i=0; i<h; i+=2) {
+			for (int j=0; j<w; j+=2) {
+				background.pixels[i*w + j] = lightgrey;
+				background.pixels[i*w + j+1] = darkgrey;
+			}
+			for (int j=0; j<w; j+=2) {
+				background.pixels[i*w + w + j] = darkgrey;
+				background.pixels[i*w + w + j+1] = lightgrey;
+			}
+		}
+	}
+	
+	private Bitmap decodeUri(Context context, PApplet p, Uri selectedImage) throws FileNotFoundException {
+        // Decode image size
+        BitmapFactory.Options o = new BitmapFactory.Options();
+        o.inJustDecodeBounds = true;
+        BitmapFactory.decodeStream(context.getContentResolver().openInputStream(selectedImage), null, o);
+
+        // The new size we want to scale to
+        final int REQUIRED_SIZE = PApplet.max(p.width, p.height);
+
+        // Find the correct scale value. It should be the power of 2.
+        int width_tmp = o.outWidth, height_tmp = o.outHeight;
+        int scale = 1;
+        while (true) {
+        if (width_tmp / 2 < REQUIRED_SIZE
+            || height_tmp / 2 < REQUIRED_SIZE)
+            break;
+        width_tmp /= 2;
+        height_tmp /= 2;
+        scale *= 2;
+        }
+
+        // Decode with inSampleSize
+        BitmapFactory.Options o2 = new BitmapFactory.Options();
+        o2.inSampleSize = scale;
+        return BitmapFactory.decodeStream(context.getContentResolver().openInputStream(selectedImage), null, o2);
+
+    }
+	
+	public void setBackground(Context context, PApplet p, Uri location) {
+		try {
+			backgroundUri = location;
+			background = new PImage(decodeUri(context, p, location));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public static PixelArt makeFromShortside(int screenwidth, int screenheight, int shortside) {
@@ -98,7 +165,6 @@ public class PixelArt {
 		} else {
 			return new PixelArt(shortside, longside, true);
 		}
-		
 		
 	}
 	public void setDrawer(Drawer drawer) {
@@ -137,6 +203,8 @@ public class PixelArt {
 	
 	public void draw(PApplet p) {
 		if (workingdata == null) return;
+		
+		
 		float topx = this.topx;
 		float topy = this.topy;
 		float scale = this.scale;
@@ -145,13 +213,17 @@ public class PixelArt {
 		outline = false;
 		if (boxsize > outlineThresh) outline = true;
 
+		if (background != null)
+			p.image(background, topx, topy, boxsize*width, boxsize*height);
+
+		
 		if (!outline && height * boxsize < p.height) {
 			p.stroke(127);
 			p.fill(0, 40, 40);
 			p.rect(-1, height * boxsize, p.width+1, p.height+1);
 		}
 		
-		if (outline) p.stroke(127);
+		if (outline && showGrid) p.stroke(127);
 		else p.noStroke();
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
@@ -353,5 +425,25 @@ public class PixelArt {
 	
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	
+	
+	public JSONObject extrasToJSON() throws JSONException {
+		JSONObject json = new JSONObject();
+		json.put("preview", preview);
+		json.put("showGrid", showGrid);
+		if (backgroundUri != null)
+			json.put("backgroundUri", backgroundUri.toString());
+		return json;
+	}
+	
+	public void extrasFromJSON(Context context, PApplet p, JSONObject json) throws JSONException {
+		preview = json.getBoolean("preview");
+		showGrid = json.getBoolean("showGrid");
+		if (json.has("backgroundUri")) {
+			backgroundUri = Uri.parse(json.getString("backgroundUri"));
+			setBackground(context, p, backgroundUri);
+		}
 	}
 }

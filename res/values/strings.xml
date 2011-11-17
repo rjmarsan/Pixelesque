@@ -9,10 +9,12 @@
     <string name="menu_save">Save</string>
     <string name="menu_open">Open</string>
     <string name="menu_clear">Clear</string>
+    <string name="menu_background">Import Background</string>
     <string name="menu_share">Share</string>
     <string name="menu_export">Export</string>
     <string name="menu_saveas">Save As</string>
     <string name="menu_togglepreview">Toggle Preview</string>
+    <string name="menu_togglegrid">Toggle Grid</string>
     <string name="menu_about">About</string>
     
     <string name="loading_title">Loading...</string>
@@ -42,6 +44,13 @@
     <string name="exportcustom_button_export">Export</string>
     <string name="exportcustom_button_cancel">Cancel</string>
     
+        
+    <string name="open_failed">There was an error opening the image</string>
+    <string name="open_extras_failed">There was an error opening the image extras</string>
+        <string name="save_failed">There was an error saving the image</string>
+        <string name="custombg_failed">Import Background Failed!</string>
+        
+        
     <string name="about_title">About Pixelesque</string>
     <string name="about_button_market">Market</string>
     <string name="about_button_ok">Ok</string>

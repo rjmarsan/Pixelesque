@@ -13,8 +13,9 @@ import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
-public class SaveTask extends AsyncTask<Void, Void, Void> {
+public class SaveTask extends AsyncTask<Void, Void, Boolean> {
 	String name;
 	int width, height;
 	PixelArt data;
@@ -57,7 +58,7 @@ public class SaveTask extends AsyncTask<Void, Void, Void> {
 	}
 	
 	@Override
-	protected Void doInBackground(Void... params) {
+	protected Boolean doInBackground(Void... params) {
 		try {
 			Bitmap image;
 			if (width < 0 && height < 0)
@@ -71,17 +72,18 @@ public class SaveTask extends AsyncTask<Void, Void, Void> {
 			}
 			
 			StorageUtils.saveFile(name, file, image, context, !share && !export);
+			ArtExtras.saveExtras(context, data, name);
 			
 			if (share || export) {
 				new MediaScanTask().execute();
 			}
-
+			return true;
 			
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}				
-		return null;
+		return false;
 
 	}
 	
@@ -103,9 +105,12 @@ public class SaveTask extends AsyncTask<Void, Void, Void> {
 	}
 	
 	@Override
-	protected void onPostExecute(Void result) {
+	protected void onPostExecute(Boolean result) {
 		super.onPostExecute(result);
 		dialog.dismiss();
+		if (result == false) {
+			Toast.makeText(context, com.rj.pixelesque.R.string.save_failed, Toast.LENGTH_SHORT).show();
+		}
 		if (export) {
 			Log.d("SaveTask", "Exporting...");
 			Intent intent = new Intent(Intent.ACTION_VIEW);

@@ -233,6 +233,13 @@ public class Dialogs {
 		Log.d("PixelArt", "alertz shownew");
 	}
 
+	
+	
+	
+	public static void showImportBackgroundDialog(final PixelArtEditor p) {
+		Intent i = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+		p.startActivityForResult(i, PixelArtEditor.IMAGE_ACTIVITY); 
+	}
 
 	
 	

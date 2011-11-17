@@ -30,16 +30,4 @@
 		<nature>com.android.ide.eclipse.adt.AndroidNature</nature>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>AndMT_src</name>
-			<type>2</type>
-			<locationURI>_android_AndMT_3c7799e/src</locationURI>
-		</link>
-		<link>
-			<name>Processing15_src</name>
-			<type>2</type>
-			<locationURI>_android_Processing15_81261097/src</locationURI>
-		</link>
-	</linkedResources>
 </projectDescription>

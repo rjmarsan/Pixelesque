@@ -1,6 +1,7 @@
 package com.rj.pixelesque;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 
 import processing.core.PApplet;
 import android.app.Dialog;
@@ -9,10 +10,13 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
@@ -51,6 +55,8 @@ public class PixelArtEditor extends PApplet implements TouchListener, Drawer {
 	public final static int EXPORT_LARGE_LONGSIDE = 1080;
 
 	public final static int SHARE_MEDIUM_LONGSIDE = 500;
+	
+	
 
 	
 	public MTManager mtManager;
@@ -65,7 +71,8 @@ public class PixelArtEditor extends PApplet implements TouchListener, Drawer {
 	
 	public static final int LOAD_ACTIVITY = 313;
 	public static final int COLOR_ACTIVITY = 315;
-	
+	public final static int IMAGE_ACTIVITY = 1212; //arbitraryyyy
+
 	
 	public int sketchWidth() { return this.screenWidth; }
 	public int sketchHeight() { return this.screenHeight; }
@@ -388,15 +395,23 @@ public class PixelArtEditor extends PApplet implements TouchListener, Drawer {
 		@Override
 		protected PixelArt doInBackground(String... params) {
 			String path = params[0];
+			PixelArt art = null;
 			try {
 				Bitmap image = StorageUtils.loadFile(PixelArtEditor.this, path, PixelArtEditor.this, true);
 				if (image == null) return null;
-				PixelArt art = new PixelArt(image, new File(path).getName().replace(".png", ""));
-				return art;
+				art = new PixelArt(image, new File(path).getName().replace(".png", ""));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			return null;
+			try {
+				ArtExtras.populateExtras(PixelArtEditor.this, PixelArtEditor.this, art, new File(path).getName().replace(".png", ""));
+			} catch (Exception ee) {
+				ee.printStackTrace();
+				runOnUiThread(new Runnable() { public void run() {
+					Toast.makeText(PixelArtEditor.this, com.rj.pixelesque.R.string.open_extras_failed, Toast.LENGTH_SHORT).show();
+				}});
+			}
+			return art;
 		}		
 		@Override
 		protected void onPostExecute(PixelArt result) {
@@ -405,7 +420,7 @@ public class PixelArtEditor extends PApplet implements TouchListener, Drawer {
 				setArt(result);
 				artChangedName();
 			} else
-				Toast.makeText(PixelArtEditor.this, "There was an error opening the image", Toast.LENGTH_SHORT).show();
+				Toast.makeText(PixelArtEditor.this, com.rj.pixelesque.R.string.open_failed, Toast.LENGTH_SHORT).show();
 			d.dismiss();
 			scheduleRedraw();
 		}	
@@ -554,6 +569,12 @@ public class PixelArtEditor extends PApplet implements TouchListener, Drawer {
 		    case com.rj.pixelesque.R.id.main_menu_preview:
 		        togglePreview();
 		        return true;
+		    case com.rj.pixelesque.R.id.main_menu_gridtoggle:
+		        toggleGrid();
+		        return true;
+//		    case com.rj.pixelesque.R.id.main_menu_background:
+//		        importBackground();
+//		        return true;
 		    case com.rj.pixelesque.R.id.main_menu_about:
 		    	about();
 		    	return true;
@@ -582,8 +603,35 @@ public class PixelArtEditor extends PApplet implements TouchListener, Drawer {
 			int color = data.getIntExtra(ColorSelectorActivity.RESULT_COLOR, 0);
 			state.selectedColor = color;
 			buttonbar.updateFromState();
+		} else if (requestCode == IMAGE_ACTIVITY) {
+	        if(resultCode == RESULT_OK){  
+	        	try {
+		            Uri selectedImage = data.getData();
+		            Log.d("PixelArtEditor", "ImageActivity extras: "+data.getExtras());
+		            Log.d("PixelArtEditor", "ImageActivity data: "+data.getData());
+		            String[] filePathColumn = {MediaStore.Images.Media.DATA};
+	
+//		            android.database.Cursor cursor = getContentResolver().query(selectedImage, filePathColumn, null, null, null);
+//		            cursor.moveToFirst();
+//	
+//		            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+//		            String filePath = cursor.getString(columnIndex);
+//		            cursor.close();
+//		            BitmapFactory.Options options = new BitmapFactory.Options();
+//		            options.inSampleSize = 4;
+//		            BitmapFactory.decodeFile(filePath, options);
+//		            Bitmap yourSelectedImage = BitmapFactory.decodeFile(filePath);
+		            art.setBackground(PixelArtEditor.this, PixelArtEditor.this, data.getData());
+		            scheduleRedraw();
+	        	} catch (Exception e) {
+	        		Toast.makeText(this, com.rj.pixelesque.R.string.custombg_failed, Toast.LENGTH_LONG).show();
+	        	}
+	        }
+
 		}
 	}
+	
+
 	
 	public void clear() {
 		art.rectangle(0, 0, art.width-1, art.height-1, Color.TRANSPARENT);
@@ -594,6 +642,16 @@ public class PixelArtEditor extends PApplet implements TouchListener, Drawer {
 		art.preview = !art.preview;
 		this.scheduleRedraw();
 	}
+	
+	public void toggleGrid() {
+		art.showGrid = !art.showGrid;
+		this.scheduleRedraw();
+	}
+	
+	public void importBackground() {
+		Dialogs.showImportBackgroundDialog(this);
+	}
+
 	
 	public void shownew() {
 		Dialogs.showNewDialog(this);

@@ -88,7 +88,7 @@ public abstract class Shape {
 			art.setColor(point.x, point.y, this.color, false);
 		}
 		art.history.add();
-		Log.d("SHAPE", art.dumpBoard());
+		//Log.d("SHAPE", art.dumpBoard());
 	}
 	
 	public ArrayList<Point> getSelectedPoints() {

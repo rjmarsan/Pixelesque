@@ -41,7 +41,7 @@ public class Bucket extends SuperShape {
 			Point[] points = new Point[art.width*art.height];
 			for (int i=0; i<width; i++) {
 				for (int j=0; j<height; j++) {
-					points[i*width+j] = new Point(i,j);
+					points[i*height+j] = new Point(i,j);
 				}
 			}
 			
@@ -57,7 +57,7 @@ public class Bucket extends SuperShape {
 				
 				Point pp;
 				if (art.isValid(p.x,p.y-1)) {
-					pp = points[p.x*width + p.y-1];
+					pp = points[p.x*height + p.y-1];
 					if (!explored.contains(pp)) { 
 						if (art.workingdata[pp.x*height + pp.y] == currentcolor )
 							toExplore.add(pp);
@@ -66,7 +66,7 @@ public class Bucket extends SuperShape {
 				}
 				
 				if (art.isValid(p.x,p.y+1)) {
-					pp = points[p.x*width + p.y+1];
+					pp = points[p.x*height + p.y+1];
 					if (!explored.contains(pp)) { 
 						if (art.workingdata[pp.x*height + pp.y] == currentcolor )
 							toExplore.add(pp);
@@ -75,7 +75,7 @@ public class Bucket extends SuperShape {
 				}
 				
 				if (art.isValid(p.x-1,p.y)) {
-					pp = points[(p.x-1)*width + p.y];
+					pp = points[(p.x-1)*height + p.y];
 					if (!explored.contains(pp)) { 
 						if (art.workingdata[pp.x*height + pp.y] == currentcolor )
 							toExplore.add(pp);
@@ -84,7 +84,7 @@ public class Bucket extends SuperShape {
 				}
 	
 				if (art.isValid(p.x+1,p.y)) {
-					pp = points[(p.x+1)*width + p.y];
+					pp = points[(p.x+1)*height + p.y];
 					if (!explored.contains(pp)) { 
 						if (art.workingdata[pp.x*height + pp.y] == currentcolor )
 							toExplore.add(pp);

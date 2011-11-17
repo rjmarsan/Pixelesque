@@ -15,4 +15,11 @@ long-touch on grid selects color
 touching preview toggles from small-large-both
 nondestructive resize/move
 export to facebook
+export as original size
+
+
+
+pro tools:
+	non destructive resize/move
+	auto import image (not as background)
 
