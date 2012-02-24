@@ -213,14 +213,14 @@ public class Dialogs {
 		textcontent.setPadding(5,5,5,5);
 		textcontent.setTextSize(15);
 		builder.setView(textcontent);
-		builder.setPositiveButton(R.string.about_button_market, new DialogInterface.OnClickListener() {  
-			public void onClick(DialogInterface dialog, int whichButton) { 
-				Intent intent = new Intent(Intent.ACTION_VIEW);
-				intent.setData(Uri.parse("market://details?id="+p.getApplication().getPackageName()));
-				p.startActivity(intent);
-				dialog.dismiss();
-			}
-			}); 
+//		builder.setPositiveButton(R.string.about_button_market, new DialogInterface.OnClickListener() {  
+//			public void onClick(DialogInterface dialog, int whichButton) { 
+//				Intent intent = new Intent(Intent.ACTION_VIEW);
+//				intent.setData(Uri.parse("market://details?id="+p.getApplication().getPackageName()));
+//				p.startActivity(intent);
+//				dialog.dismiss();
+//			}
+//			}); 
 		builder.setNegativeButton(R.string.about_button_ok, new DialogInterface.OnClickListener() {  
 			public void onClick(DialogInterface dialog, int whichButton) {  
 				dialog.dismiss();

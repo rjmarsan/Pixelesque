@@ -1,16 +1,15 @@
 package com.rj.pixelesque;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 
 import processing.core.PApplet;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -19,12 +18,14 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Display;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
 import android.widget.TextView;
@@ -64,9 +65,19 @@ public class PixelArtEditor extends PApplet implements TouchListener, Drawer {
 	private ScaleGestureDetector mScaleDetector;
 	private PixelArtState state;
 	
+	public static boolean horizontal = false;
 	
+	public static void setIsHorizontal(Context context) {
+		 DisplayMetrics metrics = new DisplayMetrics();
+		 Display display = ((WindowManager) context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+		 display.getMetrics(metrics);
+		 int size = (context.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK);
+		 if (size == Configuration.SCREENLAYOUT_SIZE_LARGE || size == 4/*Configuration.SCREENLAYOUT_SIZE_XLARGE*/) {
+			 horizontal = true;
+		 }
+	}
 	public static boolean isHorizontal() {
-		return Build.VERSION.SDK_INT > 10;
+		return horizontal;
 	}
 	
 	public static final int LOAD_ACTIVITY = 313;
@@ -77,7 +88,7 @@ public class PixelArtEditor extends PApplet implements TouchListener, Drawer {
 	public int sketchWidth() { return this.screenWidth; }
 	public int sketchHeight() { return this.screenHeight; }
 	public String sketchRenderer() { return PApplet.P2D; }
-	public boolean keepTitlebar() { return isHorizontal(); }
+	public boolean keepTitlebar() { return Build.VERSION.SDK_INT > 10; /*isHorizontal();*/ }
 	public boolean keepStatusbar() { return true; }
 	
 	
@@ -89,6 +100,7 @@ public class PixelArtEditor extends PApplet implements TouchListener, Drawer {
 	
 	@Override
 	public void onCreate(final Bundle savedinstance) {
+		setIsHorizontal(this);
 		super.onCreate(savedinstance);
 		figureOutOrientation();
 		 
@@ -522,11 +534,13 @@ public class PixelArtEditor extends PApplet implements TouchListener, Drawer {
 			TextView view = (TextView)findViewById(com.rj.pixelesque.R.id.picturename);
 			if (art != null && art.name != null)  {
 				if (view != null) view.setText(art.name);
-				setTitle("Pixelesque - "+art.name);
+				//setTitle("Pixelesque - "+art.name);
+				setTitle(art.name);
 			} else {
 				String title = getResources().getString(com.rj.pixelesque.R.string.new_art_title);
 				if (view != null) view.setText(title);
-				setTitle("Pixelesque - "+title);
+				//setTitle("Pixelesque - "+title);
+				setTitle(title);
 			}
 			scheduleRedraw();
 		}

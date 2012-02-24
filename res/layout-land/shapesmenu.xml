@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/shapesmenu"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_toLeftOf="@+id/scroll_buttonbarz"
+    android:background="@color/hud_background"
+    android:orientation="vertical"
+    android:visibility="gone" >
+
+    <ImageView
+        android:id="@+id/bucketmode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="centerInside"
+        android:src="@drawable/bucketbutton_bg" />
+
+    <ImageView
+        android:id="@+id/circlemode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/bucketmode"
+        android:layout_toRightOf="@+id/bucketmode"
+        android:scaleType="centerInside"
+        android:src="@drawable/circlebutton_bg" />
+
+    <ImageView
+        android:id="@+id/rectanglemode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bucketmode"
+        android:scaleType="centerInside"
+        android:src="@drawable/rectbutton_bg" />
+
+    <ImageView
+        android:id="@+id/linemode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/rectanglemode"
+        android:layout_alignRight="@+id/circlemode"
+        android:layout_below="@+id/circlemode"
+        android:layout_toRightOf="@+id/rectanglemode"
+        android:scaleType="centerInside"
+        android:src="@drawable/linebutton_bg" />
+
+</RelativeLayout>

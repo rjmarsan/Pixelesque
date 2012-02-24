@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+	>
+   	<ImageView
+   		android:id="@+id/bottombarbackground"
+    	android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_alignBottom="@+id/buttonbarz"
+    	android:layout_alignLeft="@+id/buttonbarz"
+    	android:src="@drawable/bottombar_bg"
+		android:scaleType="centerCrop"
+		android:background="@color/hud_background"
+    	/>    
+	<com.rj.pixelesque.PixelArtStateView 
+		android:id="@+id/buttonbarz"
+	    android:orientation="horizontal"
+	    android:layout_width="fill_parent"
+	    android:layout_height="60dp"
+	    android:gravity="bottom"
+	    >
+
+	    <ImageView
+	    	android:id="@+id/pencilmode"
+	    	android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:src="@drawable/pencilbutton_bg"
+	    	android:scaleType="centerInside"
+	    	android:layout_weight="1"
+	    	/>
+
+	   	<RelativeLayout
+	   		android:id="@+id/shapesholder"
+	    	android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:layout_weight="1"
+		>
+		
+			<ImageView
+		    	android:id="@+id/shapesmode"
+		    	android:layout_width="wrap_content"
+		    	android:layout_height="wrap_content"
+		    	android:src="@drawable/shapesbutton_bg"
+	    		android:scaleType="centerInside"	
+	    		android:layout_centerInParent="true"		    	
+		    	/>
+			<ImageView
+		    	android:id="@+id/shapesmode"
+		    	android:layout_width="wrap_content"
+		    	android:layout_height="wrap_content"
+		    	android:src="@drawable/more"
+	    		android:scaleType="centerInside"	
+	    		android:layout_centerInParent="true"		    	
+		    	/>
+	    </RelativeLayout>
+
+	    <ImageView
+	    	android:id="@+id/erasermode"
+	    	android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:src="@drawable/eraserbutton_bg"
+	    	android:scaleType="centerInside"		    	
+	    	android:layout_weight="1"
+	    	/>	
+	    	
+		   	<ImageView
+	    	android:id="@+id/pointermode"
+	    	android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:src="@drawable/penbutton_bg"
+	    	android:scaleType="centerInside"		    	
+	    	android:layout_weight="1"
+	    	android:visibility="gone"
+	    	/>   	
+			<RelativeLayout
+	    	android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:layout_weight="1"
+		>
+			<ImageView
+		    	android:id="@+id/colorpicker" 
+		    	android:layout_width="wrap_content"
+		    	android:layout_height="wrap_content"
+		    	android:src="@drawable/colorbutton_bg"
+	    		android:scaleType="centerInside"		
+	    		android:layout_centerInParent="true"		    	
+			    	/>
+		    <View
+		    	android:id="@+id/colorindicator"
+		    	android:layout_width="25dp"
+		    	android:layout_height="25dp"
+		    	android:layout_centerInParent="true"
+		    		/>
+	    </RelativeLayout>
+	    
+	    <ImageView
+	    	android:id="@+id/undo"
+	    	android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:src="@drawable/undobutton_bg"
+	    	android:scaleType="centerInside"		    	
+	    	android:layout_weight="1"
+	    	/>	
+		<ImageView
+	    	android:id="@+id/redo"
+	    	android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:src="@drawable/redobutton_bg"
+	    	android:scaleType="centerInside"
+	    	android:layout_weight="1"
+	    	/>
+	</com.rj.pixelesque.PixelArtStateView>
+</RelativeLayout>

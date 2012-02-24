@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/main_menu_new" android:title="@string/menu_new"   android:icon="@drawable/menunew"  android:showAsAction="always" ></item>
+    <item android:id="@+id/main_menu_save" android:title="@string/menu_save" android:icon="@drawable/save" android:showAsAction="always"/>
+    <item android:id="@+id/main_menu_open" android:title="@string/menu_open"  android:icon="@drawable/open"  android:showAsAction="always" ></item>
+    <!--  <item android:id="@+id/main_menu_background" android:title="@string/menu_background"  android:icon="@drawable/clear"  android:showAsAction="always|withText" ></item> -->
+    <item android:id="@+id/main_menu_share" android:title="@string/menu_share"  android:icon="@drawable/share"  android:showAsAction="always|withText" ></item>
+    <item android:id="@+id/main_menu_export" android:title="@string/menu_export"  android:icon="@drawable/export"  android:showAsAction="never" ></item>
+    <item android:id="@+id/main_menu_save_as" android:title="@string/menu_saveas"   android:icon="@drawable/saveas"  android:showAsAction="never" ></item>
+    <item android:id="@+id/main_menu_clear" android:title="@string/menu_clear"  android:icon="@drawable/clear"  android:showAsAction="never" ></item>
+    <item android:id="@+id/main_menu_preview" android:title="@string/menu_togglepreview"   android:showAsAction="never" ></item>
+    <item android:id="@+id/main_menu_gridtoggle" android:title="@string/menu_togglegrid"   android:showAsAction="never" ></item>
+    <item android:id="@+id/main_menu_about" android:title="@string/menu_about"   android:showAsAction="never" ></item>
+</menu>

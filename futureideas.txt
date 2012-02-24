@@ -23,3 +23,15 @@ pro tools:
 	non destructive resize/move
 	auto import image (not as background)
 
+
+
+import activity
+	camera or image
+	adjust pixel size
+editor activity
+	control foreground transparancy/toggle
+
+Camera
+	automatically pixelate
+		gradient algorithms for better pixelating
+	import into pixelesque

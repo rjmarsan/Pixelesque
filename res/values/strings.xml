@@ -54,5 +54,5 @@
     <string name="about_title">About Pixelesque</string>
     <string name="about_button_market">Market</string>
     <string name="about_button_ok">Ok</string>
-    <string name="about">Pixelesque is made by &lt;a href=&quot;http://rjmarsan.com&quot;&gt;RJ Marsan&lt;/a&gt;.  It\'s 100% ad &amp; cost free, and &lt;a href=&quot;http://github.com/rjmarsan/Pixelesque&quot;&gt;open source&lt;/a&gt;.  Show your support by leaving a comment in the market, and stay tuned for Pixelesque++\!</string>
+    <string name="about">Pixelesque is made by &lt;a href=&quot;http://rjmarsan.com&quot;&gt;RJ Marsan&lt;/a&gt;.  It\'s 100% ad &amp; cost free, and &lt;a href=&quot;http://github.com/rjmarsan/Pixelesque&quot;&gt;open source&lt;/a&gt;.</string>
 </resources>
