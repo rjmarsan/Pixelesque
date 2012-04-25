@@ -9,14 +9,10 @@ Building
 
 So you want to build Pixelesque? It's pretty easy.
 
-get processing:
-http://wiki.processing.org/w/Android#Using_Eclipse_for_Development
-(basically - check out the SVN repo and import processing/android/core as it's own project)
-
 get my multitouch android library:
 https://github.com/rjmarsan/AndroidProcessingMultitouch
 
-add them to eclipse
+add it to eclipse
 add Pixelesque to eclipse, and re-add them as library projects.
 
 That should be it.
