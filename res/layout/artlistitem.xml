@@ -25,7 +25,6 @@
 	    	android:layout_height="wrap_content"
 	    	android:textSize="26dp"
 	    	android:textColor="#aaa"
-	    	android:text="Doop doop doop"
 	    	android:layout_centerVertical="true"
 	    	android:layout_toRightOf="@+id/thumb"
 	     />

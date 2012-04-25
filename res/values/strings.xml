@@ -36,6 +36,7 @@
     <string name="export_title">Export</string>
     <string name="export_button_other">Other</string>
     <string name="export_button_cancel">Cancel</string>
+    <string formatted="false" name="export_size_original">Original (%dx%d)</string>
     <string formatted="false" name="export_size_low">Low (%dx%d)</string>
     <string formatted="false" name="export_size_medium">Medium (%dx%d)</string>
     <string formatted="false" name="export_size_high">High (%dx%d)</string>

@@ -47,6 +47,7 @@ public class ArtExtras {
 	
 	
 	public static void saveExtras(Context context, PixelArt art, String tag) throws Exception {
+		if (tag == null) tag = "untitled-"+art.hashCode()/100000;
 		File jsonFile = getSaveFile(context);
 		JSONObject json = getExtras(context);
 		if (json == null) json = new JSONObject();

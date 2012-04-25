@@ -51,6 +51,7 @@ public class PixelArtEditor extends PApplet implements TouchListener, Drawer {
 	
 	//int x = R;
 	
+	public final static int EXPORT_ORIGINAL = -1;
 	public final static int EXPORT_SMALL_LONGSIDE = 320;
 	public final static int EXPORT_MEDIUM_LONGSIDE = 640;
 	public final static int EXPORT_LARGE_LONGSIDE = 1080;
@@ -700,6 +701,11 @@ public class PixelArtEditor extends PApplet implements TouchListener, Drawer {
 			extra = "-"+extra;
 		} else {
 			extra = "";
+		}
+		if (longside == EXPORT_ORIGINAL) {
+			// just export it to it's original size
+			if (art.name != null) export(art.name+extra, art.width, art.height);
+			else export(null, art.width, art.height);
 		}
 		if (art.width > art.height) {
 			if (art.name != null) export(art.name+extra, longside, -1);

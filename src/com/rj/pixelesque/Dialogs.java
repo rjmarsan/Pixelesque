@@ -90,10 +90,12 @@ public class Dialogs {
 	
 	public static void showExport(final PixelArtEditor p) {
 		Log.d("PixelArt", "alertz showexport");
+		int[] origxy = {p.art.width, p.art.height};
 		int[] lowxy = getResize(p.art.width, p.art.height, PixelArtEditor.EXPORT_SMALL_LONGSIDE);
 		int[] medxy = getResize(p.art.width, p.art.height, PixelArtEditor.EXPORT_MEDIUM_LONGSIDE);
 		int[] highxy = getResize(p.art.width, p.art.height, PixelArtEditor.EXPORT_LARGE_LONGSIDE);
 		final String[] qualities = { 
+				String.format(p.getResources().getString(R.string.export_size_original),origxy[0],origxy[1]), //Low (320x240) 
 				String.format(p.getResources().getString(R.string.export_size_low),lowxy[0],lowxy[1]), //Low (320x240) 
 				String.format(p.getResources().getString(R.string.export_size_medium),medxy[0],medxy[1]), //Low (320x240) 
 				String.format(p.getResources().getString(R.string.export_size_high),highxy[0],highxy[1]), //Low (320x240) 
@@ -104,8 +106,10 @@ public class Dialogs {
 		builder.setItems(qualities, new OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) {
 				if (which == 0)
+					p.export(PixelArtEditor.EXPORT_ORIGINAL, "original");
+				else if (which == 1)
 					p.export(PixelArtEditor.EXPORT_SMALL_LONGSIDE, "small");
-				else if (which == 1) 
+				else if (which == 2) 
 					p.export(PixelArtEditor.EXPORT_MEDIUM_LONGSIDE, "medium");
 				else
 					p.export(PixelArtEditor.EXPORT_LARGE_LONGSIDE, "large");
@@ -213,14 +217,14 @@ public class Dialogs {
 		textcontent.setPadding(5,5,5,5);
 		textcontent.setTextSize(15);
 		builder.setView(textcontent);
-//		builder.setPositiveButton(R.string.about_button_market, new DialogInterface.OnClickListener() {  
-//			public void onClick(DialogInterface dialog, int whichButton) { 
-//				Intent intent = new Intent(Intent.ACTION_VIEW);
-//				intent.setData(Uri.parse("market://details?id="+p.getApplication().getPackageName()));
-//				p.startActivity(intent);
-//				dialog.dismiss();
-//			}
-//			}); 
+		builder.setPositiveButton(R.string.about_button_market, new DialogInterface.OnClickListener() {  
+			public void onClick(DialogInterface dialog, int whichButton) { 
+				Intent intent = new Intent(Intent.ACTION_VIEW);
+				intent.setData(Uri.parse("market://details?id="+p.getApplication().getPackageName()));
+				p.startActivity(intent);
+				dialog.dismiss();
+			}
+			}); 
 		builder.setNegativeButton(R.string.about_button_ok, new DialogInterface.OnClickListener() {  
 			public void onClick(DialogInterface dialog, int whichButton) {  
 				dialog.dismiss();
