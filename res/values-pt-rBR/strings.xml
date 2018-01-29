@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Olá Mundo, PixelArt!</string>
+    <string name="app_name">Pixelesque</string>
+    
+    <string name="new_art_title">Nova Pixel Art</string>
+    
+    <string name="menu_new">Novo</string>
+    <string name="menu_save">Salvar</string>
+    <string name="menu_open">Abrir</string>
+    <string name="menu_clear">Limpar</string>
+    <string name="menu_background">Importar Plano de Fundo</string>
+    <string name="menu_share">Compartilhar</string>
+    <string name="menu_export">Exportar</string>
+    <string name="menu_saveas">Salvar como</string>
+    <string name="menu_togglepreview">Alterar Pré-Visualização</string>
+    <string name="menu_togglegrid">Alterar Grade</string>
+    <string name="menu_about">Sobre</string>
+    
+    <string name="loading_title">Carregando...</string>
+    <string name="loading_text">Só um momento</string>
+    
+    <string name="saving_title">Salvando...</string>
+    <string name="saving_text">Só um momento</string>
+    
+    <string name="share_image">Compartilhar Imagem</string>
+    
+    <string name="new_title">Escolha um Tamanho</string>
+    <string name="new_button_new">Novo</string>
+    <string name="new_button_cancel">Cancelar</string>
+    
+    <string name="saveas_title">Salvar como</string>
+    <string name="saveas_button_new">Salvar</string>
+    <string name="saveas_button_cancel">Cancelar</string>
+    
+    <string name="export_title">Exportar</string>
+    <string name="export_button_other">Outros</string>
+    <string name="export_button_cancel">Cancelar</string>
+    <string formatted="false" name="export_size_original">Original (%dx%d)</string>
+    <string formatted="false" name="export_size_low">Baixa (%dx%d)</string>
+    <string formatted="false" name="export_size_medium">Média (%dx%d)</string>
+    <string formatted="false" name="export_size_high">Alta (%dx%d)</string>
+    
+    <string name="exportcustom_title">Escolha um tamanho para exportar</string>
+    <string name="exportcustom_button_export">Exportar</string>
+    <string name="exportcustom_button_cancel">Cancelar</string>
+    
+        
+    <string name="open_failed">Houve um erro ao abrir a imagem</string>
+    <string name="open_extras_failed">Houve um erro ao abrir os extras da imagem</string>
+        <string name="save_failed">Houve um erro ao salvar a imagem</string>
+        <string name="custombg_failed">Importar Plano de Fundo Falhou!</string>
+        
+        
+    <string name="about_title">Sobre o Pixelesque</string>
+    <string name="about_button_market">Loja</string>
+    <string name="about_button_ok">Ok</string>
+    <string name="about">Pixelesque foi feito por &lt;a href=&quot;http://rjmarsan.com&quot;&gt;RJ Marsan&lt;/a&gt;.  Ele é 100% gratuito e sem propagandas, e &lt;a href=&quot;http://github.com/rjmarsan/Pixelesque&quot;&gt;código aberto&lt;/a&gt;.</string>
+</resources>
